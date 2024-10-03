@@ -1,0 +1,16 @@
+Wyznaczanie 10^6 i 10^9 tej liczby Nivena w bashu, C oraz Javie
+			n = 10^6			n = 10^9
+java:			0m0,541s			3m56,427s
+java -Xcomp -Xdiag	0m28,633s			4m45,739	
+java -Xint -Xdiag	0m26,692s
+gcc			0m0,342s			7m15,624s
+gcc -O1			0m0,213s			3m47,850s
+gcc -O2			0m0,194s			2m32,766s
+gcc -O3			0m0,159s			2m56,244s
+bash			12m20,977s			>30m
+Czas mierzony funkcją time
+wersja:
+Linux 6.5.0-26-generic x86_64
+javac 21.0.2
+gcc (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0
+GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)

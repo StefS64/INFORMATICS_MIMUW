@@ -1,0 +1,116 @@
+# Pierwsze Ćwiczenia
+
+W binie znajdują się polecenia zewnętrzbe i można tam obczaić commendy.
+
+echo $PATH - pokażę ścieżki do różnych binów.
+
+## Manual - rozwala na sekcje (uwaga niektóre commendy są w różnych działach)
+funkcja:
+man
+man 2
+man 3
+Różne sekcje mają jakieś rozróżnienie.
+- czasem lepiej dla większych programów obczaić stronkę.
+
+
+which - szuka w ścieżce i powie gdzie co jest
+
+type - fajne mówi jaki typ to jest
+
+
+klasyk:
+ 
+
+echo abc > a.txt - wpisuje zastepując
+echp ced >> a.txt - wpisuje na koniec pliku
+
+cat - wypisuje zawaerość pliku (to jest konkatenacja bo łączy oba wyjścia plików)
+
+wc - word count (sign count) il| | 
+
+
+
+
+
+bc - bash calculator
+more -  
+## less - oglądanie pliku strona przez stronę(nie przerywa lessa)
+\przyklad - wyszukuje slowo w lessie
+ 
+
+
+
+| - łączenie poleceń za pomocą pipa
+
+head 2 - pierwsze 2 linie
+tail 2- podobnie.
+
+
+hexdump - szukanie napisów w zapise binarnym
+
+
+
+
+
+
+Pisząc dla siebie urzywamy krótszej formy polecenia w programie warto jednak mieć opcje rozszerzone mówiące o działaniu programu.
+
+
+
+## UWAGA - oczywiście opcje się łączą
+# Uwaga ls -l -a -h  == ls -lha
+
+
+dirname - nazwa directory gdzie jest fajne
+
+
+
+## Przetważanie wejścia
+
+cut -d, -f1 - wypiszę pierwszą kolumne gdzie kolumny są odzielone przecinkami
+cut -d: -f3 - wypiszę 3 kolumne gdzie kolumny są odzielone dwukropkami
+ps aux | cut -d' ' -f1 | uniq
+
+
+Sort - sortownaie liczb 
+du -h --max-depth=1
+du - dysk i miejsce zajmownaie na nim dysku
+
+
+## Wyświetlanie zawartośic pliku
+find
+grep
+ps aux | grep python
+grep 'mv.... ... .. '- ileś znaków
+
+
+UWAGA - Jacek handle jr 459674
+
+find - igdzie ma szukać
+find | grep python
+
+
+
+
+##polecenia
+ps;ls - dwie komendy które jedna po drugiej się wykonają
+
+echo $? - kod wyjścia ostatniego pliku
+
+&& - oba programy mają się udać
+|| - chociaż jeden ma się udać
+UDane polecenia mają output zero nieudane niezero
+
+
+Standardowe wyjscie ma numerek 1. a wyjscie 2
+
+
+
+
+ps aux | cut -d' ' -f1 | sort |uniq -c - samo się tłumaczy
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+000000000010caa0 <__mmap>:
+
+; To jest zabezpieczenie przed atakiem typu COP/JOP.
+  10caa0:       f3 0f 1e fa             endbr64
+
+; Czwarty argument w ABI funkcji systemowych jest przekazywany w rejestrze r10,
+; a w ABI języka C w rejestrze rcx. Rozkaz syscall umieszcza w rejestrze rcx
+; adres powrotu. Czwarty argument funkcji mmap to flags typu int (32 bity),
+; więc dlatego tu zawartość rejestru ecx jest przepisywana do rejestru r10d.
+  10caa4:       41 89 ca                mov    r10d,ecx
+
+; Szóstym argumentem funkcji mmap jest offset typu off_t (64 bity). Tu jest
+; sprawdzenie, czy jego wartość jest wielokrotnością rozmiaru strony (4096).
+  10caa7:       41 f7 c1 ff 0f 00 00    test   r9d,0xfff
+  10caae:       75 10                   jne    10cac0
+
+; Wartość offset jest wielokrotnością rozmiaru strony.
+; Wywoływana jest funkcja systemowa numer 9, czyli sys_mmap.
+  10cab0:       b8 09 00 00 00          mov    eax,0x9
+  10cab5:       0f 05                   syscall
+
+; Trikowe sprawdzenie, czy wystąpił błąd, czyli czy wywołanie zakończyło się
+; wartością z przedziału -1 do -4095. Zamiast sprawdzać dwie nierówności:
+; 0 > rax > -4096, sprawdzamy tylko jedną: rax > 2^64 - 4096.
+  10cab7:       48 3d 00 f0 ff ff       cmp    rax,0xfffffffffffff000
+  10cabd:       77 21                   ja     10cae0
+
+; Wywołanie zakończyło się powodzeniem. Wynik funkcji jest w rejestrze rax.
+  10cabf:       c3                      ret
+
+; Wartość offset nie jest wielokrotnością rozmiaru strony.
+; Do rejestru rax ładowany jest adres zmiennej globalnej errno.
+; W errno ustawiany jest kod EINVAL (invalid argument).
+; Rejestr segmentowy fs wskazuje na segment danych wykonywanego wątku.
+; Wynikiem funkcji, przekazywanym w rejestrze rax, jest (void *)-1.
+  10cac0:       48 8b 05 29 73 0d 00    mov    rax,[rip+0xd7329]      # 1e3df0 <_DYNAMIC+0x290>;
+  10cac7:       64 c7 00 16 00 00 00    mov    dword fs:[rax],0x16
+  10cace:       48 c7 c0 ff ff ff ff    mov    rax,0xffffffffffffffff
+  10cad5:       c3                      ret
+
+; To jest wypełniacz w celu wyrównania adresu kolejnego rozkazu.
+  10cad6:       66 2e 0f 1f 84 00 00    nop
+  10cadd:       00 00 00
+
+; Wywołanie zakończyło się błędem. Ustawiana jest wartość errno.
+; Wynikiem funkcji jest (void *)-1.
+  10cae0:       48 8b 15 09 73 0d 00    mov    rdx,[rip+0xd7309]      # 1e3df0 <_DYNAMIC+0x290>;
+  10cae7:       f7 d8                   neg    eax
+  10cae9:       64 89 02                mov    fs:[rdx],eax
+  10caec:       48 c7 c0 ff ff ff ff    mov    rax,0xffffffffffffffff
+  10caf3:       c3                      ret

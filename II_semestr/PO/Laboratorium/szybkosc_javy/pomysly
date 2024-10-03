@@ -1,0 +1,23 @@
+def farey_sequence(n):
+    farey = [(0, 1), (1, 1)]
+    for denominator in range(2, n + 1):
+        for numerator in range(1, denominator):
+            if greatest_common_divisor(numerator, denominator) == 1:
+                farey.append((numerator, denominator))
+    return farey
+
+def greatest_common_divisor(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+# Przykładowe wywołanie algorytmu dla n = 5
+n = 5
+result = farey_sequence(n)
+print("N-ty element ciągu Fareya dla n =", n, "to:", result)
+
+#PADOVAN sequence
+
+#Catalan numbers
+
+#LICZBY NIVENA

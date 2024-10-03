@@ -1,0 +1,14 @@
+This program implements a stockMarket which is supported by the stockSystem class.
+
+How to run the program:
+args[0] - filepath to file with input, the input format is specified later
+args[1] - number of simulation turns of the stock market
+
+In case of wanting to print the state of queues after every turn use simulation.setPrintMode(true)
+
+File format:
+the file has to contain these lines in this order:
+1. types of investors in format: "R R R R S S" where "R" and "S" are the right types of investors it also specifies the number of investors.
+2. names of stocks ( name length needs to be less or equal than 5) after each name there is ":" and then the last price of the transaction of this stock.
+3. next n lines specify the wallets of the investors
+Note: the program will recognize wrong input and throw an appropriate exception.

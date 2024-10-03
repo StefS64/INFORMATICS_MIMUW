@@ -1,0 +1,41 @@
+# WYkonywanie plików zabawa bashem
+
+
+chmod +x - zmienie uprawnienia
+
+bash - nie zmienia patha
+source lub kropka zmienia np direcotory w którym się jest
+
+zmienne zapisujem w cudzsłowiach żeby była traktowana jako jeden napis np "$CXX"
+
+
+export - wtedy zmienna jest widoczna we wszystkich podprocesach
+
+
+skrypty które są w podprocesach nie mogą zmieniać rzeczy w nad procesach 
+
+wyrażenia liczbowe oczywiście : ((i  = 3*2))
+
+
+Przykład skryptu wypisujący drugi argument:
+
+echo $2
+ehco $# - liczba argumentów
+shift - przesunięcie argumentów i można nie uterować się po elementach tylko przesuwa się na 1 pozycje
+echo $? - kod wyjścia ostatniego procesu (zerowy jest git dodatni tak średnio)
+\ - neguje specjalne znaki
+'$fooo' - wypisuje wszystko takim jakim jest
+echo * - wypisać wszytsko
+"" - neguję tylko niektóre znaki
+"$@" - przekazuje wszystjkie argumenty z spacjami
+"$*" - dzieli wsyztkie argumenty poodzielane spacjami
+
+
+seq x y- wypisuje liczby od x do y 
+seq 9 -1 1 - w odwrotnej kolejności
+
+
+pustość można sprawdzać za pomocą flagi -z
+if [[ -z $FOO ]]; then echo TAK; else echo NIE; fi
+
+

@@ -1,0 +1,57 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>100</x><y>110</y><w>340</w><h>130</h></coordinates><panel_attributes>(A)Dwarf
+--
+- bag: Bag
+--
++ (A)wantsNextTreasure (): boolean
+# getBag(): Bag
++ recieveTreasureIfPossible(treasure: Treasure): boolean
+//Bilbo wywołuje recieveTreasure</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>340</y><w>200</w><h>90</h></coordinates><panel_attributes>PercentDwarf
+--
+- targetPercent: int
+--
++ wantsNextTreasure(): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>350</y><w>210</w><h>90</h></coordinates><panel_attributes>GambleDwarf
+--
+
+--
++ wantsNextTreasure(): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>230</y><w>80</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>230</y><w>200</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>340</y><w>300</w><h>90</h></coordinates><panel_attributes>AverageDwarf
+--
+- treasureHistory(): Treasure[]
+--
++ wantsNextTreasure(): boolean
+- countAvarageTreasureSize(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>230</y><w>300</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;280;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>620</x><y>110</y><w>320</w><h>130</h></coordinates><panel_attributes>Bilbo
+--
+- treasures: Treasure[]
+- dwarves : Dwarf[]
+--
++ giveTreasures(): void
+//inicjalizacja^
+- giveSingleTreasure(dwarf: Dwarf, treasure: Treasure)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>950</x><y>340</y><w>110</w><h>70</h></coordinates><panel_attributes>Treasure
+--
+- size: int
+--
++ getSize(): int
+//imutible - jest niezmienielny więc super żeby nikt nam tego nie zmienił</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>110</y><w>210</w><h>130</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1
+gives treasures to</panel_attributes><additional_attributes>10;110;190;10</additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>230</y><w>240</w><h>130</h></coordinates><panel_attributes>lt=-
+m1=1..*
+m2=1
+has</panel_attributes><additional_attributes>220;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>220</x><y>530</y><w>180</w><h>140</h></coordinates><panel_attributes>Bag
+--
+- bagCapacity: int
+- usedCapacity: int
+--
++ isEmpty(): boolean
++ getUsedPercantage(): int
+//computed or derived property
+//coupling - chcemy żeby był jak najmniejsze
++ putTreasure(treasure: Treasure): void
++ clear(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>400</y><w>610</w><h>220</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..*</panel_attributes><additional_attributes>10;200;590;10</additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>230</y><w>120</w><h>320</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes><additional_attributes>10;10;100;300</additional_attributes></element></diagram>

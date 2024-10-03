@@ -1,0 +1,40 @@
+#Podejscie obiektowe
+
+
+##Znaczenie programowania obiektowego OOP
+- obiekty
+	-kapsułka która w środku ma: dane(stan) i ma określone pewne zachowania
+- censu stricto(zasady programowania)
+	-enkapsulacja/hermetyzacja (stan powinien być chroniony czyli jak najmniejsze połączenie z danymi jak się da)
+	-mutability (stan jest zmienny)
+	-dziedziczenie
+- clasa
+	-template obiektów
+	-jeżeli chciałbym stworzyć ileś tam obiektów które są krasnoludami, które kopią czy umieją walczyć, każdy ma imie i majątek ( podklasa przykładowo górnik, 
+
+## UML
+- zasady służące do robienia diagramów
+UWAGA - ważne na egzamin i kolosy ( projekt w UMLu)
+prostokąt 3 części
+:
+-clasy
+-atrybuty
+	-nazwy imiona
+	-kwestia zapisania +/-/#/~ - odpowiadające dostępowymi(# - protected(mam dostęp tylko z podklas)/+ - public skąd kolwiek dostęp mogę zmienić tą wartość/ - - tylko z tej samej klasy mogę mieć dostęp)
+typ pisze się po : np imie:string majatek:int
+-Methody(mogą edytować atrybuty podobnie modyfikatory dostępu się do nich odnoszą)
+
+
+Przykład:
+-imie będzie private
+- a będzie methoda public  "przedstaw się"
+
+Krasolud - duża litera camel case 
+-imię:string
+LIMIT_KASY - tak nazywamy stałe
++przedstawSię():string - camel case === getter
+"zmieńImię(string):void " === setter 
+konwencja nazwynicza( trywialne gettery i settery: getName i setName)
+
+--refleksja
+

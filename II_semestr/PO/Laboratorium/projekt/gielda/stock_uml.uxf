@@ -1,0 +1,44 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>300</x><y>150</y><w>100</w><h>140</h></coordinates><panel_attributes>Shares
+--
+-companyName
+-int price
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>620</x><y>550</y><w>180</w><h>200</h></coordinates><panel_attributes>CompanyStock
+--
+-lastCommisionPrice
+-lastCommsionTurn
+-BuyQueue
+-SellQueue
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>290</y><w>180</w><h>170</h></coordinates><panel_attributes>(A)Commision
+--
+-(int turn)
+-CommisionType type
+-int id
+-size_t numberOfCommisions
+-size_t priceLimit
+-time_of_commition
+-Inwestor inwestor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>420</y><w>100</w><h>60</h></coordinates><panel_attributes>Random
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>140</y><w>100</w><h>150</h></coordinates><panel_attributes>(A)Inwestor
+--
+-name
+-funds
+-askNumberOfTurn
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>0</y><w>250</w><h>110</h></coordinates><panel_attributes>(Enum)CommisionTyp
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>500</y><w>100</w><h>90</h></coordinates><panel_attributes>Immidiate
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>610</y><w>190</w><h>80</h></coordinates><panel_attributes>DoOrNotDoThereIsNoTry
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>30</x><y>450</y><w>40</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>450</y><w>280</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;260;160</additional_attributes></element><element><id>UMLClass</id><coordinates><x>110</x><y>590</y><w>160</w><h>100</h></coordinates><panel_attributes>ImportantTillEndOfRound
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>70</x><y>450</y><w>160</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;140;140</additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>450</y><w>270</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;250;70</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>280</y><w>120</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>280</y><w>50</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;30;140</additional_attributes></element><element><id>UMLClass</id><coordinates><x>390</x><y>520</y><w>150</w><h>60</h></coordinates><panel_attributes>NoTimeOfTermination
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>420</y><w>100</w><h>70</h></coordinates><panel_attributes>Sma
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>890</x><y>210</y><w>100</w><h>120</h></coordinates><panel_attributes>Commision_queue
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1000</x><y>450</y><w>100</w><h>120</h></coordinates><panel_attributes>StockSystem
+--
+-CompanyStocks
+-numberOfTurn
+
++AskINwestors
++getCommision
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>500</y><w>230</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..1
+teaches to &gt;</panel_attributes><additional_attributes>10;90;210;10</additional_attributes></element></diagram>

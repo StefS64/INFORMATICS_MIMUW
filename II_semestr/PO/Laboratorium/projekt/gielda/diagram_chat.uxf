@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>0</x>
+            <y>0</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            GPWSimulation
+            --
+            + numberOfTurns: int
+            + main(String[]): void
+            --
+            + startSimulation(): void
+            + processTurn(): void
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>250</x>
+            <y>0</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            Investor
+            --
+            + name: String
+            + portfolio: Portfolio
+            --
+            + makeDecision(): Order
+            + updatePortfolio(Transaction): void
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>500</x>
+            <y>0</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            RandomInvestor
+            --
+            + randomFactor: int
+            --
+            + makeDecision(): Order
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>750</x>
+            <y>0</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            SMAInvestor
+            --
+            + sma5: List&lt;int&gt;
+            + sma10: List&lt;int&gt;
+            --
+            + calculateSMA(): void
+            + makeDecision(): Order
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>0</x>
+            <y>300</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            Order
+            --
+            + type: String
+            + stockId: String
+            + quantity: int
+            + limitPrice: int
+            + orderId: int
+            --
+            + isMatch(Order): boolean
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>250</x>
+            <y>300</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            Stock
+            --
+            + stockId: String
+            + lastPrice: int
+            --
+            + updatePrice(int): void
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>500</x>
+            <y>300</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            OrderBook
+            --
+            + buyOrders: List&lt;Order&gt;
+            + sellOrders: List&lt;Order&gt;
+            --
+            + addOrder(Order): void
+            + matchOrders(): List&lt;Transaction&gt;
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>750</x>
+            <y>300</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            Portfolio
+            --
+            + cash: int
+            + stocks: Map&lt;String, Integer&gt;
+            --
+            + updatePortfolio(Transaction): void
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>1000</x>
+            <y>300</y>
+            <w>210</w>
+            <h>250</h>
+        </coordinates>
+        <panel_attributes>
+            Transaction
+            --
+            + orderId: int
+            + stockId: String
+            + quantity: int
+            + price: int
+            --
+            + execute(): void
+        </panel_attributes>
+        <additional_attributes/>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>220</x>
+            <y>125</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--|&gt;</panel_attributes>
+        <additional_attributes>
+            <start>GPWSimulation</start>
+            <end>Investor</end>
+            <middle_label>manages</middle_label>
+        </additional_attributes>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>470</x>
+            <y>125</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--|&gt;</panel_attributes>
+        <additional_attributes>
+            <start>Investor</start>
+            <end>RandomInvestor</end>
+            <middle_label>extends</middle_label>
+        </additional_attributes>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>720</x>
+            <y>125</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--|&gt;</panel_attributes>
+        <additional_attributes>
+            <start>Investor</start>
+            <end>SMAInvestor</end>
+            <middle_label>extends</middle_label>
+        </additional_attributes>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>100</x>
+            <y>425</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--&gt;</panel_attributes>
+        <additional_attributes>
+            <start>Investor</start>
+            <end>Order</end>
+            <middle_label>places</middle_label>
+        </additional_attributes>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>370</x>
+            <y>425</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--&gt;</panel_attributes>
+        <additional_attributes>
+            <start>Order</start>
+            <end>Stock</end>
+            <middle_label>concerns</middle_label>
+        </additional_attributes>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>620</x>
+            <y>425</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--&gt;</panel_attributes>
+        <additional_attributes>
+            <start>OrderBook</start>
+            <end>Transaction</end>
+            <middle_label>creates</middle_label>
+        </additional_attributes>
+    </element>
+    <element>
+        <id>Relation</id>
+        <coordinates>
+            <x>870</x>
+            <y>425</y>
+            <w>30</w>
+            <h>10</h>
+        </coordinates>
+        <panel_attributes>--&gt;</panel_attributes>
+        <additional_attributes>
+            <start>Transaction</start>
+            <end>Portfolio</end>
+            <middle_label>updates</middle_label>
+        </additional_attributes>
+    </element>
+</diagram>

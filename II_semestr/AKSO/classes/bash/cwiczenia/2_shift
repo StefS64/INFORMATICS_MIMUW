@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Ten skrypt jest nieznacznym rozwinięciem poprzedniego przykładu.
+
+echo Skrypt $0 wywołano z $# parametrami.
+echo – pierwszy:   $1
+echo – drugi:      $2
+echo – trzeci:     $3
+echo – wszystkie:  $*
+
+echo "O ile przesunąć?"
+read i
+
+shift $i
+
+echo Po przesunięciu zostało $# parametrów.
+echo – pierwszy:   $1
+echo – drugi:      $2
+echo – trzeci:     $3
+echo – wszystkie:  $*

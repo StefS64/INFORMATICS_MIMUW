@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "nand.h": "c",
+        "stdbool.h": "c"
+    }
+}

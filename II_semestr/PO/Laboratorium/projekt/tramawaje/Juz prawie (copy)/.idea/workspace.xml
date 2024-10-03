@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eba580a9-fb0d-4065-af19-552858a6b7d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/Losowanie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/Passenger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/Simulation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/EventQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/EventQueueVector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/PassengerEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/PassengerEventType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/VehicleEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/eventqueue/VehicleEventType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/lines/Line.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/lines/Stop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/lines/TramLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/vehicles/Tram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../templatka/template-master/src/main/java/pl/edu/mimuw/vehicles/Vehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/Expression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/binary/Addition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/binary/BinaryOperator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/binary/Multiplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/binary/Subtraction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/singleelements/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/singleelements/Variable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/unaryfunction/Sinus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/unaryfunction/UnaryFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/unaryoperator/Brackets.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/unaryoperator/NegativeValue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../wyrazenie jednej zmiennej/template-master/src/main/java/pl/edu/mimuw/expression/unaryoperator/UnaryOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/cwiczenia/assemblr/ac0.asm" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/cwiczenia/assemblr/ac0.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/cwiczenia/assemblr/mac0.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/cwiczenia/assemblr/mac0.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/cwiczenia/assemblr/mac0_test" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/cwiczenia/assemblr/mac0_test" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/lista_compiled" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/lista_ready.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/lista_temp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/nand.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/auto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/auto.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/bramki_nand.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/brute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/brute.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/auto.out" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/auto.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/brute.out" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/brute.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/libnand.so" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/libnand.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/list.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/list.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/list.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand_finished_project/list.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand_finished_project/list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand_finished_project/nand.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand_finished_project/nand.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/nand_finished_project/nand.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/test.in" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/test.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/test_gen" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/test_gen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/test_gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/formated/test_gen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/interactor.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/libnand.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/list.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/list.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/memory_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/memory_tests.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/memory_tests.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/nand.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/nand.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/nand.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/nand_example.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/nand_example.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/pamiec_connect.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/readme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/run_tests.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/save_13_04_2023_13:43/nand_save.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/save_20:50_12_04_24/nand.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/test.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/test_gen" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/test_gen.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/testy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/testy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy/testy.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/.lista.h.swp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/.nand.h.swp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/bramki_nand.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/dynamic_table_experimentation.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/memory_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/memory_tests.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/nand.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../AKSO/projekt/bramki_NANd/projekt_wlasciwy_bez_list/nand_example.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/AbstractStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/AbstractStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/DynamicArrayStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/DynamicArrayStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/LinkedListStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/LinkedListStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../linked_list/template-master/src/main/java/pl/edu/mimuw/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/template-master">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/template-master">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="template" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="template" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="template" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2dYITbKjLdxFfsDIp5HoDdPObs0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.template-master [classes].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.template-master [run].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/st0ic/Desktop/MIMUW/informatyka/PO/laby/Java_classy/firma&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Gradle.template-master [run]">
+    <configuration name="template-master [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/template-master" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="classes" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="template-master [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/template-master" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.template-master [run]" />
+        <item itemvalue="Gradle.template-master [classes]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eba580a9-fb0d-4065-af19-552858a6b7d0" name="Changes" comment="" />
+      <created>1710178596174</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710178596174</updated>
+      <workItem from="1710178599827" duration="164000" />
+      <workItem from="1710178810227" duration="3007000" />
+      <workItem from="1710775584741" duration="2669000" />
+      <workItem from="1710778376453" duration="3952000" />
+      <workItem from="1710782712127" duration="3550000" />
+      <workItem from="1710926538533" duration="2191000" />
+      <workItem from="1710962472908" duration="1099000" />
+      <workItem from="1711305565097" duration="1732000" />
+      <workItem from="1711317981022" duration="3105000" />
+      <workItem from="1711379486251" duration="535000" />
+      <workItem from="1714577038797" duration="42829000" />
+      <workItem from="1714753626260" duration="8470000" />
+      <workItem from="1714839267928" duration="2416000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

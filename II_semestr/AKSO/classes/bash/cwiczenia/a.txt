@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Ten skrypt ilustruje wykorzystanie symboli $i oraz polecenia shift.
+
+echo Skrypt $0 wywołano z $# parametrami.
+echo – pierwszy:   $1
+echo – drugi:      $2
+echo – trzeci:     $3
+echo – wszystkie:  $*
+
+shift
+
+echo Po przesunięciu zostało $# parametrów.
+echo – pierwszy:   $1
+echo – drugi:      $2
+echo – trzeci:     $3
+echo – wszystkie:  $*
