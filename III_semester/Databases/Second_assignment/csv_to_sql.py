@@ -20,6 +20,8 @@ def generate_sql_insert(csv_file_path, output_file, table_name):
                     escaped_value = value.replace("'", "''")
                     # Optionally, escape ampersands (if necessary, for systems where & is problematic)
                     escaped_value = escaped_value.replace("&", "'||'&'||'")
+                    escaped_value = escaped_value.replace("ń", "n").replace("ą", "a").replace("ę", "e").replace("ć", "c").replace("Ą", "A").replace("Ń", "N").replace("Ę", "E").replace("Ó", "O").replace("ó", "o").replace("ł", "l").replace("Ł", "L").replace("ś", "s").replace("Ś", "S").replace("ź", "z").replace("Ź", "Z").replace("ż", "z").replace("Ż", "Z")
+
                     values.append(f"'{escaped_value}'")
                 else:
                     values.append(f"{value}")
@@ -36,12 +38,12 @@ def generate_sql_insert(csv_file_path, output_file, table_name):
 # Main script execution
 if __name__ == "__main__":
     # Path to your CSV file
-	print("Input path to file:")
+	print("Input path to file: ")
 	csv_file_path = input()
 
     # Path to the output SQL fil
 
-	print("Input output file")
+	print("Input output file: ")
 	output_file = input() 
 
     # Specify the table name where data will be inserted

@@ -18,7 +18,7 @@ public class ParallelCircuitSolver implements CircuitSolver {
         if (!acceptComputations) {
             return new ParallelCircuitValue(new InterruptedExceptionTask());
         }
-        LinkedBlockingQueue<Boolean> results = new LinkedBlockingQueue<>();
+        LinkedBlockingQueue<Integer> results = new LinkedBlockingQueue<>();
         CircuitTask task = new CircuitTask(c.getRoot(), results);
         pool.execute(task);
         return new ParallelCircuitValue(task);
@@ -30,16 +30,17 @@ public class ParallelCircuitSolver implements CircuitSolver {
         pool.shutdownNow();
     }
 
-    private class CircuitTask extends RecursiveTask<Boolean> {
+    private class CircuitTask extends RecursiveTask<Integer> {
         private final CircuitNode circuit;
-        private final LinkedBlockingQueue<Boolean> parentResults;
-        CircuitTask(CircuitNode circuit, LinkedBlockingQueue<Boolean> parentResults) {
+        private final LinkedBlockingQueue<Integer> parentResults;
+        private final List<RecursiveTask<Integer>> tasks = new ArrayList<>();
+        CircuitTask(CircuitNode circuit, LinkedBlockingQueue<Integer> parentResults) {
             this.circuit = circuit;
             this.parentResults = parentResults;
         }
 
         @Override
-        protected Boolean compute() {
+        protected Integer compute() {
             try {
                 return recursiveSolve(circuit);
             } catch (InterruptedException e) {
@@ -47,21 +48,30 @@ public class ParallelCircuitSolver implements CircuitSolver {
             }
         }
 
-        private boolean recursiveSolve(CircuitNode n) throws InterruptedException {
+        @Override
+        public boolean cancel(boolean mayInterruptIfRunning) {
+            for (RecursiveTask<Integer> task : tasks) {
+                task.cancel(mayInterruptIfRunning);
+            }
+            return super.cancel(mayInterruptIfRunning);
+        }
+
+        private Integer recursiveSolve(CircuitNode n) throws InterruptedException {
             System.out.println("Solving " + n.getType());
             if (n.getType() == NodeType.LEAF) {
                 System.out.println("Returning " + ((LeafNode) n).getValue());
-                parentResults.put(((LeafNode) n).getValue());
-                return ((LeafNode) n).getValue();
+                int value = ((LeafNode) n).getValue() ? 1 : 0;
+                parentResults.put(value);
+                return value;
             }
 
             CircuitNode[] args = n.getArgs();
 
-            boolean logical_value = switch (n.getType()) {
+            Integer logical_value = switch (n.getType()) {
                 case IF -> solveIF(args);
                 case AND -> solveAND(args);
                 case OR -> solveOR(args);
-                case GT -> solveGT(args, ((ThresholdNode) n).getThreshold(), false);
+                case GT -> solveGT(args, ((ThresholdNode) n).getThreshold(), 0);
                 case LT -> solveLT(args, ((ThresholdNode) n).getThreshold());
                 case NOT -> solveNOT(args);
                 default -> throw new RuntimeException("Illegal type " + n.getType());
@@ -71,44 +81,45 @@ public class ParallelCircuitSolver implements CircuitSolver {
             return logical_value;            
         }
 
-        private boolean solveIF(CircuitNode[] args) throws InterruptedException {
+        private Integer solveIF(CircuitNode[] args) throws InterruptedException {
             if (args.length != 3) {
                 throw new IllegalArgumentException("IF node must have exactly 3 arguments");
             }
 
-            ForkJoinTask<Boolean> conditionTask = ForkJoinTask.adapt(() -> recursiveSolve(args[0]));
-            ForkJoinTask<Boolean> trueBranchTask = ForkJoinTask.adapt(() -> recursiveSolve(args[1]));
-            ForkJoinTask<Boolean> falseBranchTask = ForkJoinTask.adapt(() -> recursiveSolve(args[2]));
+            ForkJoinTask<Integer> conditionTask = new CircuitTask(args[0], parentResults);
+            ForkJoinTask<Integer> trueBranchTask = new CircuitTask(args[1], parentResults);
+            ForkJoinTask<Integer> falseBranchTask = new CircuitTask(args[2], parentResults);
 
             conditionTask.fork();
             trueBranchTask.fork();
             falseBranchTask.fork();
 
-            boolean condition = conditionTask.join();
+            Integer condition = conditionTask.join();
 
-            if (condition) {
+            if (condition == 1) {
                 falseBranchTask.cancel(true);
                 return trueBranchTask.join();
-            } else {
+            } else if (condition == 0) {
                 trueBranchTask.cancel(true);
                 return falseBranchTask.join();
+            } else {
+                return -1;
             }
         } 
 
-        private boolean solveAND(CircuitNode[] args) throws InterruptedException {
-           return solveGT(args, args.length-1, true);
+        private Integer solveAND(CircuitNode[] args) throws InterruptedException {
+           return solveGT(args, args.length-1, 1);
         }
 
-        private boolean solveOR(CircuitNode[] args) throws InterruptedException {
-            return solveGT(args,0,true);
+        private Integer solveOR(CircuitNode[] args) throws InterruptedException {
+            return solveGT(args,0,1);
         }
 
-        private boolean solveGT(CircuitNode[] args, int threshold, boolean calculateOnes) throws InterruptedException {
-            LinkedBlockingQueue<Boolean> results = new LinkedBlockingQueue<>();
-            List<RecursiveTask<Boolean>> tasks = new ArrayList<>();
+        private Integer solveGT(CircuitNode[] args, int threshold, int calculateOnes) throws InterruptedException {
+            LinkedBlockingQueue<Integer> results = new LinkedBlockingQueue<>();
 
             for (CircuitNode arg : args) {
-                RecursiveTask<Boolean> task = new CircuitTask(arg, results);
+                RecursiveTask<Integer> task = new CircuitTask(arg, results);
                 tasks.add(task);
                 task.fork();
             }
@@ -116,31 +127,37 @@ public class ParallelCircuitSolver implements CircuitSolver {
             int trueNodes = 0;
             for (int i = 0; i < args.length; i++) {
                 System.out.println("Waiting for " + i);
-                boolean result = results.take();
+                int result = results.take();
                 System.out.println("Got result " + result);
                 if (result == calculateOnes) {
                     trueNodes++;
                 }
 
                 if (trueNodes > threshold) {
-                    for (RecursiveTask<Boolean> task : tasks) {
+                    for (RecursiveTask<Integer> task : tasks) {
                         task.cancel(true);
                     }
-                    return true; // Short-circuit if any argument is false
+                    return 1; // Short-circuit if any argument is false
+                }
+
+                if(Thread.currentThread().isInterrupted() || result == -1) {
+                    putInQueue(results, result);
+                    this.cancel(true);
+                    throw new InterruptedException();
                 }
             }
-            return false; // All arguments are true
+            return 0; // All arguments are true
         }
 
-        private boolean solveLT(CircuitNode[] args, int threshold) throws InterruptedException {
-            return solveGT(args, threshold, false);
+        private Integer solveLT(CircuitNode[] args, int threshold) throws InterruptedException {
+            return solveGT(args, threshold, 0);
         }
 
-        private boolean solveNOT(CircuitNode[] args) throws InterruptedException {
-            return !recursiveSolve(args[0]);
+        private Integer solveNOT(CircuitNode[] args) throws InterruptedException {
+            return recursiveSolve(args[0]);
         }
 
-        private void putInQueue(LinkedBlockingQueue<Boolean> results, boolean value) {
+        private void putInQueue(LinkedBlockingQueue<Integer> results, Integer value) {
             try {
                 results.put(value);
             } catch (InterruptedException e) {
@@ -148,10 +165,10 @@ public class ParallelCircuitSolver implements CircuitSolver {
             }
         }
     }
-    public class InterruptedExceptionTask extends RecursiveTask<Boolean> {
+    public class InterruptedExceptionTask extends RecursiveTask<Integer> { // Dummy task. Used to throw InterruptedException
         @Override
-        protected Boolean compute() {
-            return false;
+        protected Integer compute() {
+            return -1;
         }
     }
 }

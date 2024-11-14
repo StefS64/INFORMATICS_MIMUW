@@ -1,0 +1,9 @@
+SELECT 
+        autor AS napisal,
+        ID AS id_pracy,
+        prace.Punkty / prace.Autorzy AS wynik,
+        CURRENT_ROW	() OVER (PARTITION BY autor ORDER BY prace.Punkty / prace.Autorzy DESC) AS row_num
+    FROM 
+        prace
+    JOIN 
+        autorstwo autor ON prace.ID = autor.Praca

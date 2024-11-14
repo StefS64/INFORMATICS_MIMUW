@@ -7,11 +7,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
 
 public class ParallelCircuitValue implements CircuitValue {
-    private final RecursiveTask<Boolean> task;
+    private final RecursiveTask<Integer> task;
 
-    public ParallelCircuitValue(RecursiveTask<Boolean> task) {
+    public ParallelCircuitValue(RecursiveTask<Integer> task) {
         this.task = task;
     }
+
+
 
     @Override
     public boolean getValue() throws InterruptedException {
@@ -19,7 +21,14 @@ public class ParallelCircuitValue implements CircuitValue {
             if (task instanceof InterruptedExceptionTask) {
                 throw new InterruptedException();
             }
-            return task.get();
+            int value = task.get();
+            if (value == 0) {
+                return false;
+            } else if (value == 1) {
+                return true;
+            } else {
+                throw new InterruptedException();
+            }
         } catch (ExecutionException e) {
             throw new RuntimeException("Failed to get circuit value", e);
         }
