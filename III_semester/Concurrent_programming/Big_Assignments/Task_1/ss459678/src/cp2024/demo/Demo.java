@@ -1,14 +1,14 @@
 package cp2024.demo;
 
 import cp2024.circuit.*;
-import cp2024.solution.ParallelCircuitSolver;
+// import cp2024.mp249046.ParallelCircuitSolver;
 import java.time.Duration;
 
 public class Demo {
     public static void main(String[] args) throws InterruptedException {
-        CircuitSolver solver = new ParallelCircuitSolver();
-        // CircuitSolver solver = new SequentialSolver();
-        System.out.println("Solver created");
+        // CircuitSolver solver = new ParallelCircuitSolver();
+        CircuitSolver solver = new SequentialSolver();
+
         Circuit c = new Circuit(CircuitNode.mk(true));
         System.out.println("Solved: " + solver.solve(c).getValue());
 
@@ -22,7 +22,6 @@ public class Demo {
                         CircuitNode.mk(true),
                         CircuitNode.mk(false),
                         CircuitNode.mk(false, Duration.ofSeconds(3))));
-        System.out.println("TEST");
         CircuitValue secondValue = solver.solve(c);
 
         System.out.println("Second value: " + secondValue.getValue());

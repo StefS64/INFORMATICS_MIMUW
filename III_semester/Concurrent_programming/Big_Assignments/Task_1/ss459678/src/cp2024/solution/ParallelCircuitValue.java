@@ -1,36 +1,27 @@
 package cp2024.solution;
 
+import java.util.concurrent.BlockingQueue;
 import cp2024.circuit.CircuitValue;
-import cp2024.solution.ParallelCircuitSolver.InterruptedExceptionTask;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.RecursiveTask;
 
 public class ParallelCircuitValue implements CircuitValue {
-    private final RecursiveTask<Integer> task;
+    private final BlockingQueue<Integer> results;
+    private boolean got_value = false;
+    private Integer value;
 
-    public ParallelCircuitValue(RecursiveTask<Integer> task) {
-        this.task = task;
+    public ParallelCircuitValue(BlockingQueue<Integer> results) {
+        this.results = results;
     }
-
-
-
+    
     @Override
     public boolean getValue() throws InterruptedException {
-        try {
-            if (task instanceof InterruptedExceptionTask) {
-                throw new InterruptedException();
-            }
-            int value = task.get();
-            if (value == 0) {
-                return false;
-            } else if (value == 1) {
-                return true;
-            } else {
-                throw new InterruptedException();
-            }
-        } catch (ExecutionException e) {
-            throw new RuntimeException("Failed to get circuit value", e);
+        if(!got_value) {
+            got_value = true;
+            value = results.take();
+        }
+        if(value == -1) {
+            throw new InterruptedException();
+        } else {
+            return value == 1;
         }
     }
 }
