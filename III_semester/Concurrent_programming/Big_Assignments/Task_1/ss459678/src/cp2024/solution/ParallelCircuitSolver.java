@@ -53,19 +53,18 @@ public class ParallelCircuitSolver implements CircuitSolver {
         @Override
         public void run() {
             try {
-                recursiveSolve(circuit);
+                parentResults.add(recursiveSolve(circuit));
+                cancelKids();
             } catch (InterruptedException e) {
                 parentResults.add(-1);
                 System.out.println("Interupted");
             }
         }
 
-        private void recursiveSolve(CircuitNode n) throws InterruptedException {
+        private Integer recursiveSolve(CircuitNode n) throws InterruptedException {
 
             if (n.getType() == NodeType.LEAF) {
-                int value = ((LeafNode) n).getValue() ? 1 : 0;
-                parentResults.put(value);
-                return;
+                return ((LeafNode) n).getValue()? 1 : 0;
             }
 
             CircuitNode[] args = n.getArgs();
@@ -73,16 +72,17 @@ public class ParallelCircuitSolver implements CircuitSolver {
                 case IF -> solveIF(args);
                 case AND -> solveAND(args);
                 case OR -> solveOR(args);
-                case GT -> solveGT(args, ((ThresholdNode) n).getThreshold(), 0);
+                case GT -> solveGT(args, ((ThresholdNode) n).getThreshold(), 1);
                 case LT -> solveLT(args, ((ThresholdNode) n).getThreshold());
                 case NOT -> solveNOT(args);
                 default -> throw new RuntimeException("Illegal type " + n.getType());
             };
+            
+            return logical_value;
 
-            putInQueue(parentResults, logical_value);
         }
 
-        private Integer solveIF(CircuitNode[] args) throws InterruptedException {
+        private Integer solveIF(CircuitNode[] args) throws InterruptedException { //TODO
             if (args.length != 3) {
                 throw new IllegalArgumentException("IF node must have exactly 3 arguments");
             }
@@ -108,9 +108,11 @@ public class ParallelCircuitSolver implements CircuitSolver {
             if (condition == 1) {
                 falseBranchFuture.cancel(true);
                 return trueBranchQueue.take();
-            } else {
+            } else if (condition == 0) {
                 trueBranchFuture.cancel(true);
                 return falseBranchQueue.take();
+            } else {
+                throw new InterruptedException();
             }
         }
 
@@ -124,7 +126,6 @@ public class ParallelCircuitSolver implements CircuitSolver {
 
         private Integer solveGT(CircuitNode[] args, int threshold, int calculateOnes) throws InterruptedException {
             BlockingQueue<Integer> results = new LinkedBlockingQueue<>();
-            List<Future<?>> tasks = new ArrayList<>();
 
             for (CircuitNode arg : args) {
                 CircuitAction task = new CircuitAction(arg, results);
@@ -133,14 +134,20 @@ public class ParallelCircuitSolver implements CircuitSolver {
 
             int trueNodes = 0;
             for (int i = 0; i < args.length; i++) {
-                //System.out.println("Taking result: " + i + " " + results.size());
+                System.out.println("Taking result: " + i + " " + results.size());
                 int result = results.take();
+                if (result == -1) {
+                    System.out.println("result == -1");
+                    cancelKids();
+                    throw new InterruptedException();
+                }
+
                 if (result == calculateOnes) {
                     trueNodes++;
                 }
 
                 if (trueNodes > threshold) {
-                    //System.out.println("Threshold reached");
+                    System.out.println("Threshold reached" + tasks.size());                    
                     cancelKids();
                     return 1;
                 }
@@ -160,7 +167,9 @@ public class ParallelCircuitSolver implements CircuitSolver {
         }
 
         private void cancelKids() {
+            System.out.println("cancel initialize");
             for (Future<?> task : tasks) {
+                System.out.println("cancel");
                 task.cancel(true);
             }
         }
@@ -172,13 +181,6 @@ public class ParallelCircuitSolver implements CircuitSolver {
                 return 0;
             } else {
                 throw new InterruptedException();
-            }
-        }
-        private void putInQueue(BlockingQueue<Integer> results, Integer value) {
-            try {
-                results.put(value);
-            } catch (InterruptedException e) {
-                throw new RuntimeException("Failed to put value in queue", e);
             }
         }
     }

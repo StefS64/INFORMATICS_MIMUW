@@ -14,9 +14,12 @@ public class ParallelCircuitValue implements CircuitValue {
     
     @Override
     public boolean getValue() throws InterruptedException {
+        System.out.println("Getting value");
         if(!got_value) {
             got_value = true;
+            System.out.println("help");
             value = results.take();
+            System.out.println("Value: " + value);
         }
         if(value == -1) {
             throw new InterruptedException();

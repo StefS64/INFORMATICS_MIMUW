@@ -2,15 +2,14 @@ package cp2024.solution;
 
 import cp2024.circuit.*;
 import cp2024.demo.SequentialSolver;
-import cp2024.solution.ParallelCircuitSolver;
-
 import java.time.Duration;
 
 public class SmallTest3 {
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("TATATATTA");
         // Create the circuit structure
-        CircuitNode leafNode1 = CircuitNode.mk(true, Duration.ofSeconds(1));
-        CircuitNode leafNode2 = CircuitNode.mk(true, Duration.ofSeconds(1));
+        CircuitNode leafNode1 = CircuitNode.mk(true, Duration.ofSeconds(5));
+        CircuitNode leafNode2 = CircuitNode.mk(true, Duration.ofSeconds(5));
         CircuitNode leafNode3 = CircuitNode.mk(true, Duration.ofSeconds(1));
         CircuitNode leafNode4 = CircuitNode.mk(false); // One node is false
 

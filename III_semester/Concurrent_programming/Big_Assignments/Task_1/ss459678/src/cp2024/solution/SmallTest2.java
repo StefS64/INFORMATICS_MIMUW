@@ -26,11 +26,14 @@ public class SmallTest2 {
         CircuitValue parallelResult = parallelSolver.solve(circuit);
         CircuitValue parallelResult2 = parallelSolver.solve(circuit2);
         CircuitValue parallelResult3 = parallelSolver.solve(circuit3);
-        System.out.println("ParallelCircuitSolver result GT: " + parallelResult.getValue());
-        System.out.println("ParallelCircuitSolver result OR: " + parallelResult2.getValue());
-        System.out.println("ParallelCircuitSolver result AND: " + parallelResult3.getValue());
+        // System.out.println("ParallelCircuitSolver result GT: " + parallelResult.getValue());
+        // System.out.println("ParallelCircuitSolver result OR: " + parallelResult2.getValue());
+        // System.out.println("ParallelCircuitSolver result AND: " + parallelResult3.getValue());
 
         // Compare the results
+        System.out.println("Results are parallel:");
+
+        System.out.println("Results are parallel:" + parallelResult.getValue() + " " + parallelResult2.getValue() + " " + parallelResult3.getValue());
         if (sequentialResult.getValue() == parallelResult.getValue()) {
             System.out.println("Results are consistent.");
         } else {
