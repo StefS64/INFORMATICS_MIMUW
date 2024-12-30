@@ -1,0 +1,1 @@
+/usr/bin/cc -pthread CMakeFiles/nonrecursive.dir/main.c.o CMakeFiles/nonrecursive.dir/stack.c.o -o nonrecursive  ../common/libio.a ../common/liberr.a -latomic 
