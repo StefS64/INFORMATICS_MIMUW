@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/parallel.dir/main.c.o -o parallel  -lio -lerr -latomic 

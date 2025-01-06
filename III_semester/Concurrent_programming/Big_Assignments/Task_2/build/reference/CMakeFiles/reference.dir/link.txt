@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG -pthread CMakeFiles/reference.dir/main.c.o -o reference  ../common/libio.a ../common/liberr.a 

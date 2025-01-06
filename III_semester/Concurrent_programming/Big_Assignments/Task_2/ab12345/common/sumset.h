@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define LOG_SUMSET
+// #define LOG_SUMSET
 
 #ifdef LOG_SUMSET
 #include <stdio.h>

@@ -79,7 +79,7 @@ static const Sumset* _multiset_of_added_elements_from_sumset(Multiset* v, const 
 {
     multiset_init(v);
     while (a->prev) {
-        printf("test kurde: %p\n", (void*)a->prev);
+        // printf("test kurde: %p\n", (void*)a->prev);
         v->count[a->sum - a->prev->sum]++;
         a = a->prev;
     }

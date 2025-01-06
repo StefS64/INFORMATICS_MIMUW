@@ -1,1 +1,1 @@
-/usr/bin/cc -pthread CMakeFiles/parallel.dir/main.c.o -o parallel  ../common/libio.a ../common/liberr.a -latomic 
+/usr/bin/cc -pthread CMakeFiles/parallel.dir/main.c.o CMakeFiles/parallel.dir/stack.c.o -o parallel  ../common/libio.a ../common/liberr.a -latomic 
