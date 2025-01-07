@@ -7,10 +7,10 @@ int p(long long a, long long b){
 	return a + (2*(long long)rand() + (long long)rand()%2) % (b-a+1);
 }
 
-const int MAX_THREAD = 1; 
-const int MIN_BOUND = 3; 
-const int MAX_BOUND = 7; // 50
-const int MAX_NUM = 4; // 100 Bound for number of elements in multiset.
+const int MAX_THREAD = 20; 
+const int MIN_BOUND = 10; 
+const int MAX_BOUND = 50; // 50
+const int MAX_NUM = 100; // 100 Bound for number of elements in multiset.
 const int MIN_NUM = 0;
 
 

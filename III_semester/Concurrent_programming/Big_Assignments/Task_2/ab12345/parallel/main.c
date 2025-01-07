@@ -26,13 +26,13 @@ void destroy_memory(sumset_wrapper* a) {
     }
 }
 
-void recursive_solve(elem_state *elem, struct ThreadData *data) {
+void recursive_solve(elem_state elem, struct ThreadData *data) {
  
-    sumset_wrapper* a = elem->a_wrap;
-    sumset_wrapper* b = elem->b_wrap;
+    sumset_wrapper* a = elem.a_wrap;
+    sumset_wrapper* b = elem.b_wrap;
     if (a->power_set.sum > b->power_set.sum) {
-        a = elem->b_wrap;
-        b = elem->a_wrap;
+        a = elem.b_wrap;
+        b = elem.a_wrap;
     }
 
     if (is_sumset_intersection_trivial(&a->power_set, &b->power_set)) { // s(a) ∩ s(b) = {0}.
@@ -43,6 +43,7 @@ void recursive_solve(elem_state *elem, struct ThreadData *data) {
 
                 sumset_wrapper* a_with_i = (sumset_wrapper*)malloc(sizeof(sumset_wrapper));
                 a_with_i->counter = 1;
+                a_with_i->parent = a;
                 sumset_add(&a_with_i->power_set, &a->power_set, i);
 
                 elem_state new_state;
@@ -52,14 +53,14 @@ void recursive_solve(elem_state *elem, struct ThreadData *data) {
                 if(data->tasks->waiting_threads > 0) {// Tutaj wyjaśnić
                     push(data->tasks, new_state);
                 } else {
-                    recursive_solve(&new_state, data);
+                    recursive_solve(new_state, data);
                 }
             }
         }
     } else if ((a->power_set.sum == b->power_set.sum) && (get_sumset_intersection_size(&a->power_set, &b->power_set) == 2)) { // s(a) ∩ s(b) = {0, ∑b}.
         if (a->power_set.sum > data->best_solution->sum) {
             pthread_mutex_lock(&data->build); 
-            solution_build(data->best_solution, data->original_data, &a->power_set, &b->power_set);
+            solution_build(data->best_solution, data->original_data, &a->power_set, &b->power_set); // local_best_solution_build
             pthread_mutex_unlock(&data->build);
         }
     }
@@ -71,26 +72,32 @@ void recursive_solve(elem_state *elem, struct ThreadData *data) {
 
 // void before 
 void *working_thread(void* data) {
+    #ifdef DEBUG
     printf("starting work\n");
+    #endif
     ThreadData* calculate = data;
+    #ifdef DEBUG
     printf("data obtained\n");
+    #endif
     while (true) {
+    #ifdef DEBUG
         printf("hello\n");
-        
-        // check_if d-1 threads waiting
-        if (should_stop(calculate->tasks, calculate->original_data->t)) {
-            stop(calculate->tasks);
-            break;
-        }
-        printf("hello2\n");
+    #endif
         elem_state  top; 
         pop(calculate->tasks, &top);
+    #ifdef DEBUG
         printf("popped stack\n");
+    #endif
         if(calculate->tasks->stop) {
+            #ifdef DEBUG
+            printf("stopped thread\n");
+            #endif
             break;
         }
+    #ifdef DEBUG
         printf("start recursive\n");
-        recursive_solve(&top, calculate);
+    #endif
+        recursive_solve(top, calculate);
        
     }
 
@@ -99,7 +106,9 @@ void *working_thread(void* data) {
 
 int main()
 {
+    #ifdef DEBUG  
     printf("start\n");
+    #endif
     InputData input_data;
     input_data_read(&input_data);
 
@@ -107,7 +116,7 @@ int main()
     solution_init(&best_solution);
 
     Stack s;
-    init(&s, 4);
+    init(&s, 4, input_data.t);
 
     elem_state input;
     
@@ -118,10 +127,15 @@ int main()
     b_first->power_set = input_data.b_start;
     a_first->counter = 1;
     b_first->counter = 1;
+    a_first->parent = NULL;
+    b_first->parent = NULL;
     input.a_wrap = a_first;
     input.b_wrap = b_first;
-
+    #ifdef DEBUG
     printf("push_input\n");
+    #endif
+
+    // do solution check
     push(s, input);
 
     int thread_num = input_data.t;
@@ -130,12 +144,18 @@ int main()
     thread_data.original_data = &input_data;
     thread_data.d = input_data.d;
     thread_data.tasks = s;
+    #ifdef DEBUG
     printf("Initializing data\n");
+    #endif
     pthread_mutex_init(&thread_data.build, NULL);
+    #ifdef DEBUG
     printf("test\n");
+    #endif
     pthread_t threads[thread_num];
     for (int i = 0; i < thread_num; i++) {
+    #ifdef DEBUG
         printf("created_thread %d\n", i);
+    #endif
         ASSERT_ZERO(pthread_create(&threads[i], NULL, working_thread, &thread_data));
     }
 
@@ -143,7 +163,7 @@ int main()
         ASSERT_ZERO(pthread_join(threads[i], NULL));
     
     pthread_mutex_destroy(&thread_data.build);
-
+    destroy(s);
     solution_print(&best_solution);
     return 0;
 }

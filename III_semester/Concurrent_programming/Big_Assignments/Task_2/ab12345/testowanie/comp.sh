@@ -25,15 +25,15 @@ for i in {00000..99999}
 do
 	echo $i > seed
 	./gen.e < seed > wej.in
-    ../build/reference/reference < wej.in > brut.out
+    ../../build/reference/reference < wej.in > brut.out
 	if [ "$check" = true ]; then
-    	valgrind -q --exit-on-first-error=yes --error-exitcode=-3 --log-file=memcheck.log --tool=memcheck --leak-check=yes ../build/nonrecursive/nonrecursive < wej.in > wzor.out
+    	valgrind -q --exit-on-first-error=yes --error-exitcode=-3 --log-file=memcheck.log --tool=memcheck --leak-check=yes ../../build/parallel/parallel < wej.in > wzor.out
 		if [ $? != 0 ]; then
-			echo -ne "$i NIEOK"
+			echo -ne "$i NIEOK MEM"
 			break
 		fi
     else
-        ../build/nonrecursive/nonrecursive < wej.in > wzor.out
+      ../../build/parallel/parallel < wej.in > wzor.out
     fi
 #/wzor.e < wej.in > wzor.out
 #	./brut.e < wej.in > brut.out

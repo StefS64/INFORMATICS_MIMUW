@@ -7,6 +7,9 @@
 #include "../common/sumset.h"
 #include "../common/err.h"
 
+// #define DEBUG
+#define COUNT
+
 typedef struct sumset_wrapper {
     Sumset power_set;
     atomic_int counter;
@@ -19,6 +22,7 @@ typedef struct {
 } elem_state;
 
 typedef struct stack_array {
+    int t; // number of threads operating on stack
     int max_capacity;
     int stack_top;
     int waiting_threads;
@@ -31,13 +35,9 @@ typedef struct stack_array {
 typedef struct stack_array* Stack;
 
 
-void init(Stack* s, int capacity);
-int num_threads_waiting_for_stack(Stack s);
-bool should_stop(Stack s, int thread_num);
-// bool isEmpty(Stack s);
+void init(Stack* s, int capacity, int num_threads);
 void push(Stack s, elem_state elem);
 void pop(Stack s, elem_state *elem);
-void stop(Stack s);
 void destroy(Stack s);
 
 
