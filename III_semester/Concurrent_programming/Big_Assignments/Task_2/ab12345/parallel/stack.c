@@ -24,8 +24,8 @@ void init(Stack* s, int capacity, int num_threads) {
         exit(EXIT_FAILURE);
     }
     
-    pthread_mutex_init(&(*s)->mutex, NULL);
-    pthread_cond_init(&(*s)->wait_for_stack, NULL);
+    ASSERT_ZERO(pthread_mutex_init(&(*s)->mutex, NULL));
+    ASSERT_ZERO(pthread_cond_init(&(*s)->wait_for_stack, NULL));
 }
 
 static bool isEmpty(Stack s) {
@@ -34,7 +34,7 @@ static bool isEmpty(Stack s) {
 
 
 void push(Stack s, elem_state elem) {
-    pthread_mutex_lock(&s->mutex);
+    ASSERT_ZERO(pthread_mutex_lock(&s->mutex));
     #ifdef DEBUG
         printf("push1\n");
     #endif
@@ -46,12 +46,12 @@ void push(Stack s, elem_state elem) {
         }
     }
     s->array[++s->stack_top] = elem;
-    pthread_cond_signal(&s->wait_for_stack);
-    pthread_mutex_unlock(&s->mutex);
+    ASSERT_ZERO(pthread_cond_signal(&s->wait_for_stack));
+    ASSERT_ZERO(pthread_mutex_unlock(&s->mutex));
 }
 
 void pop(Stack s, elem_state* elem) {
-    pthread_mutex_lock(&s->mutex);
+    ASSERT_ZERO(pthread_mutex_lock(&s->mutex));
     #ifdef COUNT
     pop_counter++;
     printf("popped: %d\n", pop_counter);
@@ -68,9 +68,9 @@ void pop(Stack s, elem_state* elem) {
         pthread_mutex_unlock(&s->mutex);
         return;
     }
-    // #ifdef DEBUG
+    #ifdef COUNT
     printf("stack waiting: %d\n", s->waiting_threads);
-    // #endif
+    #endif
     s->waiting_threads++;
     while (isEmpty(s) && !s->stop) {
     #ifdef DEBUG
@@ -92,7 +92,7 @@ void pop(Stack s, elem_state* elem) {
         #ifdef DEBUG
         printf("left stack\n");
         #endif
-        pthread_mutex_unlock(&s->mutex);
+        ASSERT_ZERO(pthread_mutex_unlock(&s->mutex));
         return;
     }
     #ifdef DEBUG
@@ -102,7 +102,7 @@ void pop(Stack s, elem_state* elem) {
     #ifdef DEBUG
     printf("pop4\n");
     #endif
-    pthread_mutex_unlock(&s->mutex);
+    ASSERT_ZERO(pthread_mutex_unlock(&s->mutex));
 }
 
 static inline bool should_stop(Stack s) { // merge with stop
@@ -129,8 +129,8 @@ static inline bool should_stop(Stack s) { // merge with stop
 
 void destroy(Stack s)
 {
-    pthread_mutex_destroy(&s->mutex);
-    pthread_cond_destroy(&s->wait_for_stack);
+    ASSERT_ZERO(pthread_mutex_destroy(&s->mutex));
+    ASSERT_ZERO(pthread_cond_destroy(&s->wait_for_stack));
 	if(s != NULL)
 	{
 		free(s->array);

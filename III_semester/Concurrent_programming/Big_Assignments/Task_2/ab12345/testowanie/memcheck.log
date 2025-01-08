@@ -1,11 +1,16 @@
-==199420== 1,360 bytes in 5 blocks are possibly lost in loss record 3 of 4
-==199420==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==199420==    by 0x40147D9: calloc (rtld-malloc.h:44)
-==199420==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
-==199420==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
-==199420==    by 0x49047B4: allocate_stack (allocatestack.c:430)
-==199420==    by 0x49047B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
-==199420==    by 0x10950F: main (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
-==199420== 
-==199420== 
-==199420== Exit program on first error (--exit-on-first-error=yes)
+==522299== 352 bytes in 1 blocks are definitely lost in loss record 4 of 19
+==522299==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==522299==    by 0x10990F: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109B2C: recursive_solve (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x109BB3: working_thread (in /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/parallel/parallel)
+==522299==    by 0x4903AC2: start_thread (pthread_create.c:442)
+==522299==    by 0x4994A03: clone (clone.S:100)
+==522299== 
+==522299== 
+==522299== Exit program on first error (--exit-on-first-error=yes)

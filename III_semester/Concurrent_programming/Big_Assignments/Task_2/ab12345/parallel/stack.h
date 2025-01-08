@@ -8,7 +8,7 @@
 #include "../common/err.h"
 
 // #define DEBUG
-#define COUNT
+// #define COUNT
 
 typedef struct sumset_wrapper {
     Sumset power_set;
