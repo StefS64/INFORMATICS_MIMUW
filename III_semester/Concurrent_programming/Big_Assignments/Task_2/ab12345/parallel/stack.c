@@ -4,11 +4,10 @@
 #include <stdio.h>
 #include "stack.h"
 
-int pop_counter = 0;
 static inline bool should_stop(Stack s);
 
 
-void init(Stack* s, int capacity, int num_threads) {
+void inline init(Stack* s, int capacity, int num_threads) {
     *s = (Stack)malloc(sizeof(stack_array));
     if (*s == NULL) {
         exit(EXIT_FAILURE);
@@ -33,7 +32,7 @@ static bool isEmpty(Stack s) {
 }
 
 
-void push(Stack s, elem_state elem) {
+void inline push(Stack s, elem_state elem) {
     ASSERT_ZERO(pthread_mutex_lock(&s->mutex));
     #ifdef DEBUG
         printf("push1\n");
@@ -50,7 +49,7 @@ void push(Stack s, elem_state elem) {
     ASSERT_ZERO(pthread_mutex_unlock(&s->mutex));
 }
 
-void pop(Stack s, elem_state* elem) {
+void inline pop(Stack s, elem_state* elem) {
     ASSERT_ZERO(pthread_mutex_lock(&s->mutex));
     #ifdef COUNT
     pop_counter++;
@@ -127,7 +126,7 @@ static inline bool should_stop(Stack s) { // merge with stop
 }
 
 
-void destroy(Stack s)
+void inline destroy(Stack s)
 {
     ASSERT_ZERO(pthread_mutex_destroy(&s->mutex));
     ASSERT_ZERO(pthread_cond_destroy(&s->wait_for_stack));

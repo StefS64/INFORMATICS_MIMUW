@@ -205,7 +205,7 @@ reference/CMakeFiles/reference.dir/all: common/CMakeFiles/err.dir/all
 reference/CMakeFiles/reference.dir/all: common/CMakeFiles/io.dir/all
 	$(MAKE) $(MAKESILENT) -f reference/CMakeFiles/reference.dir/build.make reference/CMakeFiles/reference.dir/depend
 	$(MAKE) $(MAKESILENT) -f reference/CMakeFiles/reference.dir/build.make reference/CMakeFiles/reference.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles --progress-num=11,12 "Built target reference"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles --progress-num=10,11 "Built target reference"
 .PHONY : reference/CMakeFiles/reference.dir/all
 
 # Build rule for subdir invocation for target.
@@ -259,12 +259,12 @@ parallel/CMakeFiles/parallel.dir/all: common/CMakeFiles/err.dir/all
 parallel/CMakeFiles/parallel.dir/all: common/CMakeFiles/io.dir/all
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/depend
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles --progress-num=8,9,10 "Built target parallel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles --progress-num=8,9 "Built target parallel"
 .PHONY : parallel/CMakeFiles/parallel.dir/all
 
 # Build rule for subdir invocation for target.
 parallel/CMakeFiles/parallel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parallel/CMakeFiles/parallel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/build/CMakeFiles 0
 .PHONY : parallel/CMakeFiles/parallel.dir/rule

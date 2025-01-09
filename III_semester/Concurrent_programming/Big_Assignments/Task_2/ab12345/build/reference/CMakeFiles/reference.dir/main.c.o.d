@@ -2,7 +2,7 @@ reference/CMakeFiles/reference.dir/main.c.o: \
  /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/reference/main.c \
  /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
- /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/common/io.h \
+ /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/reference/../common/io.h \
  /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/common/sumset.h \
  /usr/include/assert.h /usr/include/features.h \
  /usr/include/features-time64.h \

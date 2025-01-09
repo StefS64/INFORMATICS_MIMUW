@@ -154,30 +154,6 @@ main.c.s:
 	cd /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/main.c.s
 .PHONY : main.c.s
 
-stack.o: stack.c.o
-.PHONY : stack.o
-
-# target to build an object file
-stack.c.o:
-	cd /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/stack.c.o
-.PHONY : stack.c.o
-
-stack.i: stack.c.i
-.PHONY : stack.i
-
-# target to preprocess a source file
-stack.c.i:
-	cd /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/stack.c.i
-.PHONY : stack.c.i
-
-stack.s: stack.c.s
-.PHONY : stack.s
-
-# target to generate assembly for a file
-stack.c.s:
-	cd /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/stack.c.s
-.PHONY : stack.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -190,9 +166,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... stack.o"
-	@echo "... stack.i"
-	@echo "... stack.s"
 .PHONY : help
 
 

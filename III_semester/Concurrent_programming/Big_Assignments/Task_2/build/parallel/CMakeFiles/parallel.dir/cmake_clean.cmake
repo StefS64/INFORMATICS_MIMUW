@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/parallel.dir/main.c.o"
   "CMakeFiles/parallel.dir/main.c.o.d"
-  "CMakeFiles/parallel.dir/stack.c.o"
-  "CMakeFiles/parallel.dir/stack.c.o.d"
   "parallel"
   "parallel.pdb"
 )

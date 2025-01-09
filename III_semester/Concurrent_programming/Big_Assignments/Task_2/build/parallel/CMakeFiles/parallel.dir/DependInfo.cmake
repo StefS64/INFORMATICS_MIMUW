@@ -9,7 +9,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/main.c" "parallel/CMakeFiles/parallel.dir/main.c.o" "gcc" "parallel/CMakeFiles/parallel.dir/main.c.o.d"
-  "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/stack.c" "parallel/CMakeFiles/parallel.dir/stack.c.o" "gcc" "parallel/CMakeFiles/parallel.dir/stack.c.o.d"
   )
 
 # Targets to which this target links.

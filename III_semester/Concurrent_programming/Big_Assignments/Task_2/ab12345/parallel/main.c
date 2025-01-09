@@ -5,7 +5,11 @@
 #include "stack.h"
 #include <stdlib.h>
 
-int globa_id = 0;
+#ifdef COUNT_THREAD
+atomic_int global_id = 0;
+int pop_count[100];
+int push_count[100];
+#endif
 
 typedef struct ThreadData {
     Stack tasks;
@@ -26,7 +30,7 @@ void destroy_memory(sumset_wrapper* a) {
     }
 }
 
-void recursive_solve(elem_state elem, struct ThreadData *data, Solution* local) {
+void recursive_solve(elem_state elem, struct ThreadData *data, Solution* local, int id) { //usunac id.
  
     sumset_wrapper* a = elem.a_wrap;
     sumset_wrapper* b = elem.b_wrap;
@@ -53,9 +57,12 @@ void recursive_solve(elem_state elem, struct ThreadData *data, Solution* local) 
                 new_state.b_wrap = b;
 
                 if(data->tasks->waiting_threads > 0) {// Tutaj wyjaśnić
+                    #ifdef COUNT_THREAD
+                    push_count[id]++;
+                    #endif
                     push(data->tasks, new_state);
                 } else {
-                    recursive_solve(new_state, data, local);
+                    recursive_solve(new_state, data, local, id);
                 }
             }
         }
@@ -75,24 +82,31 @@ void recursive_solve(elem_state elem, struct ThreadData *data, Solution* local) 
 
 // void before 
 void *working_thread(void* data) {
+    int id = 0;//temp
+    #ifdef COUNT_THREAD
+    id = ++global_id;
+    #endif
     #ifdef DEBUG
-    printf("starting work\n");
+    printf("starting work %d\n", id);
     #endif
     ThreadData* calculate = data;
     Solution local;
     solution_init(&local);
     #ifdef DEBUG
     solution_print(&local);
-    printf("data obtained\n");
+    printf("data obtained %d\n", id);
     #endif
     while (true) {
     #ifdef DEBUG
-        printf("hello\n");
+        printf("hello %d\n", id);
     #endif
         elem_state  top; 
         pop(calculate->tasks, &top);
+        #ifdef COUNT_THREAD
+        pop_count[id]++;
+        #endif
     #ifdef DEBUG
-        printf("popped stack\n");
+        printf("popped stack %d\n", id);
     #endif
         if(calculate->tasks->stop) {
             ASSERT_ZERO(pthread_mutex_lock(&calculate->build));
@@ -104,14 +118,14 @@ void *working_thread(void* data) {
             }
             ASSERT_ZERO(pthread_mutex_unlock(&calculate->build));
             #ifdef DEBUG
-            printf("stopped thread\n");
+            printf("stopped thread %d\n", id);
             #endif
             break;
         }
     #ifdef DEBUG
-        printf("start recursive\n");
+        printf("start recursive %d\n", id);
     #endif
-        recursive_solve(top, calculate, &local);
+        recursive_solve(top, calculate, &local, id);
        
     }
 
@@ -120,9 +134,8 @@ void *working_thread(void* data) {
 
 void init_thread_data(ThreadData *thread_data, Solution *best_solution, InputData *input_data) {
     
-
     Stack s;
-    init(&s, 4, input_data->t);
+    init(&s, 128, input_data->t);
 
     elem_state input;
     
@@ -176,7 +189,7 @@ int main()
     #ifdef DEBUG
     printf("Initializing data\n");
     #endif
-    int thread_num = thread_data.original_data->t;
+    int thread_num = input_data.t;
     pthread_t threads[thread_num];
 
     for (int i = 0; i < thread_num; i++) {
@@ -188,7 +201,10 @@ int main()
 
     for (int i = 0; i < thread_num; i++)
         ASSERT_ZERO(pthread_join(threads[i], NULL));
-    thread_data_destroy(&thread_data); 
+    thread_data_destroy(&thread_data);
+    for (int i = 1; i <= thread_num; i++) {
+        printf("id: %d, pop: %d, push: %d\n", i, pop_count[i], push_count[i]);
+    }
     solution_print(&best_solution);
     return 0;
 }

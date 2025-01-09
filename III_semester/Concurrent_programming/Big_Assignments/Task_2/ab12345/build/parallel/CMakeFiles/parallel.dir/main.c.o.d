@@ -67,8 +67,6 @@ parallel/CMakeFiles/parallel.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h \
- /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/../common/err.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdnoreturn.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/endian.h \
@@ -78,4 +76,6 @@ parallel/CMakeFiles/parallel.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
- /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+ /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/../common/err.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdnoreturn.h
