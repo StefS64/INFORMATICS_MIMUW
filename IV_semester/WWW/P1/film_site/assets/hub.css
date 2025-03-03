@@ -1,0 +1,36 @@
+body {
+    background-image: url('/assets/img/movie_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    color: #ffffff;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(95, 60, 60, 0.959);
+    border-radius: 10px;
+    color: #eee1e1;
+}
+
+.content {
+    margin-bottom: 100px; /* Adjust the spacing as needed */
+}
+
+header {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(112, 70, 70, 0.959);
+    border-radius: 10px;
+    color: #eee1e1;
+}

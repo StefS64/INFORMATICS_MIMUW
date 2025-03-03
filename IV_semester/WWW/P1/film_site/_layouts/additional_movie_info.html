@@ -3,13 +3,17 @@
   <head>
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/main.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ '/assets/post_movies.css' | asset_url }}">
   </head>
   <body>
     <header>
       {% include header_movie.html %}
     </header>
     <main>
-      {{ content }}
+      <div class="scroll-container">
+        <div class="scroll-element">
+          {{ content }}
+        </div>
     </main>
     <footer>
       {% include footer.html %}
