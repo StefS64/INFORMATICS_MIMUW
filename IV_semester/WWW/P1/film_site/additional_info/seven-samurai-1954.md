@@ -1,0 +1,33 @@
+---
+layout: additional_movie_info
+title: " Seven Samurai (1954)"
+permalink: /additional_info/seven-samurai-1954/
+---
+
+![ Seven Samurai (1954)](https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Seven_Samurai_poster.jpg/220px-Seven_Samurai_poster.jpg)
+
+**Running Time:** 207 minutes (with intermission)
+
+**Budget:** ¥210 million ($580,000) or US$656,000
+
+**Box Office:** Japan rentals: ¥268.2 million ($2.3 million)  USA: $833,533
+
+**Country:** Japan
+
+**Plot:** In 1586, a bandit gang discusses raiding a mountain village, but their chief decides to wait until after the harvest for a better haul. The villagers overhear this and turn to Gisaku, the village elder and miller. Because the local magistrate is useless, Gisaku plans to hire samurai to protect the village. Since they have no money and can only offer food as payment, Gisaku advises the villagers to find hungry samurai.
+
+Traveling to a nearby town, the villagers find Kambei, an aging but experienced rōnin, whom they see rescuing a young boy from a thief. A young samurai named Katsushirō asks to become Kambei’s disciple. The villagers ask for Kambei’s help, and he reluctantly agrees. He then recruits his old comrade-in-arms Shichirōji, along with Gorobei, Heihachi, and Kyūzō, a taciturn master swordsman whom Katsushirō regards with awe. Kikuchiyo, a wild and eccentric samurai-poser, is eventually accepted as well after attempts to drive him away fail.
+
+Arriving at the village, the samurai and farmers slowly begin to trust each other. Katsushirō meets Shino, a farmer's daughter disguised as a boy by her father, and begins a relationship with her despite knowing the difference in their social classes prohibits it. Later, the samurai are angered when Kikuchiyo brings them armor and weapons, which the villagers acquired by killing other samurai injured or fleeing from battle. Kikuchiyo angrily retorts that samurai are responsible for much of the suffering farmers endure, revealing he is an orphaned farmer's son. The samurai's anger turns to shame.
+
+Kambei arms the villagers with bamboo spears, organizes them into squads, and trains them. Three bandit scouts are spotted; two are killed, while the last reveals their camp's location before the villagers execute him. The samurai burn down the camp in a pre-emptive strike. Rikichi, a troubled villager aiding the samurai, breaks down when he sees his wife, who was kidnapped and made a concubine during a previous raid. Upon seeing Rikichi, she runs back into a burning hut to her death. Heihachi is killed by a gunshot while trying to stop Rikichi from pursuing her. At Heihachi's funeral, the saddened villagers are inspired by Kikuchiyo, who raises a banner Heihachi made to represent the six samurai, Kikuchiyo, and the village.
+
+When the bandits finally arrive, they are confounded by the new fortifications, which include a moat and high wooden fences. They burn the village's outlying houses, including Gisaku's mill. Gisaku's family tries to save him when he refuses to abandon it, but all perish except a baby rescued by Kikuchiyo. The bandits then besiege the village, but many are killed as the defenders thwart every attack.
+
+The bandits possess three matchlock muskets. Kyūzō ventures out alone and captures one; an envious Kikuchiyo abandons his squad to bring back another. However, Kikuchiyo's absence allows a handful of bandits to infiltrate his post and kill several farmers, and Gorobei is slain defending his position. That night, Kambei predicts that the bandits will make one final assault due to their dwindling numbers.
+
+Meanwhile, Katsushirō and Shino's relationship is discovered by her father, who is enraged that her virginity has been taken and beats her. Kambei and the villagers intervene; Shichirōji reasons that such behavior is normal before battle and that the couple should be forgiven.
+
+The next morning, the defenders allow the remaining bandits to enter the village and ambush them. As the battle nears its end, the bandit chief hides in the women's hut and shoots Kyūzō dead with his musket. An enraged Kikuchiyo charges in and is shot as well, but kills the chief before dying. The remaining outlaws are slain.
+
+Afterward, Kambei, Katsushirō and Shichirōji stand in front of the funeral mounds of their comrades, watching the joyful villagers sing while planting their crops. Katsushirō and Shino meet one last time, but Shino walks past him to join in the planting while Katsushiro despondently watches her. Kambei declares to Shichirōji that it is another pyrrhic victory for the samurai: "The victory belongs to those peasants. Not to us."

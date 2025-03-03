@@ -1,0 +1,29 @@
+---
+layout: additional_movie_info
+title: " Taxi Driver (1976)"
+permalink: /additional_info/taxi-driver-1976/
+---
+
+![ Taxi Driver (1976)](https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Taxi_Driver_%281976_film_poster%29.jpg/220px-Taxi_Driver_%281976_film_poster%29.jpg)
+
+**Running Time:** 114 minutes
+
+**Budget:** $1.9 million
+
+**Box Office:** $28.6 million
+
+**Country:** United States
+
+**Plot:** In New York City, Vietnam veteran Travis Bickle takes a job as a night shift taxi driver to cope with his chronic insomnia and loneliness, frequenting adult movie theaters and keeping a diary in which he consciously attempts to include aphorisms such as "you're only as healthy as you feel." He becomes disgusted with the crime and urban decay that he witnesses in the city and dreams about getting "the scum off the streets."
+
+Travis becomes infatuated with Betsy, a campaign volunteer for Senator and presidential candidate Charles Palantine. Travis enters the campaign office where she works and asks her out for coffee, to which she agrees. Betsy agrees to go on another date with him. During their date, Travis takes Betsy to a porn theater, which she leaves. He attempts to reconcile with her, but fails. Enraged, he storms into the campaign office where she works and proceeds to berate her before being kicked out of the office.
+
+Experiencing an existential crisis and seeing various acts of prostitution throughout the city, Travis confides in a fellow taxi driver nicknamed Wizard about his violent thoughts. However, Wizard dismisses them and assures him that he will be fine. To find an outlet for his rage, Travis follows an intense physical training regimen. He gets in contact with black market gun dealer Easy Andy, and buys four handguns. At home, Travis practices drawing his weapons, even creating a quick-draw rig hidden in his sleeve. He begins attending Palantine's rallies to scope out his security. One night, Travis shoots and kills a man attempting to rob a convenience store run by a friend of his.
+
+On his trips around the city, Travis regularly encounters Iris, a 12-year-old child prostitute. Tricking her pimp and abusive lover, Sport, into thinking he wants to solicit her, Travis meets with her in private and tries to persuade her to stop prostituting herself. Soon after, Travis shaves his hair into a mohawk and attends a public rally where he plans to assassinate Palantine. However, Secret Service agents see Travis putting his hand inside his jacket and approach him, escalating into a chase. Travis escapes pursuit and makes it home undetected.
+
+That evening, Travis drives to the brothel where Iris works to kill Sport. He enters the building and shoots Sport and one of Iris's clients, a mafioso. Travis is shot several times, but manages to kill the two men. He then fights with the bouncer, who he manages to stab through the hand with his knife and kill with a gunshot to the head. Travis attempts to commit suicide, but is out of bullets. Severely injured, he slumps on a couch next to a sobbing Iris. As police respond to the scene, Travis imitates shooting himself in the head using his finger.
+
+Travis goes into a coma due to his injuries. He is heralded by the press as a heroic vigilante and not prosecuted for the murders. He receives a letter from Iris's parents in Pittsburgh, who thank him and reveal that she is safe and attending school back home. 
+
+After recovering, Travis grows his hair out and returns to work, where he encounters Betsy as a fare; they interact, with Betsy saying she followed his story in the newspapers. Travis drops her at home, and declines to take her money, driving off with a smile. He suddenly becomes agitated after noticing something in his rear-view mirror, but continues driving into the night.

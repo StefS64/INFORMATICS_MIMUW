@@ -1,0 +1,33 @@
+---
+layout: additional_movie_info
+title: " The Big Lebowski (1998)"
+permalink: /additional_info/the-big-lebowski-1998/
+---
+
+![ The Big Lebowski (1998)](https://upload.wikimedia.org/wikipedia/en/thumb/3/35/Biglebowskiposter.jpg/220px-Biglebowskiposter.jpg)
+
+**Running Time:** 117 minutes
+
+**Budget:** $15 million
+
+**Box Office:** $47.4 million
+
+**Country:** United StatesUnited Kingdom
+
+**Plot:** In 1990 or 1991,[8][9] slacker and avid bowler Jeffrey "The Dude" Lebowski is attacked in his Los Angeles home by two enforcers for porn kingpin Jackie Treehorn, to whom a different Jeffrey Lebowski's wife owes money. One enforcer urinates on the Dude's rug before the two realize they have the wrong man and leave.
+
+After consulting his bowling partners, Vietnam veteran Walter Sobchak and Donny Kerabatsos, the Dude visits wealthy philanthropist Jeffrey Lebowski ("the big Lebowski"), requesting compensation for the rug. Lebowski refuses but the Dude tricks his assistant Brandt into letting him take a similar rug from the mansion. Outside, he meets Bunny, Lebowski's trophy wife and her German nihilist friend Uli. Soon afterward, Bunny is apparently kidnapped and Lebowski hires the Dude to deliver a ransom. That night, another group of thugs ambushes the Dude, taking his replacement rug on behalf of Lebowski's daughter Maude, who has a sentimental attachment to it.
+
+Convinced the kidnap was a ruse by Bunny, Walter fakes the ransom drop. He and the Dude return to the bowling alley, leaving the briefcase of money in the Dude's car trunk. While they are bowling, the car is stolen. The Dude is confronted by Lebowski, who has an envelope from the kidnappers containing a severed toe, supposedly Bunny's. Maude asks the Dude to help recover the money her father illegally withdrew from the family's charity foundation.
+
+The police recover the Dude's car. The briefcase is missing but the Dude finds a clue: a sheet of homework signed by a teenager named Larry Sellers. Walter learns that Larry is the good-for-nothing son of Arthur Digby Sellers, a principal writer for the television show Branded, that Walter reveres. The Dude and Walter visit Larry but get no information from him, as Larry remains mute and affectless through Walter's increasingly volatile and obscene interrogation. Walter assumes a sports car in front of Larry's house was purchased with the ransom and smashes it. The car actually belongs to a neighbor, who smashes the Dude's car in return.
+
+Jackie Treehorn's thugs abduct the Dude and bring him to the porn kingpin, who demands to know where Bunny is and what happened to his money. The Dude says Bunny faked her kidnapping and Larry has the money then passes out from a spiked drink Treehorn gave him. He is arrested while wandering deliriously in Malibu and evicted by the police chief. On his way home Bunny (whose toes are intact) drives by, unnoticed by the Dude.
+
+Maude is waiting for the Dude at his home and has sex with him, wishing to become pregnant by a father with whom she will not have to interact. She tells the Dude that her father has no money of his own; he is dependent on an allowance that Maude gives him from her inheritance from her late mother.
+
+The Dude and Walter confront Lebowski and find Bunny has returned, having simply gone out of town without telling anyone. Bunny's nihilist friends took the opportunity to blackmail Lebowski, who in turn, had tried to embezzle money from the family charity, blaming its disappearance on the blackmailers. The Dude believes the briefcase never contained any money. An enraged Walter suspects Lebowski is faking his paralysis and lifts him out of his wheelchair but his condition is real.
+
+Walter and the Dude are bowling when a rival bowler, Jesus Quintana, interrupts them. Walter had previously stated that he could not bowl on Saturdays since he is shomer Shabbos. In a tirade, Quintana implies he does not believe Walter's excuse for not bowling on Saturday, threatens Walter and the Dude and storms out. Outside the bowling alley, the nihilists set fire to the Dude's car and demand the ransom money. Walter fights them off but Donny dies from a heart attack. On a cliff overlooking the Pacific Ocean, Walter eulogizes Donny's passing, but ultimately ruins it by unrelatedly referring to his fallen comrades in Vietnam. As he scatters Donny's ashes, they are blown back onto the Dude by an ill-timed updraft. As Walter tries to brush off the ashes, the Dude finally loses his temper and yells at him for everything that has happened. After apologizing and consoling the Dude, the two go bowling.
+
+At the bowling alley, the Dude encounters the Stranger, the movie's narrator, who sums up everything that happened in the film and states that while he "didn't like seeing Donny go", he remains inspired by the Dude and that Maude is pregnant with a "little Lebowski on the way."

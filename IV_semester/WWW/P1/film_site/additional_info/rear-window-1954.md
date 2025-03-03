@@ -1,0 +1,31 @@
+---
+layout: additional_movie_info
+title: " Rear Window (1954)"
+permalink: /additional_info/rear-window-1954/
+---
+
+![ Rear Window (1954)](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Rear_Window_film_poster.jpg/220px-Rear_Window_film_poster.jpg)
+
+**Running Time:** 111 minutes
+
+**Budget:** $1 million
+
+**Box Office:** $37.9 million
+
+**Country:** United States
+
+**Plot:** Professional photojournalist and fashion photographer L.B. "Jeff" Jefferies, recuperating from serious injuries from his waist to his foot, is restricted to a wheelchair in his Greenwich Village apartment. His mid-floor rear window looks out onto a courtyard with small garden plots and other apartments in the surrounding blocks. Jeff is regularly visited by Stella, a cynical, middle-aged nurse, and his idealistic young girlfriend Lisa Fremont, a model and socialite.
+
+During an intense heat wave, Jeff watches his neighbors through their open windows, including a professional dancer coined "Miss Torso", a songwriter with writer's block, and traveling costume jewelry salesman Lars Thorwald, who is hen-pecked by his bedridden wife. One night, Jeff hears a woman scream followed by the sound of breaking glass. Later that night, Jeff wakes as a thunderstorm breaks. He observes Thorwald making repeated half-hour excursions outside carrying his aluminum sample case. Later still, Thorwald is seen leaving his apartment along with a woman obscured by a large black hat.
+
+The next morning, Jeff notices Thorwald's wife is gone, and sees him cleaning a large knife and handsaw. Thorwald also has movers haul away a large trunk. After digging out his binoculars and then a camera with a high-power telephoto lens, a suspicious Jeff starts closely observing Thorwald's activities. He becomes convinced that Thorwald has murdered his wife, and tells first Stella, who becomes morbidly interested in the case, and then Lisa, who doubts him until they notice that Thorwald's wife is no longer in bed and the mattress is rolled up.
+
+Jeff calls detective Tom Doyle and requests that he investigate Thorwald. A very skeptical Doyle investigates extensively and finds nothing suspicious, offering that Thorwald had sent his wife on a vacation upstate. Jeff and Lisa are at first convinced by this story and question their "rear window ethics". Later that night, however, the dog belonging to the neighbor one floor up from the Thorwalds is found dead in the courtyard. The dog's alarmed owner yells, drawing the attention of everyone except Thorwald, who sits silently in his dark apartment. Now convinced his theory is true, Jeff has Lisa pull out some slides taken two weeks earlier and notices that Thorwald had dug up his garden in the interim, possibly to bury his wife's body.
+
+The following night, Jeff telephones and lures Thorwald away from his apartment to allow Lisa and Stella to investigate Thorwald's flower bed where the dog had been digging. Nothing is found, but Lisa climbs into Thorwald's apartment and searches it. Stella hurries back to Jeff. 
+
+Below Thorwald's apartment, Jeff and Stella are distracted watching a lower ground floor neighbor – coined "Miss Lonely-Hearts" – contemplating an overdose, and they call the police. The songwriter has finally finished his song "Lisa" and plays it loudly, causing Miss Lonely-Hearts to not go through with her suicide attempt. As they wait, Thorwald unexpectedly returns early and catches Lisa on his property. The police intervene as the pair scuffles. During their questioning, Lisa signals to Jeff that she is wearing Mrs. Thorwald's wedding ring. Thorwald sees this and realizes Jeff is surveilling his apartment. 
+
+Jeff phones Doyle and leaves an urgent message while Stella goes to bail Lisa out of jail. Thorwald locates and attacks Jeff in his darkened apartment, his only defense being camera flash bulbs. While grappling, Doyle and other officers storm the courtyard – followed by Lisa and Stella – and arrest Thorwald just as he drops Jeff out of his window. Thorwald confesses to his wife's murder to the police.
+
+A few days later, the heat wave has broken and life in the apartment complex has returned to normal. Miss Lonely-Hearts is seen in a semi-romantic position with the songwriter in his studio apartment. Jeff, having broken his other leg in the fall, is still wheelchair-bound, now with casts on both legs. Lisa is seen stretched out next to him, wearing a much more casual outfit and reading a travel book. After noticing Jeff asleep, she puts down the book on exploration titled Beyond the High Himalayas and turns instead to read Harper's Bazaar.

@@ -1,0 +1,27 @@
+---
+layout: additional_movie_info
+title: " Avengers: Endgame (2019)"
+permalink: /additional_info/avengers-endgame-2019/
+---
+
+![ Avengers: Endgame (2019)](https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg)
+
+**Running Time:** 181 minutes
+
+**Budget:** $356–400 million
+
+**Box Office:** $2.799 billion
+
+**Country:** United States
+
+**Plot:** In 2018, 23 days after Thanos erased half of all life in the universe,[a] Carol Danvers rescues Tony Stark and Nebula from deep space. They reunite with the remaining Avengers—Bruce Banner, Steve Rogers, Thor, Natasha Romanoff, and James Rhodes—and Rocket on Earth. Locating Thanos on an uninhabited planet, they plan to use the Infinity Stones to reverse his actions but find that Thanos has destroyed them. Enraged, Thor decapitates Thanos.
+
+Five years later, Scott Lang escapes from the Quantum Realm.[b] Reaching the Avengers Compound, he explains that he experienced only five hours while trapped. Theorizing that the Quantum Realm allows time travel, they ask a reluctant Stark to help them retrieve the Stones from the past to reverse Thanos's present actions. Stark, Rocket, and Banner, who has merged his intelligence with the Hulk's strength, build a time machine. Banner notes that altering the past does not affect the present; any changes create alternate realities. Banner and Rocket travel to Norway, where they visit the Asgardian refugee settlement of New Asgard and recruit an overweight, despondent Thor. In Tokyo, Romanoff recruits Clint Barton, who became a vigilante after the erasure of his family.
+
+Banner, Lang, Rogers, and Stark time-travel to New York City during Loki's attack in 2012.[c] At the Sanctum Sanctorum, Banner convinces the Ancient One to give him the Time Stone after promising to return the Infinity Stones to their proper points in time. At Stark Tower, Rogers retrieves the Mind Stone from Hydra sleeper agents; Stark and Lang's attempt to steal the Space Stone fails, allowing 2012-Loki to escape with it. Rogers and Stark travel to Camp Lehigh in 1970, where Stark obtains an earlier version of the Space Stone and encounters his father, Howard. Rogers steals Pym Particles from Hank Pym to return to the present and sees his lost love, Peggy Carter.
+
+Rocket and Thor travel to Asgard in 2013;[d] Rocket extracts the Reality Stone from Jane Foster. Thor is encouraged by his mother, Frigga, and retrieves his old hammer, Mjolnir. Barton, Romanoff, Nebula, and Rhodes travel to 2014; Nebula and Rhodes go to Morag and steal the Power Stone before Peter Quill can,[e] while Barton and Romanoff travel to Vormir. The Soul Stone's keeper, Red Skull, says that it can only be acquired by sacrificing a loved one. Romanoff sacrifices herself, allowing Barton to get the Stone. Rhodes and Nebula attempt to return to their own time, but Nebula is incapacitated when her cybernetic implants link with her past self; this allows 2014-Thanos to learn about his future self's success and the Avengers' attempt to undo it. 2014-Thanos sends 2014-Nebula forward in time to prepare for his arrival.
+
+Reuniting in the present, the Avengers place the Stones into a gauntlet that Stark, Banner, and Rocket have built. Banner, who has the most resistance to their radiation, uses the gauntlet to undo Thanos's disintegrations. Meanwhile, 2014-Nebula (impersonating her future self) uses the time machine to transport 2014-Thanos and his warship to the present and destroys the Avengers Compound. Present-day Nebula convinces 2014-Gamora to betray Thanos, but is unable to convince 2014-Nebula and kills her. Thanos overpowers Stark, Thor and a Mjolnir-wielding Rogers; he summons his army to retrieve the Stones, intent on using them to destroy the universe and create a new one. A restored Stephen Strange arrives with other sorcerers, the restored Avengers and Guardians of the Galaxy, the Ravagers, and the armies of Wakanda and Asgard to fight Thanos's army. Danvers also arrives and destroys Thanos's warship, but Thanos overpowers her and seizes the gauntlet. Stark steals the Stones and uses them to disintegrate Thanos and his army, sacrificing himself.
+
+After Stark's funeral, Thor appoints Valkyrie as the new king of New Asgard and joins the Guardians. Rogers returns the Stones and Mjolnir to their proper timelines and remains in the past to live with Carter. In the present, an elderly Rogers passes his shield to Sam Wilson.

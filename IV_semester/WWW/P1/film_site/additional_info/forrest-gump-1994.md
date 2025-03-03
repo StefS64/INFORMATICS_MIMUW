@@ -1,0 +1,31 @@
+---
+layout: additional_movie_info
+title: " Forrest Gump (1994)"
+permalink: /additional_info/forrest-gump-1994/
+---
+
+![ Forrest Gump (1994)](https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Forrest_Gump_poster.jpg/220px-Forrest_Gump_poster.jpg)
+
+**Running Time:** 142 minutes
+
+**Budget:** $55 million
+
+**Box Office:** $678.2 million
+
+**Country:** United States
+
+**Plot:** In 1981, at a bus stop in Savannah, Georgia, a man named Forrest Gump recounts his life story to strangers who sit next to him on a bench.
+
+In the 1950s, in Greenbow, Alabama, young Forrest is fitted with leg braces to correct a curved spine, and cannot walk properly. He lives alone with his mother, who runs a boarding house out of their home that attracts many tenants, including a young Elvis Presley, who plays the guitar for Forrest and incorporates Forrest's jerky dance movements into his performances. On his first day of school, Forrest meets a girl named Jenny Curran, and the two become best friends.
+
+Forrest is often bullied because of his physical disability and low intelligence. While fleeing from several bullies, his leg braces break off, revealing Forrest to be a very fast runner. This talent eventually allows him to receive a football scholarship at the University of Alabama in 1963, where he is coached by Bear Bryant, and witnesses Governor George Wallace's Stand in the Schoolhouse Door, during which he returns a dropped book to Vivian Malone Jones. Forrest becomes a top kick returner, is named on the All-American team, and meets President John F. Kennedy at the White House.
+
+After graduating college in 1966, Forrest enlists in the U.S. Army. During basic training, he befriends a fellow soldier named Benjamin Buford "Bubba" Blue, who convinces Forrest to go into the shrimping business with him after their service. In 1967, they are sent to Vietnam, serving with the 9th Infantry Division in the Mekong Delta region. After months of routine operations, their platoon is ambushed while on patrol, and Bubba is killed in action. Forrest saves several wounded platoon mates – including his lieutenant, Dan Taylor, who loses both his legs. Gump is awarded the Medal of Honor for his heroism by President Lyndon B. Johnson.
+
+At the anti-war March on the Pentagon rally, Forrest meets Abbie Hoffman and briefly reunites with Jenny, who has been living a hippie lifestyle. He also develops a talent for ping-pong, and becomes a sports celebrity as he competes against Chinese teams in ping-pong diplomacy, earning him an interview alongside John Lennon on The Dick Cavett Show, influencing the song "Imagine". He spends the 1971 New Year's Eve in New York City with Dan, who has become deeply embittered. Forrest soon meets President Richard Nixon and is put up in the Watergate complex, where he unwittingly exposes the Watergate scandal.
+
+Discharged from the army, Forrest returns to Greenbow and endorses a company that makes ping-pong paddles. He uses the earnings to buy a shrimping boat in Bayou La Batre, fulfilling his promise to Bubba. Dan joins Forrest in 1974, and they initially have little success. After their boat becomes the only one to survive Hurricane Carmen, they pull in huge amounts of shrimp and create the Bubba Gump Shrimp Company, after which Dan rediscovers happiness and thanks Forrest for saving his life. Forrest returns home to his mother as she dies of cancer. Dan invests in Apple Inc. and the two become millionaires, but Forrest also shares their earnings with the community and Bubba's family.
+
+In 1976, Jenny returns to stay with Forrest, recovering from years of child abuse, drugs, and prostitution. After a while, Forrest proposes to her. She tells Forrest she loves him and the two have sex, but she leaves the next morning. Heartbroken, Forrest goes running and spends the next three years in a relentless cross-country run, becoming famous again before returning to Greenbow.
+
+In 1981, Forrest reveals that he is waiting at the bus stop because he received a letter from Jenny, who asked him to visit her. Forrest is finally reunited with Jenny, who introduces him to their son, Forrest Gump Jr. Jenny tells Forrest she is sick with an unknown incurable virus, and the three move back to Greenbow. Jenny and Forrest finally marry, but she dies a year later. Forrest sends his son off on his first day of school as a feather floats in the wind.

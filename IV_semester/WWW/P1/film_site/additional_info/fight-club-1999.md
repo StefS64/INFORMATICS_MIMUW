@@ -1,0 +1,23 @@
+---
+layout: additional_movie_info
+title: " Fight Club (1999)"
+permalink: /additional_info/fight-club-1999/
+---
+
+![ Fight Club (1999)](https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg)
+
+**Running Time:** 139 minutes
+
+**Budget:** $63–65 million
+
+**Box Office:** $101 million
+
+**Country:** United States
+
+**Plot:** The unnamed Narrator, who struggles with insomnia and dissatisfaction with his job and lifestyle, finds temporary solace in support groups. As his insomnia worsens, he discovers that expressions of emotional vulnerability help him sleep, leading him to join multiple groups for people facing emotionally distressing problems, despite his expressions being fraudulent. His efforts are thwarted when Marla Singer, another impostor, joins the same groups. The Narrator cannot present his fabricated struggles as genuine, or divert his attention from her presence as an impostor, causing his sleeplessness to return. He arranges for them to attend different sessions to regain his ability to sleep and, under certain circumstances, to exchange contact information, to which she reluctantly agrees.
+
+On a return flight from work, the Narrator meets a soap salesman, Tyler Durden. After an explosion destroys the Narrator's apartment, he moves into Tyler's decrepit house. They become friends and start an underground fight club in a bar basement. Tyler also saves Marla from an overdose, initiating a sexual relationship between them, while the Narrator remains cold to her.
+
+The Narrator quits his job, blackmails his boss for funds, and grows the fight club, attracting new members, including his cancer support group friend, Bob. Tyler morphs the club into Project Mayhem, committing vandalism to disrupt the social order. Feeling sidelined, the Narrator confronts Tyler, who admits to orchestrating the explosion in the Narrator's apartment and then goes missing. Bob is killed by the police during a mission, prompting the Narrator to attempt to stop the project and look for Tyler. Discovering the project's nationwide reach and being called Tyler Durden by Marla and other people, he realizes he and Tyler are split personalities.
+
+Learning that Project Mayhem plans to erase debt records by blowing up the headquarters of credit-card companies, the Narrator unsuccessfully warns Marla and goes to the police, some of whom are also Project Mayhem members. He attempts to disarm the explosives, but Tyler attacks him. The Narrator shoots himself in the mouth, killing Tyler. Marla arrives and she and the Narrator hold hands as they watch the targeted buildings collapse.
