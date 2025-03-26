@@ -4,46 +4,37 @@
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}">
+    <style>
+      .blurred-background {
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(10px);
+        filter: saturate(80%); /* Decrease saturation of the background */
+      }
+    </style>
   </head>
-  <body class="bg-[url('/assets/img/movie_background.jpg')] bg-cover bg-center bg-blend-saturation">
-    <header>
-      <h1>{{ site.title }}</h1>
-      <p>{{ site.description }}</p>
+  <body class="bg-[url('/assets/img/movie_background.jpg')] bg-cover bg-center bg-blend-saturation blurred-background flex flex-col min-h-screen">
+    <header class="p-4">
+      <h1 class="text-6xl font-bold text-center" 
+          style="font-family: cursive; color: #FFD700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+        {{ site.title }}
+      </h1>
     </header>
-    <main>
-      <section>
-        <h2>Posts</h2>
-        <ul>
+    <main class="flex-grow flex flex-col items-center p-4">
+      <section class="max-w-3/10">
+        <div class="space-y-4 flex flex-col items-center">
           {% for post in site.posts -%}
-            <li>
-              <a class="text-sky-500 hover:text-amber-300" href="{{ post.url | remove: '.html' | relative_url }}">{{ post.title }}</a>
-              <span>{{ post.date | date: "%B %d, %Y" }}</span>
-            </li>
+            <a href="{{ post.url | remove: '.html' | relative_url }}" 
+               class="relative bg-black text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300 text-center">
+              {{ post.title }}
+              <span class="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-amber-300 animate-ping"></span>
+              <span class="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-amber-300"></span>
+            </a>
           {% endfor -%}
-        </ul>
+        </div>
       </section>
     </main>
-    <footer>
+    <footer class="bg-black text-white text-center py-4 mt-auto">
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.title | escape }}</p>
     </footer>
-
-    <!-- YouTube Video Embed -->
-    <div 
-      class="video-container" 
-      onmouseover="startVideo(this)" 
-      onmouseout="stopVideo(this)"
-    >
-      <iframe 
-        width="560" 
-        height="315" 
-        data-src="https://www.youtube.com/embed/Dea4bypvgao?autoplay=1" 
-        src="about:blank" <!-- Placeholder to ensure the iframe renders -->
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-        
-      </iframe>
-    </div>
-
   </body>
 </html>
