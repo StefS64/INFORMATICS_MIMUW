@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}">
+  </head>
+  <body class="bg-[url('/assets/img/movie_background.jpg')] bg-cover bg-center bg-blend-saturation">
+    <header>
+      <h1>{{ site.title }}</h1>
+      <p>{{ site.description }}</p>
+    </header>
+    <main>
+      <section>
+        <h2>Posts</h2>
+        <ul>
+          {% for post in site.posts -%}
+            <li>
+              <a class="text-sky-500 hover:text-amber-300" href="{{ post.url | remove: '.html' | relative_url }}">{{ post.title }}</a>
+              <span>{{ post.date | date: "%B %d, %Y" }}</span>
+            </li>
+          {% endfor -%}
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title | escape }}</p>
+    </footer>
+
+    <!-- YouTube Video Embed -->
+    <div 
+      class="video-container" 
+      onmouseover="startVideo(this)" 
+      onmouseout="stopVideo(this)"
+    >
+      <iframe 
+        width="560" 
+        height="315" 
+        data-src="https://www.youtube.com/embed/Dea4bypvgao?autoplay=1" 
+        src="about:blank" <!-- Placeholder to ensure the iframe renders -->
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        
+      </iframe>
+    </div>
+
+  </body>
+</html>

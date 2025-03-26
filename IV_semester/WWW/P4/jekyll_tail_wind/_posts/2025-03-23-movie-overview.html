@@ -1,0 +1,56 @@
+---
+title: "Part of the gathered movie data"
+permalink: /2025/03/23/movies-overview/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}">
+</head>
+<body class="bg-gray-900">
+  <header class=" py-4">
+    {% include header_post.html %}
+  </header>
+    <hr class="border-blue-800 my-4">
+  <main class="container mx-auto my-8 text-blue-700">
+    <table class="table-auto border-collapse border border-amber-800 w-full text-left">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Title</th>
+          <th class="border  px-4 py-2">Director</th>
+          <th class="border  px-4 py-2">Image</th>
+          <th class="border  px-4 py-2">Starring</th>
+          <th class="border  px-4 py-2">Commentary</th>
+          <th class="border  px-4 py-2">More Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for movie in site.data.movies_data %}
+        <tr>
+          <td class="border  px-4 py-2">{{ movie.title }}</td>
+          <td class="border  px-4 py-2">{{ movie.director }}</td>
+          <td class="border  px-4 py-2">
+            <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="w-1000 h-auto">
+          </td>
+          <td class="border  px-4 py-2">{{ movie.starring }}</td>
+          <td class="border  px-4 py-2">{{ movie.commentary }}</td>
+          <td class="border  px-4 py-2">
+            <a href="{{ movie.url | relative_url }}" class="text-blue-500 hover:underline hover:text-amber-300">Redirect to main site</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+    </div>
+  </footer>
+</body>
+</html>
