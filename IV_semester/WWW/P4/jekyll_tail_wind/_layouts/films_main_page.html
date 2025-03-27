@@ -4,42 +4,70 @@
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/output.css' | asset_url }}">
-    <script src="https://www.youtube.com/iframe_api"></script> <!-- Load YouTube Player API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
   </head>
-  <body>
-    <header>
+  <body class=" bg-[url('/assets/img/stars_bg.jpeg')]">
+    <header class="bg-black">
       {% include header_post.html %}
     </header>
-    <main>
-      <section class="flex flex-wrap gap-4">
-        <!-- <h2 class="title">{{ page.title }}</h2> -->
+    <main class="mx-[15 %] my-[6%]">
+      <section class="flex flex-wrap gap-4 items-center">
         {% for movie in site.data.movies_data -%}
-        <a href="{{ movie.url }}">
+        <div
+            onmouseenter="startVideo(this); translateElement(this)" 
+            onmouseleave="hideDetails(this); pauseVideo(this); resetTranslateElement(this)"
+            class="selected-movie flex-grow sm:flex-grow-0 xs:w-full transition-transform duration-300"
+        >
           <div 
-            class="movie relative group w-120 h-60 overflow-hidden border rounded-lg shadow-lg shadow-yellow-500"
-            onmouseover="startVideo(this)" 
-            onmouseout="pauseVideo(this)"
+            class="movie relative group w-auto h-auto border rounded-lg shadow-lg shadow-yellow-500 transition-all duration-300"
           >
-            <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-70 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-4 transition-opacity duration-300">
-              <h3 class="text-lg font-bold mb-2">{{ movie.title | split: ') '| last}}</h3>
-              <!-- <p><strong>Director:</strong> {{ movie.director }}</p> -->
-              <!-- <p><strong>Starring:</strong> {{ movie.starring }}</p> -->
-                <iframe 
-                  id="player-{{ forloop.index }}"
-                  width="560" 
-                  height="315" 
-                  data-src="{{ movie.trailer }}" 
-                  src="about:blank" 
-                  title="YouTube video player" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-                </iframe>
-              </div>
+            <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="w-full h-60 object-cover">
+          
+            <!-- Title in the bottom-left corner -->
+            <div class="absolute bottom-0 left-0 p-4 text-white text-lg font-family: Times; rounded-lg" style="background-color: rgba(0,0,0,0.5);">
+              {{ movie.title | split: ') '| last }}
             </div>
+          
+            <!-- Video iframe -->
+            <div class="selected_movie absolute round-lg inset-0 bg-black bg-opacity-70 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-4 transition-all duration-300">
+              <iframe 
+                id="player-{{ forloop.index }}"
+                width="[100%]" 
+                height="auto" 
+                data-src="{{ movie.trailer }}?autoplay=1&controls=0&modestbranding=1&cc_load_policy=0&start=2&showinfo=0" 
+                src="about:blank" 
+                frameborder="10" 
+                allowfullscreen>
+              </iframe>
+              <div class="absolute left-4 top-[calc(182px)] transition-opacity duration-300">
+                <button 
+                  class="bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg hover:bg-yellow-600"
+                  onclick="event.preventDefault(); toggleDetails(this);"
+                >
+                  Expand
+                </button>
+              </div>
+              <!-- Collapsible Section -->
+              <div class="movie-details hidden bg-gray-800 text-white p-4 rounded-lg mt-4 w-full" style="font-size: xx-small;">
+                <p><strong>Starring:</strong> {{ movie.starring }}</p>
+                <p><strong>Director:</strong> {{ movie.director }}</p>
+                <p><strong>Commentary:</strong> {{ movie.commentary }}</p>
+              </div>
+              <!-- Expand Button -->
+
+              <a href="{{movie.url}}" class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg duration-300">
+                <button 
+                  class="bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg hover:bg-yellow-600"
+                >
+                  More Info
+                </button>
+              </a>
+            </div>
+
+
+
           </div>
-        </a>
+        </div>
         {% endfor -%}
       </section>
     </main>
@@ -48,37 +76,105 @@
     </footer> 
 
     <script>
-      // Store YouTube player instances
       const players = {};
 
-      // Initialize YouTube Player API
       function onYouTubeIframeAPIReady() {
         const iframes = document.querySelectorAll("iframe[data-src]");
         iframes.forEach((iframe, index) => {
           const playerId = `player-${index + 1}`;
-          iframe.id = playerId; // Assign unique ID
+          iframe.id = playerId;
           players[playerId] = new YT.Player(playerId, {
             events: {
               onReady: (event) => {
-                iframe.dataset.ready = true; // Mark the iframe as ready
+                iframe.dataset.ready = true;
               }
             }
           });
         });
       }
 
-      // Start the video on hover
       function startVideo(element) {
         const iframe = element.querySelector("iframe");
         if (!iframe.src || iframe.src === "about:blank") {
-          iframe.src = iframe.dataset.src; // Set the actual video URL
+          iframe.src = iframe.dataset.src;
         }
       }
 
-      // Pause the video on hover out
       function pauseVideo(element) {
         const iframe = element.querySelector("iframe");
-        iframe.src = "about:blank"; // Reset the video URL to stop playback
+        iframe.src = "about:blank";
+      }
+
+      function resettranslate(element) {
+        // Reset the translation and z-index to their original state
+        element.style.transform = "translate(0, 0)";
+        element.style.zIndex = ""; // Reset z-index to default
+      }
+
+      function translateElement(element) {
+        console.log("translateElement called");
+        const parent = element.parentElement.getBoundingClientRect(); // Get parent bounds
+        const rect = element.getBoundingClientRect(); // Get element bounds
+
+        const scale = 2; // Scale factor
+        let translateX = 0;
+        let translateY = 0;
+
+        const scaledWidth = rect.width * scale;
+        const scaledHeight = rect.height * scale;
+
+        if (rect.left - scaledWidth/scale < parent.left) {
+          translateX = rect.width/scale + parent.left-rect.left;
+        } else if (rect.right + scaledWidth/scale > parent.right) {
+          translateX = parent.right-rect.width/scale - rect.right;
+        }
+
+        if (rect.bottom - scaledHeight/scale < parent.bottom) {
+          translateY = -0.5;//rect.height/scale + parent.bottom-rect.bottom;
+        } else if (rect.top + scaledHeight/scale > parent.top) {
+          translateY = parent.top-rect.height/scale - rect.top;
+        }
+
+        element.style.transform = `scale(${scale}) translate(${translateX/scale}px, ${translateY * 100}px)`;
+        element.style.zIndex = "1000"; // Set a high z-index to bring it to the foreground
+      }
+
+      function resetTranslateElement(element) {
+        console.log("resetTranslateElement called");
+        // Reset scaling and translation
+        element.style.transform = "scale(1) translate(0, 0)";
+        element.style.zIndex = ""; // Reset z-index to default
+      }
+
+      function toggleDetails(button) {
+        console.log("toggle details");
+        const movieContainer = button.closest('.selected_movie');
+        const details = movieContainer.querySelector('.movie-details');
+
+        if (details.classList.contains('hidden')) {
+          details.classList.remove('hidden');
+          details.style.maxHeight = `${details.scrollHeight}px`; // Expand the section
+          movieContainer.style.height = `${movieContainer.scrollHeight + details.scrollHeight}px`; // Adjust container height
+          button.dataset.expanded = "true"; // Mark as expanded
+          button.textContent = 'Collapse';
+        } else {
+          details.classList.add('hidden');
+          details.style.maxHeight = "0"; // Collapse the section
+          movieContainer.style.height = ""; // Reset container height
+          button.dataset.expanded = "false"; // Mark as collapsed
+          button.textContent = 'Expand';
+        }
+      }
+
+      function hideDetails(container) {
+        const details = container.querySelector('.movie-details');
+        const expandButton = container.querySelector('button[data-expanded="true"]');
+
+        if (expandButton) {
+          details.classList.add('hidden'); // Hide the details
+          expandButton.dataset.expanded = "false"; // Reset the button state
+          expandButton.textContent = 'Expand'; // Reset the button text
+        }
       }
     </script>
   </body>

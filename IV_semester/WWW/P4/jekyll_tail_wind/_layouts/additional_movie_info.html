@@ -4,24 +4,32 @@
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/output.css' | asset_url }}">
-    <!-- <link rel="stylesheet" href="{{ '/assets/css/post_movies.css' | asset_url }}"> -->
   </head>
-  <body>
-    <header>
+  <body class="bg-[url('/assets/img/stars_bg.jpeg')] text-white">
+    <header class="bg-black p-4">
       {% include header_movie.html %}
     </header>
-    <main>
-      <div class="movie">
-        <h1>{{ page.title }}</h1>
-        <img src="{{ page.poster }}" alt="{{ page.title }}">
-        <p><strong>Running Time:</strong> {{ page.running_time }}</p>
-        <p><strong>Budget:</strong> {{ page.budget }}</p>
-        <p><strong>Box Office:</strong> {{ page.box_office }}</p>
-        <p><strong>Country:</strong> {{ page.country }}</p>
-        <p><strong>Plot:</strong> {{ page.plot | replace: "\n", "<br>" }}</p>
+    <main class="mx-[15%] my-[6%]">
+      <div class="movie bg-gray-800 p-6 rounded-lg shadow-lg shadow-yellow-500">
+        <h1 class="text-3xl font-bold mb-4">{{ page.title }}</h1>
+        <div class="flex flex-row gap-6">
+          <!-- Movie Poster -->
+          <div class="flex-shrink-0 w-1/2 aspect-[2/1] rounded-lg overflow-hidden shadow-md">
+            <img src="{{ page.poster }}" alt="{{ page.title }}" class="w-full h-full object-cover">
+          </div>
+          
+          <!-- Movie Details -->
+          <div class="flex-grow">
+            <p class="mb-2"><strong>Running Time:</strong> {{ page.running_time }}</p>
+            <p class="mb-2"><strong>Budget:</strong> {{ page.budget }}</p>
+            <p class="mb-2"><strong>Box Office:</strong> {{ page.box_office }}</p>
+            <p class="mb-2"><strong>Country:</strong> {{ page.country }}</p>
+            <p class="mb-4"><strong>Plot:</strong> {{ page.plot | replace: "\n", "<br>" }}</p>
+          </div>
+        </div>
       </div>
     </main>
-    <footer>
+    <footer class="bg-black p-4 mt-6">
       {% include footer.html %}
     </footer>
   </body>
