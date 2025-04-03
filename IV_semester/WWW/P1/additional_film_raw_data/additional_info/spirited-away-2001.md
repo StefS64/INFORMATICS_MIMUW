@@ -1,0 +1,29 @@
+---
+layout: additional_movie_info
+title: " Spirited Away (2001)"
+permalink: /additional_info/spirited-away-2001/
+---
+
+![ Spirited Away (2001)](https://upload.wikimedia.org/wikipedia/en/thumb/d/db/Spirited_Away_Japanese_poster.png/220px-Spirited_Away_Japanese_poster.png)
+
+**Running Time:** 125 minutes
+
+**Budget:** $19.2 million
+
+**Box Office:** $396 million
+
+**Country:** Japan
+
+**Plot:** Ten-year-old Chihiro Ogino and her parents Akio and Yūko travel to their new home. Akio, taking a shortcut, stops in front of a tunnel leading to what appears to be an abandoned amusement park, which Yūko insists on exploring over Chihiro's protestations. Upon finding a seemingly empty restaurant still stocked with food, Chihiro's parents immediately begin to eat. While exploring further, Chihiro finds an enormous bathhouse and meets a boy named Haku, who warns her to return across the riverbed before sunset. However, Chihiro discovers her parents have been transformed into pigs and she cannot cross the now-flooded river.
+
+Haku finds Chihiro and instructs her to ask for a job from the bathhouse's boiler-man, Kamaji, a yōkai commanding the susuwatari. Kamaji instead asks a worker named Lin to bring Chihiro to Yubaba, the witch who runs the bathhouse and cursed her parents, as well as Haku's master. Yubaba tries to frighten Chihiro away, but eventually gives her a work contract. As Chihiro signs the contract with her name (千尋), Yubaba takes away the second kanji in her name, renaming her Sen (千). She soon forgets her real name, and Haku later explains that Yubaba controls people by taking their names; if she completely forgets hers like he once did, she will never be able to leave the spirit world.
+
+The other workers, except for Kamaji and Lin, frequently mock Sen. While working, she invites a silent creature named No-Face inside, believing him to be a customer. The spirit of a polluted river arrives as Sen's first customer. After she cleans him, he gives her a magic emetic dumpling as a token of gratitude. Meanwhile, No-Face demands food from the bathhouse workers, granting gold copied from the river spirit in exchange. However, when Sen declines the gold and leaves, he angrily swallows some workers.
+
+Sen sees paper shikigami attacking a dragon and recognizes the dragon as Haku metamorphosed. When the seriously injured Haku crashes into Yubaba's penthouse, Sen follows him upstairs. A shikigami that stowed away on her back shapeshifts into Yubaba's twin sister Zeniba, who turns Yubaba's son, Boh, into a mouse and creates a false copy of him. Zeniba tells Sen that Haku has stolen a magic golden seal from her that carries a deadly curse. Haku strikes the shikigami, causing Zeniba to vanish. Once he and Sen fall into the boiler room, she gives him part of the emetic dumpling to vomit up the seal and a slug that Sen disgustedly kills.
+
+Sen resolves to return the seal and apologize to Zeniba. She confronts an engorged No-Face and feeds him the rest of the dumpling to regurgitate the workers. No-Face follows Sen out of the bathhouse, and Lin helps them leave. Sen, No-Face, and Boh travel to see Zeniba with train tickets gifted by Kamaji. Meanwhile, Yubaba nearly orders Sen's parents' slaughtering, but Haku reveals Boh is missing and offers to retrieve him if Yubaba releases Sen and her parents. Yubaba complies, but only if Sen can pass a final test.
+
+Sen meets with Zeniba, who makes her a magic hairband and reveals that Yubaba used the slug to control Haku. Using his dragon form, Haku flies Sen and Boh back, while No-Face decides to stay with Zeniba. Mid-flight, Sen recalls falling into the Kohaku River years earlier and being washed safely ashore, correctly guessing Haku's real identity as the spirit of the Kohaku River (ニギハヤミ コハクヌシ, Nigihayami Kohakunushi).
+
+When they arrive at the bathhouse, Yubaba tests Sen to identify her parents among a group of pigs to leave. After she answers correctly that none of the pigs are her parents, her contract disappears and she is given back her real name. Haku takes her to the now-dry riverbed and vows to meet her again. Chihiro crosses the riverbed to her restored parents. Shortly before leaving for her new home, Chihiro looks back at the tunnel with her hairband from Zeniba still intact.

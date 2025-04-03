@@ -1,0 +1,29 @@
+---
+layout: additional_movie_info
+title: " Avengers: Infinity War (2018)"
+permalink: /additional_info/avengers-infinity-war-2018/
+---
+
+![ Avengers: Infinity War (2018)](https://upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg)
+
+**Running Time:** 149 minutes
+
+**Budget:** $325–400 million
+
+**Box Office:** $2.052 billion
+
+**Country:** United States
+
+**Plot:** Having acquired the Power Stone—one of six Infinity Stones—from the planet Xandar, Thanos and his lieutenants—Ebony Maw, Cull Obsidian, Proxima Midnight, and Corvus Glaive—intercept the spaceship carrying the survivors of Asgard's destruction.[a] After subduing Thor, Thanos extracts the Space Stone from the Tesseract, overpowers the Hulk, and kills Loki and Heimdall. A dying Heimdall sends Hulk to Earth using the Bifröst. Thanos and his lieutenants leave, destroying the ship.
+
+Hulk crash-lands in the Sanctum Sanctorum in New York City, reverting to the form of Bruce Banner. He warns Stephen Strange and Wong about Thanos's plan to destroy half of all life in the universe, and they recruit Tony Stark. Maw and Obsidian arrive to retrieve the Time Stone from Strange, drawing Peter Parker's attention. Maw, unable to take the Time Stone due to Strange's enchantment, captures him. Stark and Parker sneak aboard Maw's spaceship while Wong stays behind to guard the Sanctum.
+
+The Guardians of the Galaxy respond to the Asgardian ship's distress call and rescue Thor. Thor surmises that Thanos is after the Reality Stone, which Taneleer Tivan possesses on Knowhere. He travels with Rocket and Groot to Nidavellir to enlist the dwarf king Eitri's aid in creating the battle-axe Stormbreaker. Peter Quill, Gamora, Drax, and Mantis travel to Knowhere, finding Thanos already has the Reality Stone. Thanos kidnaps Gamora, who discloses the Soul Stone's location to save Nebula from torture. On Vormir, the Stone's keeper, Red Skull, tells Thanos that he can only acquire it by sacrificing someone he loves. Thanos sacrifices Gamora, earning the Stone.
+
+Midnight and Glaive ambush Wanda Maximoff and Vision in Edinburgh to retrieve the Mind Stone in Vision's forehead. Steve Rogers, Natasha Romanoff, and Sam Wilson rescue them and they take shelter with James Rhodes and Banner at the Avengers Compound. Vision asks Wanda to destroy him and the Mind Stone to keep it from Thanos, but Wanda refuses. The group travels to Wakanda, which Rogers believes has the resources to remove the Stone without killing Vision.
+
+Nebula escapes captivity and asks the remaining Guardians to meet her on Thanos's destroyed homeworld, Titan. Stark and Parker kill Maw and rescue Strange. The trio crash-lands on Titan, where they meet Quill, Drax, and Mantis. Using the Time Stone, Strange views millions of possible futures, seeing only one in which the Avengers win. The group formulates a plan to subdue Thanos and remove the Infinity Gauntlet, with which he safely houses and wields the Stones. Thanos appears, justifying his plans as necessary to guarantee the survival of an overpopulated universe. Nebula arrives soon after and helps the others subdue Thanos, but deduces that Thanos has killed Gamora. Enraged, Quill attacks Thanos, allowing him to break the group's hold and overpower them. Thanos grievously wounds Stark, but Strange offers the Time Stone in exchange for sparing Stark's life.
+
+In Wakanda, Rogers reunites with Bucky Barnes before Thanos' army invades. The Avengers, along with T'Challa and the Wakandan forces, mount a defense while Shuri works to extract the Mind Stone from Vision. Unable to summon the Hulk, Banner fights in Stark's Hulkbuster armor. Thor, Rocket, and Groot arrive to reinforce the Avengers. Together they kill Midnight, Obsidian, and Glaive, and rout Thanos's army. Shuri cannot complete the extraction before Thanos arrives on the field; the Avengers and their allies fail to stop him from reaching Vision. Vision convinces a reluctant Wanda to destroy him and the Mind Stone, but Thanos uses the Time Stone to reverse her actions, rip the stone from Vision's forehead, and complete the Gauntlet. Thor severely wounds Thanos with Stormbreaker, but Thanos activates the completed Gauntlet by snapping his fingers before teleporting away.
+
+Half of all life across the universe disintegrates, including Barnes, T'Challa, Groot, Wanda, Wilson, Mantis, Drax, Quill, Strange, Parker, Maria Hill, and Nick Fury, the last of whom sends an emergency signal on a modified pager before disintegrating.[b] Stark and Nebula remain stranded on Titan while Banner, M'Baku, Okoye, Rhodes, Rocket, Rogers, Romanoff, and Thor are left on the Wakandan battlefield. Meanwhile, Thanos watches a sunrise on a remote planet.

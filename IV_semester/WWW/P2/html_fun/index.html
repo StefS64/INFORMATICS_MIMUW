@@ -1,0 +1,56 @@
+---
+layout: showcase_html
+test_var: var
+---
+
+<article>
+    <h1>Table</h1>
+    <table>
+        <tr>
+            <em>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Time</th>
+            </em>
+        </tr>
+        <tr>
+            <td>Concert</td>
+            <td>20.03.2025</td>
+            <td>11:00</td>
+        </tr>
+        <tr>
+            <td>Half marathon</td>
+            <td><em>30.03.2025</em></td>
+            <td><strong>12:00</strong></td>
+        </tr>
+    </table>
+    <form action="/action_page.php">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
+        <select name="gender", id="gender">
+            <option value="man">Man</option>
+            <option value="Woman">Woman</option>
+        </select>
+    </form>
+
+    <details>
+        <summary>There is more information</summary>
+        <p>more info</p>
+    </details>
+
+    <label for="file">Downloading progress:</label>
+    <progress id="file" value="32" max="100"> 32% </progress>
+    <br>
+
+    <img src="mark.jpg" width="1000" height=auto alt="Planets" usemap="#planetmap">
+
+    <map name="planetmap">
+    <area shape="circle" coords="500,90,200" href="https://en.wikipedia.org/wiki/Lizard" alt="liza">
+    </map>
+</article>
+<footer>
+    This is a footer
+</footer>

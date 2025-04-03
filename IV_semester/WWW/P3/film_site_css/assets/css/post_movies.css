@@ -1,0 +1,80 @@
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+body {
+  background-image: url('/assets/img/back_ground_seats.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+  color: #ffffff;
+}
+
+main {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.movie {
+  width: 10%;
+  max-width: 200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.959);
+  border-radius: 10px;
+  color: #eee1e1;
+}
+
+.movies {
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto; 
+}
+
+.movie:hover {
+  width: 110%;
+  background: rgba(82, 77, 77, 0.8)
+}
+
+.title {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif; /* Ensure the title uses Times New Roman */
+  font-size: 64px; /* Set the font size to be really big */
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: #e79f04;
+}
+
+a {
+  color: #f8b119;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff4500;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .title:hover {
+    background-color: #ff4500;
+  }
+}

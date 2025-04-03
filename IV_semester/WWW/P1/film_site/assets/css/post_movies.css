@@ -1,0 +1,74 @@
+body {
+  background-image: url('/assets/img/back_ground_seats.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+  color: #ffffff;
+}
+
+main {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.movie {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.959);
+  border-radius: 10px;
+  color: #eee1e1;
+}
+
+.movies {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 64px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: #e79f04;
+}
+
+a {
+  color: #f8b119;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff4500;
+  text-decoration: underline;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items:  center;
+}
+
+.nav-item {
+  margin: 0 10px;
+}
+
+.nav-icon {
+  width: auto;
+  height: 100px;
+}

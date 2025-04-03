@@ -47,7 +47,7 @@ permalink: {permalink}
 
 
 def get_more_info(film_name):
-    time.sleep(5 + random.uniform(60, 50))
+    time.sleep(5 + random.uniform(60, 65))
     query = f"{film_name} site:en.wikipedia.org"
     print(f"Searching more info in duckduck:{query}")
     # driver = webdriver.Chrome()
@@ -147,21 +147,11 @@ with open(csv_file_path, 'w', newline='') as csvfile:
 posts_dir = 'film_site/_posts'
 
 markdown_content = """---
+---
 layout: post_overide
 title: "Top Movies"
 ---
-
-{% for movie in site.data.movies_data %}
-## [{{ movie.title }}]({{ movie.url }})
-**Director:** {{ movie.director }}
-
-![{{ movie.title }}]({{ movie.image_url }})
-
-**Starring:** {{ movie.starring }}
-
-{{ movie.commentary }}
-
-{% endfor %}
+Top 100 Movies.
 """
 scraped_movie_post = os.path.join(posts_dir, '2025-02-27-top-movies-scraped.md')
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/hub.css' | relative_url }}">
+  </head>
+  <body>
+    <header>
+      <h1>{{ site.title }}</h1>
+      <p>{{ site.description }}</p>
+    </header>
+    <main>
+      <section class="posts">
+        <h2>Posts</h2>
+          {% for post in site.posts %}
+          <li class="post">
+              <a href="{{ post.url | remove: '.html' | relative_url }}">{{ post.title }}</a>
+              <span>{{ post.date | date: "%B %d, %Y" }}</span>
+          </li>
+          {% endfor %}
+      </section>
+    </main>
+    <footer>
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+    </footer>
+  </body>
+</html>

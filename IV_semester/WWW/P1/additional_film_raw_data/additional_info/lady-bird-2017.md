@@ -1,0 +1,35 @@
+---
+layout: additional_movie_info
+title: " Lady Bird (2017)"
+permalink: /additional_info/lady-bird-2017/
+---
+
+![ Lady Bird (2017)](https://upload.wikimedia.org/wikipedia/en/6/61/Lady_Bird_poster.jpeg)
+
+**Running Time:** 94 minutes
+
+**Budget:** $10 million
+
+**Box Office:** $79 million
+
+**Country:** United States
+
+**Plot:** In the fall of 2002, Christine McPherson, who calls herself "Lady Bird", is a senior at a Catholic high school[a] in Sacramento, California. Despite her family's financial struggles, she longs to attend a prestigious college in "a city with culture" on the East Coast.
+
+During a car ride, Lady Bird's mother Marion tells her she is ungrateful and her dreams are unrealistic. To prove a point, Lady Bird jumps from the moving car, breaking her arm. Over the course of the film, Marion and Lady Bird repeatedly connect, only for things to fall apart when one of the two equally strong-willed women makes a cutting remark. Lady Bird is tormented by the fact that while her mother loves her, she does not like her.
+
+Lady Bird and her best friend Julie join their school's theater program. Although Lady Bird resents Julie's comparative talent, she meets her new boyfriend Danny through the program. She spends her last Thanksgiving before graduation with Danny's wealthy family, disappointing Marion. However, Lady Bird catches Danny kissing a boy and breaks up with him.
+
+At Marion's behest, Lady Bird begins working at a coffee shop to earn money. She tries to become more popular by bonding with popular students Kyle and Jenna. She exaggerates her family's wealth and vandalizes a nun's car with Jenna. She reconciles with Danny after he tearfully expresses his fear of coming out, but leaves the theater program and spends less time with Julie.
+
+Lady Bird's new relationships begin to fall apart. After she is suspended from school for heckling a guest speaker at an anti-abortion assembly, Jenna tries to visit her and learns that Lady Bird gave her a fake address in an affluent neighborhood. Lady Bird kisses Kyle at a party, and they confess to each other that they are both virgins. However, when they have (underwhelming) sex for the first time, Kyle admits he was lying. Deeply wounded, Lady Bird seeks comfort from her mother, who provides it without asking why.
+
+Marion begs Lady Bird to focus on California colleges, revealing that her father Larry has lost his job and cannot afford out-of-state tuition. Lady Bird's college counselor points out that her application essay shows a great deal of love for Sacramento. Lady Bird dismisses this as mere attention to detail, but her counselor suggests that love and attention are the same thing. Despite Marion's concerns, Larry secretly encourages Lady Bird to apply to her dream schools, resolving to refinance their home mortgage if necessary. When admissions decisions are released, Lady Bird is dismayed to hear that her presumptive destination is UC Davis, just 20 minutes away. She is waitlisted for a university in New York City, but does not tell Marion. 
+
+On prom night, Kyle, Jenna, and Jenna's boyfriend decide to skip prom for a house party. Lady Bird initially agrees to go with them, but changes her mind and visits Julie. They rekindle their friendship and go to prom together.
+
+Danny accidentally mentions the waitlist in front of Marion, who gives Lady Bird the silent treatment for the rest of the summer, even after she is accepted. Before she leaves for New York, her parents drop her off at the airport, but Marion refuses to go inside to say goodbye. Marion eventually relents, but Lady Bird has already gone through security. Marion breaks down crying in Larry's arms.
+
+After arriving in New York, Lady Bird finds several heartfelt, unfinished letters from her mother in her luggage. Her mother threw them away, but her father secretly collected them for Lady Bird. Lady Bird realizes that even if her mother does not like her, the important thing is that she loves her. She begins using her given name again.
+
+Christine is hospitalized after drinking heavily at a college party. After being released, she goes to church[b] and is moved to tears. She calls home and leaves a message for her mother, apologizing and thanking her for all her help.

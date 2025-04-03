@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/main.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/post_movies.css' | asset_url }}">
+  </head>
+  <body>
+    <header>
+      {% include header_movie.html %}
+    </header>
+    <main>
+        <div class="movie">
+          <h1>{{ page.title }}</h1>
+          <img src="{{ page.poster }}" alt="{{ page.title }}">
+          <p><strong>Running Time:</strong> {{ page.running_time }}</p>
+          <p><strong>Budget:</strong> {{ page.budget }}</p>
+          <p><strong>Box Office:</strong> {{ page.box_office }}</p>
+          <p><strong>Country:</strong> {{ page.country }}</p>
+          <p><strong>Plot:</strong> {{ page.plot | newline_to_br }}</p>
+        </div>
+    </main>
+    <footer>
+      {% include footer.html %}
+    </footer>
+  </body>
+</html>

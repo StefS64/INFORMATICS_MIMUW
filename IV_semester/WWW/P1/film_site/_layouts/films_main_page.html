@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/main.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/post_movies.css' | asset_url }}">
+  </head>
+  <body>
+    <header>
+      {% include header_post.html %}
+    </header>
+    <main>
+      <section class="movies">
+        <h2 class="title">{{ page.title }}</h2>
+        {% for movie in site.data.movies_data -%}
+          <div class="movie">
+            <h3><a href="{{ movie.url }}">{{ movie.title }}</a></h3>
+            <p><strong>Director:</strong> {{ movie.director }}</p>
+            <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+            <p><strong>Starring:</strong> {{ movie.starring }}</p>
+            <p>{{ movie.commentary | replace: "&", "&amp;"}}</p>
+          </div>
+        {% endfor -%}
+      </section>
+    </main>
+    <footer>
+      {% include footer.html %}
+    </footer>
+  </body>
+</html>

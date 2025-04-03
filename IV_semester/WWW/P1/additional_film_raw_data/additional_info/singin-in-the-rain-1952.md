@@ -1,0 +1,31 @@
+---
+layout: additional_movie_info
+title: " Singin' In The Rain (1952)"
+permalink: /additional_info/singin-in-the-rain-1952/
+---
+
+![ Singin' In The Rain (1952)](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Singin%27_in_the_Rain_%281952_poster%29.jpg/220px-Singin%27_in_the_Rain_%281952_poster%29.jpg)
+
+**Running Time:** 103 minutes
+
+**Budget:** $2.54 million
+
+**Box Office:** $7.2 million
+
+**Country:** United States
+
+**Plot:** In 1927, silent film stars Don Lockwood and Lina Lamont attend the premiere of their latest film, The Royal Rascal, produced by Hollywood studio Monumental Pictures. On the red carpet, Don tells the story of his rise to stardom, claiming to have grown up cultured and highly educated. His words are contradicted by flashbacks showing his humble roots as a hoofer, vaudeville musician and stuntman alongside his childhood best friend and longtime collaborator Cosmo Brown (accompanied by the song "Fit as a Fiddle"). Don also expresses his admiration for Lina, feeding rumors of a secret romance between them. In reality, the rumors are a publicity stunt and Don barely tolerates Lina, although she believes that he loves her.
+
+After the premiere, Don is mobbed by fans and escapes by jumping into a passing car driven by Kathy Selden. Kathy reluctantly gives Don a lift. She claims to be a theatre actress and expresses disdain for film acting, particularly Don's hammy performances. Don responds by mocking her acting aspirations, and they part on bad terms.
+
+Don arrives at the afterparty, where Monumental Pictures' CEO R. F. Simpson shows a demonstration of a talking picture,[a] though his guests dismiss it as a fad. A group of chorus girls then performs, Kathy among them ("All I Do is Dream of You"). Furious at Don's teasing, Kathy throws a cake at him, but it hits Lina instead. In the confusion, Kathy runs away.
+
+Three weeks later, Don has searched unsuccessfully for Kathy. Cosmo tries to cheer Don up ("Make 'Em Laugh"). Lina reveals that she had Kathy fired, infuriating Don. Cosmo finds Kathy working as an extra in another Monumental Pictures film ("Beautiful Girl"). Kathy admits to actually being a fan of Don's, while Don professes his love for her ("You Were Meant for Me").
+
+When Monumental's rival, Warner Bros., releases its first talking picture, The Jazz Singer, an enormous hit, R. F. decides he has to convert the next Lockwood and Lamont film, The Dueling Cavalier, into a talkie. Lina and Don take elocution lessons ("Moses Supposes"), but the production is beset with difficulties, most notably Lina's grating, high-pitched voice and unfamiliarity with the new recording technology. The film's preview screening is a failure due to multiple complications, including awkward microphone placements, Don's uninspired improvising[b] and the audio going out of synchronization.
+
+Later that night, Kathy and Cosmo suggest The Dueling Cavalier be turned into a musical ("Good Morning"), and Cosmo, inspired by the film's synchronization error, suggests that Kathy dub Lina's voice. Don happily agrees, then takes Kathy home and dances through her neighborhood in the rain ("Singin' in the Rain"). Don and Cosmo pitch their idea to R. F., changing the title of the film to The Dancing Cavalier and adding a modern framing device ("Broadway Melody"). R. F. approves but tells them not to inform Lina of Kathy's involvement.
+
+Don helps Kathy dub Lina's lines ("Would You"), but Lina is tipped off by another actress. When Lina realizes that Don and Kathy are in love and learns that R. F. intends to give Kathy a screen credit for her dubbing, she gives interviews across Hollywood promoting her (non-existent) vocal talent. A clause in Lina's contract allows her to sue the studio for negative press, so R. F is forced to leave Kathy uncredited and agree to Lina's demand that Kathy continue anonymously dubbing for her.
+
+The premiere of The Dancing Cavalier is a success, but when the audience clamors for Lina to sing live, Don, Cosmo, and R. F. tell her to lip sync into a microphone while Kathy, concealed behind the curtain, sings into a second microphone. While Lina is "singing" ("Singin' in the Rain Reprise"), the men raise the curtain, revealing the ruse. Lina and Kathy both flee, but Don has the audience stop Kathy and proudly announces that she is "the real star of the picture" ("You Are My Lucky Star"). Some time later, Kathy and Don kiss in front of a billboard for their new film, Singin' in the Rain.

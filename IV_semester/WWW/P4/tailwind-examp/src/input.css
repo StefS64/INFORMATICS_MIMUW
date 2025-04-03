@@ -1,0 +1,31 @@
+/* src/input.css */
+
+/* Import Tailwind's base styles */
+@import "tailwindcss";
+/* Custom styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+header {
+    background-color: #a72727;
+    color: white;
+    padding: 20px;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

@@ -1,0 +1,35 @@
+---
+layout: additional_movie_info
+title: " The Godfather Part II (1974)"
+permalink: /additional_info/the-godfather-part-ii-1974/
+---
+
+![ The Godfather Part II (1974)](https://upload.wikimedia.org/wikipedia/en/0/03/Godfather_part_ii.jpg)
+
+**Running Time:** 200 minutes
+
+**Budget:** $13 million
+
+**Box Office:** $93 million
+
+**Country:** United States
+
+**Plot:** The film interweaves events some time after The Godfather and the early life of Vito Corleone.
+
+In 1901, nine-year-old Vito Andolini escapes from Corleone, Sicily in the Kingdom of Italy to New York City after mafia chieftain Don Ciccio kills the rest of his family. An immigration officer registers him as Vito Corleone. By 1917 Vito is married in Little Italy and has an infant son, Sonny. Black Hand extortionist Don Fanucci preys on the neighborhood, costing Vito his grocery store job. He begins stealing for a living with his neighbor Peter Clemenza and has two more children: Fredo and Michael.
+
+Vito, Clemenza and Salvatore Tessio sell stolen dresses door-to-door. Fanucci demands payoffs of $200 from Vito and his partners. Vito doubts Fanucci's muscle and decides to offer less. He meets Fanucci and offers $100, which Fanucci grudgingly accepts. Emboldened, Vito tracks Fanucci back to his apartment and kills him. Vito's reputation spreads, and neighbors ask him to defend them from other predatory figures.
+
+In 1922, Vito and his family travel to Sicily to start an olive oil importing business. He and business partner Don Tommasino visit an elderly Don Ciccio. He obtains Ciccio's blessing for their business, then reveals his identity and slices Ciccio's stomach, avenging the Andolini family.
+
+In 1958, Don Michael Corleone has several meetings at his Lake Tahoe compound during the First Communion of his son Anthony. Johnny Ola, representing Jewish Mob boss Hyman Roth, promises support in taking over a Las Vegas casino. Corleone capo Frank Pentangeli asks for help defending  Bronx territory from Roth affiliates, the Rosato brothers. Michael refuses, frustrating Pentangeli. Senator Pat Geary demands a bribe to secure the casino license and insults Michael's Italian heritage. That night, Michael narrowly escapes an assassination attempt. Suspecting a traitor in the family, he leaves consigliere Tom Hagen in charge and leaves the compound.
+
+Michael separately tells Pentangeli and Roth that he suspects the other of planning the hit, and arranges a peace meeting between Pentangeli and the Rosatos. At the meeting the brothers attempt to strangle Pentangeli. A police officer drops in, forcing the brothers to flee. Hagen blackmails Geary into cooperating with the Corleones by having him framed for the death of a prostitute.
+
+Roth invites Michael to Havana to invest in his activities under the Batista government. Michael expresses reservations, given the growing Cuban Revolution. Later Roth becomes angry when Michael asks who ordered the Rosatos to kill Pentangeli. Michael and Ola attend a New Year's Eve party where Fredo pretends not to know Ola but later slips. Michael realizes that Fredo is a traitor and orders both Roth and Ola killed. Batista resigns and flees amid rebel advances, and Michael, Fredo and Roth separately escape Cuba. Ola is murdered by hitman Bussetta. Back home, Hagen tells Michael that his wife Kay miscarried.
+
+A Senate committee on organized crime investigates the Corleone family. Pentangeli agrees to testify against Michael and is placed under witness protection. On returning to Nevada, Fredo tells Michael that he did not realize that Roth was planning an assassination. Michael disowns Fredo but orders that he should not be harmed while their mother Carmela is alive. Michael attends the committee hearing with Hagen and Pentangeli's brother Vincenzo. Pentangeli, upon seeing Vincenzo, retracts his statement implicating Michael in organized crime, and the hearing dissolves in an uproar. Kay tells Michael that she had an abortion and intends to leave him and take their children. Michael strikes her in rage and banishes her alone.
+
+At Carmela's funeral, Fredo hugs a reluctant Michael and befriends Anthony over fishing. Roth returns to the United States after being refused entry to Israel. Corleone capo Rocco Lampone assassinates him at the airport and is shot dead trying to escape. Hagen visits Pentangeli at the army barracks where he is held and they discuss how failed conspirators against a Roman emperor could commit suicide to save their families. Pentangeli is later found dead in his bathtub, having slit his wrists. Enforcer Al Neri takes Fredo fishing and shoots him as Michael watches from the compound.
+
+Michael recalls Vito's 50th birthday party on December 7, 1941. While the family waits for Vito, Michael announces that he has dropped out of college and joined the Marines, angering Sonny and surprising Hagen. Only Fredo supports his decision. When Vito is heard arriving, Michael sits alone at the table while the others welcome him in surprise. After Fredo's death, Michael sits pensively, alone, by the lake.
