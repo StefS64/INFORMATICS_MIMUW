@@ -1,0 +1,7 @@
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/err.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/primes.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/producer-consumer.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/readers-writers-template.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/readers-writers.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/edit_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_9/przyklady09/CMakeFiles/rebuild_cache.dir

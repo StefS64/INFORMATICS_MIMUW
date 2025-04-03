@@ -1,0 +1,11 @@
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/create.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/send-receive.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/priorities.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/async.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/mq-farm.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/edit_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/rebuild_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/list_install_components.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/install.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/install/local.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_14/build/CMakeFiles/install/strip.dir

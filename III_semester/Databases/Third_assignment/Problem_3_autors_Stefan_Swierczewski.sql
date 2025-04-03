@@ -1170,14 +1170,21 @@ INSERT INTO autorzy (ID, Ryzyko, Sloty) VALUES ('Wygocki', 1, '2,4');
 INSERT INTO autorzy (ID, Ryzyko, Sloty) VALUES ('Zanka', 0, '1');
 INSERT INTO autorzy (ID, Ryzyko, Sloty) VALUES ('Zych-Pawlewicz', 1, '4');
 WITH PunktyPublikacji AS (
-    SELECT 
-        a.Autor,
-        p.ID AS PracaID,
-        p.Punkty / p.Autorzy AS PunktyPublikacyjne
-    FROM 
-        autorstwo a
-    JOIN 
-        prace p ON a.Praca = p.ID
+SELECT
+        ID AS autor,
+        PracaID,
+        PunktyPublikacyjne
+    FROM
+	autorzy A
+        LEFT JOIN
+            (SELECT
+		a.Autor,
+                p.ID AS PracaID,
+                p.Punkty / p.Autorzy AS PunktyPublikacyjne
+            FROM
+                autorstwo a
+            LEFT JOIN
+                prace p ON a.Praca = p.ID) B ON A.id = B.autor
 ),
 TopPublikacje AS (
     SELECT 

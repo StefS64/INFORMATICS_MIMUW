@@ -1,0 +1,1 @@
+/usr/bin/gcc-11 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -g -rdynamic CMakeFiles/send_message_protected.dir/send_message_protected.c.o -o send_message_protected  liberr.a -lpthread -lrt 

@@ -1,0 +1,14 @@
+SELECT 
+	ID,
+	PracaID,
+	PunktyPublikacyjne
+    FROM
+		autorzy A
+ 	LEFT JOIN
+			(SELECT 				a.Autor,
+				p.ID AS PracaID,
+				p.Punkty / p.Autorzy AS PunktyPublikacyjne
+			FROM 
+				autorstwo a
+			LEFT JOIN 
+				prace p ON a.Praca = p.ID) B ON A.id = B.autor;

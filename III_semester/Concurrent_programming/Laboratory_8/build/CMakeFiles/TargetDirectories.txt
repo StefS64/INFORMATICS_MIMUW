@@ -1,0 +1,11 @@
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/err.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/child-pipe.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/parent-pipe.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/parent-dup.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/child-fifo.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/parent-fifo.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/pipeline-utils.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/pipeline.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/pipeline-tester.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/edit_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_8/build/CMakeFiles/rebuild_cache.dir

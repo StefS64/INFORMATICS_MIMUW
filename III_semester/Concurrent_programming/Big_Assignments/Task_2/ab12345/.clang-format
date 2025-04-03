@@ -1,4 +1,0 @@
-# Configuration for the clang-format auto-formatter.
-
-BasedOnStyle: WebKit
-PackConstructorInitializers: NextLineOnly

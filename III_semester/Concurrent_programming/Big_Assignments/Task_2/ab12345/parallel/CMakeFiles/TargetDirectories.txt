@@ -1,3 +1,0 @@
-/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/CMakeFiles/parallel.dir
-/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/CMakeFiles/edit_cache.dir
-/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Big_Assignments/Task_2/ab12345/parallel/CMakeFiles/rebuild_cache.dir

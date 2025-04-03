@@ -1,0 +1,1 @@
+/usr/bin/cc  -O0 -Wall -std=c17 -latomic -rdynamic CMakeFiles/priorities.dir/priorities.c.o -o priorities 

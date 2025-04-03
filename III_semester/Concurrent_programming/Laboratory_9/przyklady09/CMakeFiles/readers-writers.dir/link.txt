@@ -1,0 +1,1 @@
+/usr/bin/cc -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -pthread CMakeFiles/readers-writers.dir/readers-writers.c.o -o readers-writers  liberr.a 

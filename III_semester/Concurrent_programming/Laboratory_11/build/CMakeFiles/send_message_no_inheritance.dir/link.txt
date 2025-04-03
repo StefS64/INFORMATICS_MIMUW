@@ -1,0 +1,1 @@
+/usr/bin/gcc-11 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -g -rdynamic CMakeFiles/send_message_no_inheritance.dir/send_message_no_inheritance.c.o -o send_message_no_inheritance  liberr.a -lpthread -lrt 

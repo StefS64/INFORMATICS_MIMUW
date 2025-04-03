@@ -1,0 +1,1 @@
+/usr/bin/cc -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -rdynamic CMakeFiles/simple_handler.dir/simple_handler.c.o -o simple_handler  liberr.a 

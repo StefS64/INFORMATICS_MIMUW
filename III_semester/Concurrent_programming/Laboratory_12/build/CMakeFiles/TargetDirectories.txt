@@ -1,0 +1,7 @@
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/err.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/simple_handler.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/signal_mask.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/more_info.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/terminator.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/edit_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_12/build/CMakeFiles/rebuild_cache.dir

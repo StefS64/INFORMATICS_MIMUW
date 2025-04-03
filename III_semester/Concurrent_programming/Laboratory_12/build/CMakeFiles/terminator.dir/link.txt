@@ -1,0 +1,1 @@
+/usr/bin/cc -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -rdynamic CMakeFiles/terminator.dir/terminator.c.o -o terminator  liberr.a 

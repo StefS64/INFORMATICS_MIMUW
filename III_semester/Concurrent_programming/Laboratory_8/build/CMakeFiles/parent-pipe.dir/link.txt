@@ -1,0 +1,1 @@
+/usr/bin/gcc-11 -g -Wall -Wextra -Wno-sign-compare -rdynamic CMakeFiles/parent-pipe.dir/parent-pipe.c.o -o parent-pipe  liberr.a 

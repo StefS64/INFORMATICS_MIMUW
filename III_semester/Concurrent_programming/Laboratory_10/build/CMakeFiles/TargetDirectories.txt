@@ -1,0 +1,10 @@
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/mutual-excl.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/atomic-volatile.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/lockfree-stack.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/dekker.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/edit_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/rebuild_cache.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/list_install_components.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/install.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/install/local.dir
+/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_10/build/CMakeFiles/install/strip.dir

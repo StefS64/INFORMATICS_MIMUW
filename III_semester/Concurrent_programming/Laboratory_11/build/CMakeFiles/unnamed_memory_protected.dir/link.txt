@@ -1,0 +1,1 @@
+/usr/bin/gcc-11 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -g -rdynamic CMakeFiles/unnamed_memory_protected.dir/unnamed_memory_protected.c.o -o unnamed_memory_protected  liberr.a -lpthread -lrt 

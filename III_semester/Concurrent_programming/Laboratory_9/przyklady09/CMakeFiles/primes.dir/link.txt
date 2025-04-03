@@ -1,0 +1,1 @@
+/usr/bin/cc -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -pthread CMakeFiles/primes.dir/primes.c.o -o primes  liberr.a 

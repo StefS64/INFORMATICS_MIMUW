@@ -1,0 +1,1 @@
+/usr/bin/cc -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -rdynamic CMakeFiles/signal_mask.dir/signal_mask.c.o -o signal_mask  liberr.a 

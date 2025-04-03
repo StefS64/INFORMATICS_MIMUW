@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/err.dir/err.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/err.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/err.c"
+},
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/hello-world.dir/hello-world.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/hello-world.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/hello-world.c"
+},
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/fork.dir/fork.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/fork.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/fork.c"
+},
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/wait.dir/wait.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/wait.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/wait.c"
+},
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/exec.dir/exec.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/exec.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/exec.c"
+},
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/tree.dir/tree.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/tree.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/tree.c"
+},
+{
+  "directory": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/build",
+  "command": "/usr/bin/gcc-11   -g -Wall -Wextra -Wno-sign-compare -g -std=gnu11 -o CMakeFiles/line.dir/line.c.o -c /home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/line.c",
+  "file": "/home/st0ic/Desktop/MIMUW/Informatics/III_semester/Concurrent_programming/Laboratory_7/line.c"
+}
+]

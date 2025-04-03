@@ -1,0 +1,36 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>360</x><y>160</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>160</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>440</y><w>210</w><h>190</h></coordinates><panel_attributes>Konferencja
+--
+	&lt;&lt;Związki&gt;&gt;
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -1,0 +1,1 @@
+/usr/bin/cc  -O0 -Wall -std=c17 -latomic -rdynamic CMakeFiles/send-receive.dir/send-receive.c.o -o send-receive 
