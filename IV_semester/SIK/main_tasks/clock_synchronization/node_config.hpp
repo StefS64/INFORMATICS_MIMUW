@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
+#include <cinttypes>
+
 extern "C" {
 #include "common.h"
 #include "err.h"    

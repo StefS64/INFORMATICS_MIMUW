@@ -46,6 +46,9 @@ bool NodeConfig::parseArgs(int argc, char* argv[]) {
       case 'r':
         std::cout << "Option c\n";
         peer_addr.sin_port = htons(read_port(optarg));
+        if (peer_addr.sin_port == 0) {
+          fatal("Peer port number can't be zero");  
+        }
         r_flag = true;
         peer_present = true;
         break;
@@ -80,7 +83,7 @@ void NodeConfig::printUsage(const char* programName) const {
 }
 
 void NodeConfig::initSocket() {
-  int socket_fd = socket(AF_INET, SOCK_DGRAM, 0);
+  socket_fd = socket(AF_INET, SOCK_DGRAM, 0);
   if (socket_fd < 0) {
     syserr("cannot create a socket");
   }
@@ -89,6 +92,18 @@ void NodeConfig::initSocket() {
   if (bind(socket_fd, (struct sockaddr *) &bind_addr, (socklen_t) sizeof(bind_addr)) < 0) {
     syserr("bind");
   }
+
+  // if (listen(socket_fd, QUEUE_LENGTH) < 0) {
+    // syserr("listen");
+  // }
+
+  // Find out what port the server is actually listening on.
+  socklen_t lenght = (socklen_t) sizeof bind_addr;
+  if (getsockname(socket_fd, (struct sockaddr *) &bind_addr, &lenght) < 0) {
+    syserr("getsockname");
+  }
+  
+  printf("listening on port %" PRIu16 "\n", ntohs(bind_addr.sin_port));
 } 
 
 sockaddr_in NodeConfig::getBindAddress() const {

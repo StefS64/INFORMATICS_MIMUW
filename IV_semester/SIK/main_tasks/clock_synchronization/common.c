@@ -13,7 +13,7 @@
 
 #include "err.h"
 #include "common.h"
-// We are calling from cpp file.
+
 uint16_t read_port(char const *string) {
     char *endptr;
     errno = 0;

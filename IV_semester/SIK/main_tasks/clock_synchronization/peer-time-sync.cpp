@@ -31,11 +31,10 @@ int main(int argc, char* argv[]) {
     std::cout << "Peer Port: " << ntohs(node.getPeerAddress().sin_port) << "\n";
   }
   #endif
-  NetworkManager net = NetworkManager(node.getSocketFd());
+
   node.initSocket();
+  NetworkManager net = NetworkManager(node.getSocketFd());
 
   net.sendHello(node.getPeerAddress());
-  while(true) {
-    net.handleIncomingMessages(node);
-  }
+  net.handleIncomingMessages(node);
 }
