@@ -93,10 +93,6 @@ void NodeConfig::initSocket() {
     syserr("bind");
   }
 
-  // if (listen(socket_fd, QUEUE_LENGTH) < 0) {
-    // syserr("listen");
-  // }
-
   // Find out what port the server is actually listening on.
   socklen_t lenght = (socklen_t) sizeof bind_addr;
   if (getsockname(socket_fd, (struct sockaddr *) &bind_addr, &lenght) < 0) {

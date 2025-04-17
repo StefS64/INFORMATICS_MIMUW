@@ -19,17 +19,19 @@ class NetworkManager {
 public:
   NetworkManager(int socket_fd);
   void sendHello(const sockaddr_in& peer_addr);
-  void sendHelloReply(const sockaddr_in& peer_addr, const std::vector<sockaddr_in>& known_peers);
-  void sendConnect(const sockaddr_in& peer_addr);
-  void sendAckConnect(const sockaddr_in& peer_addr);
+  // void sendHelloReply(const sockaddr_in& peer_addr, const std::vector<sockaddr_in>& known_peers);
+  // void sendConnect(const sockaddr_in& peer_addr);
+  // void sendAckConnect(const sockaddr_in& peer_addr);
   void handleIncomingMessages(NodeConfig& node); 
 
 private:
   int socket_fd;
-  std::vector<sockaddr_in> peer_list;
+  std::vector<sockaddr_in> connections;
 
-  void addPeer(const sockaddr_in& peer_addr);
-  void printPeerList() const;
+  void addConnection(const sockaddr_in& peer_addr);
+  void printConnectionList() const;
+  int _findSockaddr(const sockaddr_in& peer_addr);
+  void handleHello();
 };
 
 #endif

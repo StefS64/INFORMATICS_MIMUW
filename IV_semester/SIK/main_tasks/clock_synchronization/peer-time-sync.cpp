@@ -22,6 +22,8 @@ int main(int argc, char* argv[]) {
     node.printUsage(argv[0]);
     return EXIT_FAILURE;
   }
+
+  node.initSocket();
   #ifdef DEBUG
   std::cout << "Configuration parsed successfully.\n";
   std::cout << "Bind Address: " << inet_ntoa(node.getBindAddress().sin_addr) << "\n";
@@ -31,10 +33,9 @@ int main(int argc, char* argv[]) {
     std::cout << "Peer Port: " << ntohs(node.getPeerAddress().sin_port) << "\n";
   }
   #endif
-
-  node.initSocket();
   NetworkManager net = NetworkManager(node.getSocketFd());
-
-  net.sendHello(node.getPeerAddress());
+  if (node.isPeerPresent()) {
+    net.sendHello(node.getPeerAddress());
+  }
   net.handleIncomingMessages(node);
 }
