@@ -10,7 +10,7 @@ void syserr(const char* fmt, ...) {
     va_list fmt_args;
     int org_errno = errno;
 
-    fprintf(stderr, "\tERROR: ");
+    fprintf(stderr, "\tERROR ");
 
     va_start(fmt_args, fmt);
     vfprintf(stderr, fmt, fmt_args);
@@ -23,7 +23,7 @@ void syserr(const char* fmt, ...) {
 void fatal(const char* fmt, ...) {
     va_list fmt_args;
 
-    fprintf(stderr, "\tERROR: ");
+    fprintf(stderr, "\tERROR ");
 
     va_start(fmt_args, fmt);
     vfprintf(stderr, fmt, fmt_args);
@@ -32,3 +32,19 @@ void fatal(const char* fmt, ...) {
     fprintf(stderr, "\n");
     exit(1);
 }
+
+void error(const char* fmt, ...) {
+    va_list fmt_args;
+    int org_errno = errno;
+
+    fprintf(stderr, "\tERROR ");
+
+    va_start(fmt_args, fmt);
+    vfprintf(stderr, fmt, fmt_args);
+    va_end(fmt_args);
+
+    if (org_errno != 0) {
+      fprintf(stderr, " (%d; %s)", org_errno, strerror(org_errno));
+    }
+    fprintf(stderr, "\n");
+  }

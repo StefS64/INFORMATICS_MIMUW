@@ -5,10 +5,7 @@ NodeConfig::NodeConfig() : sync_level(255), peer_present(false), socket_fd(-1) {
   bind_addr.sin_family = AF_INET;
   bind_addr.sin_addr.s_addr = htonl(INADDR_ANY);
   bind_addr.sin_port = 0;
-
-  memset(&peer_addr, 0, sizeof(peer_addr));
-  peer_addr.sin_family = AF_INET;
-  peer_addr.sin_port = 0;
+  peer_addr = address_info(); 
 }
 
 NodeConfig::~NodeConfig() {
@@ -19,67 +16,83 @@ NodeConfig::~NodeConfig() {
 }
 
 bool NodeConfig::parseArgs(int argc, char* argv[]) {
-  bool a_flag = false, r_flag = false;
+  bool a_flag = false, r_flag = false, b_flag = false, p_flag = false;
   int opt;
+  std::string peer_address;
+  uint16_t peer_port = 0; 
+
   while ((opt = getopt(argc, argv, "b:p:a:r:")) != -1) {
     switch (opt) {
       case 'b':
+        if (b_flag) fatal("Duplicate '-b' (bind address) flag provided.");
+        b_flag = true;
+
         std::cout << "Option bind_address\n";
+
         if (inet_pton(AF_INET, optarg, &bind_addr.sin_addr) != 1) {
-          std::cerr << "ERROR: Invalid bind address: " << optarg << "\n";
-          return false;
+          fatal("Invalid bind address: %s", optarg);
         }
         break;
+
       case 'p':
+        if (p_flag) fatal("Duplicate '-p' (port) flag provided.");
+        p_flag = true;
         bind_addr.sin_port = htons(read_port(optarg));
-        std::cout << "Option port with value: " << bind_addr.sin_port << "\n";
+
+        std::cout << "Option port with value: " << ntohs(bind_addr.sin_port) << "\n";
         break;
+
       case 'a':
-        std::cout << "Option\n";       
-        if (inet_pton(AF_INET, optarg, &peer_addr.sin_addr) != 1) {
-          std::cerr << "ERROR: Invalid peer address: " << optarg << "\n";
-          return false;
-        }
+        if (a_flag) fatal("Duplicate '-a' (peer address) flag provided.");
         a_flag = true;
         peer_present = true;
+        peer_address = optarg;
+
+        std::cout << "Option peer_address\n";
         break;
+
       case 'r':
-        std::cout << "Option c\n";
-        peer_addr.sin_port = htons(read_port(optarg));
-        if (peer_addr.sin_port == 0) {
-          fatal("Peer port number can't be zero");  
-        }
+        if (r_flag) fatal("Duplicate '-r' (peer port) flag provided.");
         r_flag = true;
         peer_present = true;
+
+        std::cout << "Option peer_port\n";
+        peer_port = read_port(optarg);  // Here without htons because get_server_address does that for us.
+
+        if (peer_port == 0) {
+          fatal("Peer port number can't be zero");
+        }
         break;
+
       case '?':
         printUsage(argv[0]);
-        break;
+        return false;
     }
-  }
-  
-  //Validation of args.
-  if (peer_present && (!a_flag || !r_flag)) {
-    std::cerr << "ERROR: Both '-a' and '-r' must be provided together.\n";
-    return false;
   }
 
+  // Validate peer address/port consistency
+  if (peer_present && (!a_flag || !r_flag)) {
+    fatal("Both '-a' and '-r' must be provided together.");
+  }
+
+  if (peer_present) {
+    std::cout <<peer_port <<std::endl;
+    peer_addr = address_info(get_server_address(peer_address.c_str(), peer_port));
+  }
+
+  // Checks if any extra arguments where given prints out the first one and exits.
   if (optind < argc) {
-    std::cerr << "ERROR: Unexpected arguments provided: ";
-    for (int i = optind; i < argc; ++i) {
-      std::cerr << argv[i] << " ";
-    }
-    std::cerr << "\n";
-    return false;
+    fatal("Unexpected argument: %s", argv[optind]);
   }
 
   return true;
 }
 
+
 void NodeConfig::printUsage(const char* programName) const {
   std::cerr << "Usage: " << programName
-            << " [-b <bind_address>] [-p <port>] [-a <peer_address> -r <peer_port>]"
-            << std::endl;
+    << " [-b <bind_address>] [-p <port>] [-a <peer_address> -r <peer_port>]"
+    << std::endl;
 }
 
 void NodeConfig::initSocket() {
@@ -102,11 +115,11 @@ void NodeConfig::initSocket() {
   printf("listening on port %" PRIu16 "\n", ntohs(bind_addr.sin_port));
 } 
 
-sockaddr_in NodeConfig::getBindAddress() const {
+sockaddr_in NodeConfig::getBindAddressIn() const {
   return bind_addr;
 }
 
-sockaddr_in NodeConfig::getPeerAddress() const {
+address_info NodeConfig::getPeerAddress() const {
   return peer_addr;
 }
 

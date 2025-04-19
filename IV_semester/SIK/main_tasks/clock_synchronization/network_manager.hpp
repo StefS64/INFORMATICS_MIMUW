@@ -14,24 +14,38 @@
 extern "C" {
 #include "err.h"
 }
+enum ConnectionState {
+  UNCONFIRMED   = 0, 
+  CONFIRMED     = 1
+}; 
+enum MessageType : uint8_t {
+  HELLO           = 1,
+  HELLO_REPLY     = 2,
+  CONNECT         = 3,
+  ACK_CONNECT     = 4,
+  SYNC_STRT       = 11,
+  DELAY_REQUEST   = 12,
+  DELAY_RESPONSE  = 13,
+  LEADER          = 21,
+  GET_TIME        = 31,
+  TIME            = 32
+};
 
 class NetworkManager {
 public:
   NetworkManager(int socket_fd);
-  void sendHello(const sockaddr_in& peer_addr);
-  // void sendHelloReply(const sockaddr_in& peer_addr, const std::vector<sockaddr_in>& known_peers);
-  // void sendConnect(const sockaddr_in& peer_addr);
-  // void sendAckConnect(const sockaddr_in& peer_addr);
-  void handleIncomingMessages(NodeConfig& node); 
-
+  void sendHello(const address_info& peer_addr);
+  void handleIncomingMessages(NodeConfig& node);
 private:
   int socket_fd;
-  std::vector<sockaddr_in> connections;
+  std::vector<address_info> connections;
 
-  void addConnection(const sockaddr_in& peer_addr);
+  int addConnection(const sockaddr_in& peeaddr, const short flags = 0);
   void printConnectionList() const;
-  int _findSockaddr(const sockaddr_in& peer_addr);
-  void handleHello();
+  int _findSockaddr(const address_info& peer_addr);
+  void handleHello(const sockaddr_in& sender,socklen_t sender_len);
+  void handleHelloReply(const sockaddr_in& sender, ssize_t len);
+  void sendMessage(const address_info& peer_addr, MessageType type);
 };
 
 #endif

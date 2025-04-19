@@ -16,23 +16,23 @@ void printUsage(const char* programName) {
 
 int main(int argc, char* argv[]) {
   NodeConfig node;
-  
+
   if(!node.parseArgs(argc, argv)) {
-    std::cerr << "Error parsing arguments.\n";
     node.printUsage(argv[0]);
     return EXIT_FAILURE;
   }
 
   node.initSocket();
-  #ifdef DEBUG
+
+#ifdef DEBUG
   std::cout << "Configuration parsed successfully.\n";
-  std::cout << "Bind Address: " << inet_ntoa(node.getBindAddress().sin_addr) << "\n";
-  std::cout << "Port: " << ntohs(node.getBindAddress().sin_port) << "\n";
+  std::cout << "Bind Address: " << inet_ntoa(node.getBindAddressIn().sin_addr) << "\n";
+  std::cout << "Port: " << ntohs(node.getBindAddressIn().sin_port) << "\n";
   if (node.isPeerPresent()) {
-    std::cout << "Peer Address: " << inet_ntoa(node.getPeerAddress().sin_addr) << "\n";
-    std::cout << "Peer Port: " << ntohs(node.getPeerAddress().sin_port) << "\n";
+    std::cout << node.getPeerAddress() << "\n";
   }
-  #endif
+#endif
+
   NetworkManager net = NetworkManager(node.getSocketFd());
   if (node.isPeerPresent()) {
     net.sendHello(node.getPeerAddress());

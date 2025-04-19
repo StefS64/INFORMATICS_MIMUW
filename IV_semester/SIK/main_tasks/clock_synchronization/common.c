@@ -24,6 +24,7 @@ uint16_t read_port(char const *string) {
     return (uint16_t) port;
 }
 
+
 struct sockaddr_in get_server_address(char const *host, uint16_t port) {
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
