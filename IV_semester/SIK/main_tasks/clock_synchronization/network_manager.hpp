@@ -15,10 +15,11 @@
 extern "C" {
 #include "err.h"
 }
-enum ConnectionState {
+enum ConnectionState : uint8_t {
   UNCONFIRMED   = 0, 
   CONFIRMED     = 1
-}; 
+};
+
 enum MessageType : uint8_t {
   HELLO           = 1,
   HELLO_REPLY     = 2,
@@ -31,6 +32,11 @@ enum MessageType : uint8_t {
   GET_TIME        = 31,
   TIME            = 32
 };
+enum SynchronizationState : uint8_t {
+  LEADING           = 1,
+  SYNCHRONIZED      = 2,
+  UNSYNCHRONIZED    = 3
+};
 
 class NetworkManager {
 public:
@@ -41,14 +47,17 @@ private:
   int socket_fd;
   const NodeConfig& data;
   std::vector<address_info> connections;
+  SynchronizationState state;
 
   int addConnection(const sockaddr_in& peeaddr, const short flags = 0);
   void printConnectionList() const;
   int _findSockaddr(const address_info& peer_addr);
   void handleHello(const sockaddr_in& sender,socklen_t sender_len);
   void handleHelloReply(const sockaddr_in& sender, ssize_t len);
+  void handleSyncStart(const sockaddr_in& sender_addr, ssize_t len);
   void sendMessage(const address_info& peer_addr, MessageType type);
   void sendSyncWithData(const address_info& peer_addr, MessageType type);
+  short _getFlag(const sockaddr_in& connection);
   short _getFlag(const address_info& connection);
 };
 

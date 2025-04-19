@@ -61,6 +61,15 @@ struct address_info {
     return ip == other.ip && port == other.port;
   }
   
+  bool operator==(const sockaddr_in& other) const {
+    return ip == other.sin_addr.s_addr && port == other.sin_port;
+  }
+  bool operator!=(const address_info& other) const {
+    return !(*this == other);
+  }
+  bool operator!=(const sockaddr_in& other) const {
+    return !(*this == other);
+  }
   std::string serialize() {
     std::string data;
     size_t size = sizeof(ip);
@@ -120,6 +129,7 @@ public:
   void printUsage(const char* programName) const;
   void initSocket();
   int getSocketFd();
+  address_info getSyncAddr() const;
   uint64_t getOffset() const {
     return offset; 
   }
@@ -130,9 +140,10 @@ public:
 private:
   uint8_t sync_level;
   bool peer_present;
-  address_info peer_addr;
+  address_info peer_addr;// Beggining sync address.
   sockaddr_in bind_addr;
   int socket_fd;
+  address_info sync_with;// Address of the synchronized node.
   uint64_t offset;
 };
 

@@ -9,7 +9,7 @@
 #endif
 static char buffer[BUFFER_SIZE];
 
-NetworkManager::NetworkManager(int socket_fd, const NodeConfig& data) : socket_fd(socket_fd), data(data) {
+NetworkManager::NetworkManager(int socket_fd, const NodeConfig& data) : socket_fd(socket_fd), data(data), state(UNSYNCHRONIZED) {
   #ifdef DEBUG
   std::cout << "NetworkManager up: " << GlobalClock::now() << " ms\n";
   #endif // DEBUG
@@ -158,6 +158,7 @@ void NetworkManager::handleHelloReply(const sockaddr_in& sender, ssize_t len) {
 
   for (const auto& peer : peers) {
     std::cout << "Found peer from HELLO_REPLY: " << peer << std::endl;
+    addConnection(sender, UNCONFIRMED);
     sendMessage(peer, CONNECT); // Send CONNECT to each known peer.
   }
 
@@ -178,6 +179,7 @@ void NetworkManager::handleIncomingMessages() {
   while (true) {
     ssize_t len = recvfrom(socket_fd, buffer, BUFFER_SIZE, flags,
                            (struct sockaddr*)&sender_addr, &sender_len);
+    // TODO here set recieve time.
 #ifdef DEBUG
     std::cout << "[Node] Program uptime: " << GlobalClock::now() << " ms\n"; 
 #endif // DEBUG 
@@ -207,7 +209,12 @@ void NetworkManager::handleIncomingMessages() {
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
-        handleHelloReply(sender_addr, len);
+        // Quick check if its a valid peer address and is not connected.
+        if (data.getPeerAddress() != sender_addr || _getFlag(address_info(sender_addr)) != -1) {
+          error("MSG"); // TODO add the hex from message.
+        } else {
+          handleHelloReply(sender_addr, len);
+        }
         break;
 
       case CONNECT:
@@ -217,6 +224,7 @@ void NetworkManager::handleIncomingMessages() {
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
       // Respond with ACK_CONNECT
+        // TODO if i understand corrcelty connect is always ok.
         addConnection(sender_addr, CONFIRMED);
         sendMessage(sender_addr, ACK_CONNECT);
         break;
@@ -227,21 +235,32 @@ void NetworkManager::handleIncomingMessages() {
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
-        addConnection(sender_addr, CONFIRMED);
+        if (_getFlag(sender_addr) == UNCONFIRMED) { 
+          addConnection(sender_addr, CONFIRMED);
+        } else {
+          error("MSG");
+        }
         break;
       case SYNC_START:
 #ifdef DEBUG
       std::cout << "Received SYNC_START from "
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
-#endif 
+#endif
+        handleSyncStart(sender_addr, len);
+        // NEED to handle who sent the sync_request.
         break;
       case DELAY_REQUEST:
 #ifdef DEBUG
       std::cout << "Received DELAY_REQUEST from "
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
-#endif 
+#endif
+      if (state == SYNCHRONIZED && data.getSyncAddr() == sender_addr) {// This case may be redundant TODO
+        error("MSG");
+      } else {
+        sendSyncWithData(address_info(sender_addr), DELAY_RESPONSE);
+      }
         break;
       case DELAY_RESPONSE:
 #ifdef DEBUG
@@ -257,7 +276,7 @@ void NetworkManager::handleIncomingMessages() {
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
         break;
-      case GET_TIME:
+      case GET_TIME: // DONE
 #ifdef DEBUG
       std::cout << "Received from "
         << inet_ntoa(sender_addr.sin_addr) << ":"
@@ -298,6 +317,10 @@ int NetworkManager::_findSockaddr(const address_info& peer_addr) {
   return -1;
 }
 
+short NetworkManager::_getFlag(const sockaddr_in& connection) {
+  return _getFlag(address_info(connection));
+}
+
 short NetworkManager::_getFlag(const address_info& connection) {
   int index = _findSockaddr(connection);
   if (index == -1) {
@@ -306,7 +329,7 @@ short NetworkManager::_getFlag(const address_info& connection) {
   return connections[index].flags;
 }
     
-// Helper time functions;
+// Synchronization functions.
 
 void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType type) {
   if (type != TIME && (type <= ACK_CONNECT || DELAY_RESPONSE <= type || DELAY_REQUEST == type)) {
@@ -322,4 +345,8 @@ void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType
   std::memcpy(buffer + 2, &timestamp, 8);
   sockaddr_in send = peer_addr.toSockaddrIn(); 
   sendto(socket_fd, buffer, 10, 0, (struct sockaddr*)&send, sizeof(send));
+}
+
+void NetworkManager::handleSyncStart(const sockaddr_in& sender_addr, ssize_t len) {
+  
 }

@@ -1,6 +1,6 @@
 #include "node_config.hpp"
 
-NodeConfig::NodeConfig() : sync_level(255), peer_present(false), socket_fd(-1) {
+NodeConfig::NodeConfig() : sync_level(255), peer_present(false), socket_fd(-1), sync_with(address_info()){
   memset(&bind_addr, 0, sizeof(bind_addr));
   bind_addr.sin_family = AF_INET;
   bind_addr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -135,6 +135,9 @@ void NodeConfig::setSyncLevel(uint8_t level) {
   sync_level = level;
 }
 
+address_info NodeConfig::getSyncAddr() const {
+ return sync_with;  
+}
 int NodeConfig::getSocketFd() {
   return socket_fd;
 }
