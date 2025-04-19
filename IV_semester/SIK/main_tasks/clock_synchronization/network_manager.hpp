@@ -11,6 +11,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include "node_config.hpp"
+#include "global_clock.hpp"
 extern "C" {
 #include "err.h"
 }
@@ -23,7 +24,7 @@ enum MessageType : uint8_t {
   HELLO_REPLY     = 2,
   CONNECT         = 3,
   ACK_CONNECT     = 4,
-  SYNC_STRT       = 11,
+  SYNC_START      = 11,
   DELAY_REQUEST   = 12,
   DELAY_RESPONSE  = 13,
   LEADER          = 21,
@@ -33,11 +34,12 @@ enum MessageType : uint8_t {
 
 class NetworkManager {
 public:
-  NetworkManager(int socket_fd);
+  NetworkManager(int socket_fd, const NodeConfig& node);
   void sendHello(const address_info& peer_addr);
-  void handleIncomingMessages(NodeConfig& node);
+  void handleIncomingMessages();
 private:
   int socket_fd;
+  const NodeConfig& data;
   std::vector<address_info> connections;
 
   int addConnection(const sockaddr_in& peeaddr, const short flags = 0);
@@ -46,6 +48,8 @@ private:
   void handleHello(const sockaddr_in& sender,socklen_t sender_len);
   void handleHelloReply(const sockaddr_in& sender, ssize_t len);
   void sendMessage(const address_info& peer_addr, MessageType type);
+  void sendSyncWithData(const address_info& peer_addr, MessageType type);
+  short _getFlag(const address_info& connection);
 };
 
 #endif

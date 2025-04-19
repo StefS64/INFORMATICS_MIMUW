@@ -1,11 +1,13 @@
 #include<iostream>
-#include<string>
+#include<string>  
 #include<unistd.h>
+#include<time.h>
 extern "C" {
 #include "common.h"
 }
 #include "node_config.hpp"
 #include "network_manager.hpp"
+#include "global_clock.hpp"
 #define DEBUG
 
 void printUsage(const char* programName) {
@@ -15,16 +17,16 @@ void printUsage(const char* programName) {
 }
 
 int main(int argc, char* argv[]) {
+  GlobalClock::initialize();
   NodeConfig node;
-
+  
   if(!node.parseArgs(argc, argv)) {
     node.printUsage(argv[0]);
     return EXIT_FAILURE;
   }
 
   node.initSocket();
-
-#ifdef DEBUG
+#ifdef DEBUG 
   std::cout << "Configuration parsed successfully.\n";
   std::cout << "Bind Address: " << inet_ntoa(node.getBindAddressIn().sin_addr) << "\n";
   std::cout << "Port: " << ntohs(node.getBindAddressIn().sin_port) << "\n";
@@ -33,9 +35,9 @@ int main(int argc, char* argv[]) {
   }
 #endif
 
-  NetworkManager net = NetworkManager(node.getSocketFd());
+  NetworkManager net = NetworkManager(node.getSocketFd(), node);
   if (node.isPeerPresent()) {
     net.sendHello(node.getPeerAddress());
   }
-  net.handleIncomingMessages(node);
+  net.handleIncomingMessages();
 }

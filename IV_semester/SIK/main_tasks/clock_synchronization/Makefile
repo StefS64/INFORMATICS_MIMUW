@@ -8,7 +8,7 @@ CXXFLAGS = -Wall -O2
 
 # List of source files (C and C++)
 C_SRCS   = common.c err.c
-CPP_SRCS = node_config.cpp peer-time-sync.cpp network_manager.cpp
+CPP_SRCS = node_config.cpp peer-time-sync.cpp network_manager.cpp global_clock.cpp
 
 # Corresponding object files
 C_OBJS   = $(C_SRCS:.c=.o)
@@ -36,10 +36,10 @@ $(TARGET): $(C_OBJS) $(CPP_OBJS)
 # If node_config.cpp includes node_config.hpp and uses common.h:
 node_config.o: node_config.hpp common.h err.h
 # And if common.c (or any other file that uses common.h) requires err.h as well:
-common.o: common.h err.h
-
+common.o: common.h err.h 
+network_manager.o: global_clock.hpp 
 # (Optional) If peer-time-sync.cpp also uses node_config.hpp or common.h:
-peer-time-sync.o: node_config.hpp common.h network_manager.hpp
+peer-time-sync.o: node_config.hpp common.h network_manager.hpp global_clock.hpp
 
 # "make clean" to remove object files and the binary
 clean:

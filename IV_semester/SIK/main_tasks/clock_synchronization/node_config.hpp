@@ -120,6 +120,12 @@ public:
   void printUsage(const char* programName) const;
   void initSocket();
   int getSocketFd();
+  uint64_t getOffset() const {
+    return offset; 
+  }
+  void setOffset(uint64_t val) {
+    offset = val;
+  }
 
 private:
   uint8_t sync_level;
@@ -127,6 +133,7 @@ private:
   address_info peer_addr;
   sockaddr_in bind_addr;
   int socket_fd;
+  uint64_t offset;
 };
 
 #endif

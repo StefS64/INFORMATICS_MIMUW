@@ -2,14 +2,17 @@
 
 #define BUFFER_SIZE 65507 // Maximal size of package for my MTU
 
-// #define DEBUG
+#define DEBUG
 #ifdef DEBUG
 #include <iomanip>  // for std::setw and std::setfill
 #include <bitset>
 #endif
 static char buffer[BUFFER_SIZE];
 
-NetworkManager::NetworkManager(int socket_fd) : socket_fd(socket_fd) {
+NetworkManager::NetworkManager(int socket_fd, const NodeConfig& data) : socket_fd(socket_fd), data(data) {
+  #ifdef DEBUG
+  std::cout << "NetworkManager up: " << GlobalClock::now() << " ms\n";
+  #endif // DEBUG
   // Dummy test variables.
   // connections = {
   //   address_info("192.34.23.10", "1234"),
@@ -35,10 +38,10 @@ void NetworkManager::sendHello(const address_info& peer_addr) {
   sendMessage(peer_addr, HELLO);
 }
 
-// Function for sending single 1 byte Message. Not suitable for HELLO_REPLY
+// Function for sending single 1 byte Message. Not suitable for HELLO_REPLY, SYNC_START, DELAY_RESPONSE, TIME.
 void NetworkManager::sendMessage(const address_info& peer_addr, MessageType type) {
-  if (type == HELLO_REPLY) {
-    fatal("Wrong message type HELLO_REPLY");
+  if (type == HELLO_REPLY || type == SYNC_START || type == DELAY_RESPONSE || type == TIME) {
+    fatal("Wrong message type for sendMessage");
   }
   memset(buffer, 0, sizeof(buffer));
   buffer[0] = type;
@@ -51,6 +54,9 @@ void NetworkManager::sendMessage(const address_info& peer_addr, MessageType type
     case HELLO:        typeStr = "HELLO"; break;
     case CONNECT:      typeStr = "CONNECT"; break;
     case ACK_CONNECT:  typeStr = "ACK_CONNECT"; break;
+    // case HELLO:        typeStr = "HELLO"; break;
+    // case CONNECT:      typeStr = "CONNECT"; break;
+    // case ACK_CONNECT:  typeStr = "ACK_CONNECT"; break;
     default:           typeStr = "UNKNOWN"; break;
   }
   std::cout << "Sent " << typeStr << " to " << peer_addr << "\n";
@@ -61,7 +67,7 @@ void NetworkManager::sendMessage(const address_info& peer_addr, MessageType type
 bool _parseHelloReply(size_t len, std::vector<address_info>& peers) {
   if (len < 2) return false;
   uint8_t count = static_cast<uint8_t>(buffer[1]);
-  size_t index   = 2;
+  size_t index = 2;
 #ifdef DEBUG
   std::cout <<"count: " << static_cast<int>(count) << std::endl;
 #endif
@@ -105,7 +111,7 @@ bool _parseHelloReply(size_t len, std::vector<address_info>& peers) {
 
   return true;
 }
-
+// TODO check which funcitons don't need to be private and can be hidden.
 /* Functions for handling messages while connecting */
 void NetworkManager::handleHello(const sockaddr_in& sender, socklen_t sender_len) {
   int ind = _findSockaddr(sender);
@@ -163,7 +169,7 @@ void NetworkManager::handleHelloReply(const sockaddr_in& sender, ssize_t len) {
   }
 }
 
-void NetworkManager::handleIncomingMessages(NodeConfig& node) {
+void NetworkManager::handleIncomingMessages() {
   memset(buffer, 0, sizeof(buffer));
   struct sockaddr_in sender_addr;
   socklen_t sender_len = sizeof(sender_addr);
@@ -172,6 +178,9 @@ void NetworkManager::handleIncomingMessages(NodeConfig& node) {
   while (true) {
     ssize_t len = recvfrom(socket_fd, buffer, BUFFER_SIZE, flags,
                            (struct sockaddr*)&sender_addr, &sender_len);
+#ifdef DEBUG
+    std::cout << "[Node] Program uptime: " << GlobalClock::now() << " ms\n"; 
+#endif // DEBUG 
     if (len < 0) {
       error("recvfrom");
       continue;
@@ -189,8 +198,8 @@ void NetworkManager::handleIncomingMessages(NodeConfig& node) {
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
-      handleHello(sender_addr, sender_len);
-      break;
+        handleHello(sender_addr, sender_len);
+        break;
 
       case HELLO_REPLY:
 #ifdef DEBUG
@@ -198,8 +207,8 @@ void NetworkManager::handleIncomingMessages(NodeConfig& node) {
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
-      handleHelloReply(sender_addr, len);
-      break;
+        handleHelloReply(sender_addr, len);
+        break;
 
       case CONNECT:
 #ifdef DEBUG
@@ -208,10 +217,9 @@ void NetworkManager::handleIncomingMessages(NodeConfig& node) {
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
       // Respond with ACK_CONNECT
-      addConnection(sender_addr, CONFIRMED);
-      sendMessage(sender_addr, ACK_CONNECT);
-
-      break;
+        addConnection(sender_addr, CONFIRMED);
+        sendMessage(sender_addr, ACK_CONNECT);
+        break;
 
       case ACK_CONNECT:
 #ifdef DEBUG
@@ -219,17 +227,53 @@ void NetworkManager::handleIncomingMessages(NodeConfig& node) {
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
 #endif 
-      addConnection(sender_addr, CONFIRMED);
-      break;
-
+        addConnection(sender_addr, CONFIRMED);
+        break;
+      case SYNC_START:
+#ifdef DEBUG
+      std::cout << "Received SYNC_START from "
+        << inet_ntoa(sender_addr.sin_addr) << ":"
+        << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+        break;
+      case DELAY_REQUEST:
+#ifdef DEBUG
+      std::cout << "Received DELAY_REQUEST from "
+        << inet_ntoa(sender_addr.sin_addr) << ":"
+        << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+        break;
+      case DELAY_RESPONSE:
+#ifdef DEBUG
+      std::cout << "Received DELAY_RESPONSE from "
+        << inet_ntoa(sender_addr.sin_addr) << ":"
+        << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+        break;
+      case LEADER:
+#ifdef DEBUG
+      std::cout << "Received LEADER from "
+        << inet_ntoa(sender_addr.sin_addr) << ":"
+        << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+        break;
+      case GET_TIME:
+#ifdef DEBUG
+      std::cout << "Received from "
+        << inet_ntoa(sender_addr.sin_addr) << ":"
+        << ntohs(sender_addr.sin_port) << "\n";
+#endif
+        sendSyncWithData(address_info(sender_addr), TIME);
+        break;
       default:
-        std::cerr << "Unknown message type received.\n";
+        error("Unknown message.");
         break;
     }
   }
 }
 
 // Functions to manage saved connections.
+// IMPORTANT connections are confiremed if and only if they received a message from that adress.
 int NetworkManager::addConnection(const sockaddr_in& sender, short flag) {
   address_info addr_short = address_info(sender, flag);
 
@@ -254,4 +298,28 @@ int NetworkManager::_findSockaddr(const address_info& peer_addr) {
   return -1;
 }
 
+short NetworkManager::_getFlag(const address_info& connection) {
+  int index = _findSockaddr(connection);
+  if (index == -1) {
+    return -1;
+  }
+  return connections[index].flags;
+}
+    
+// Helper time functions;
 
+void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType type) {
+  if (type != TIME && (type <= ACK_CONNECT || DELAY_RESPONSE <= type || DELAY_REQUEST == type)) {
+    fatal("Wrong message type!!");
+  }
+  memset(buffer, 0, sizeof(buffer));
+  buffer[0] = type;
+  buffer[1] = data.getSyncLevel();
+  uint64_t timestamp = GlobalClock::now();
+  if (type == TIME) {
+    timestamp -= GlobalClock::getOffset();
+  }
+  std::memcpy(buffer + 2, &timestamp, 8);
+  sockaddr_in send = peer_addr.toSockaddrIn(); 
+  sendto(socket_fd, buffer, 10, 0, (struct sockaddr*)&send, sizeof(send));
+}
