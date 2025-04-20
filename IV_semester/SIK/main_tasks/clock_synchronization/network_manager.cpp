@@ -267,14 +267,22 @@ void NetworkManager::handleIncomingMessages() {
       std::cout << "Received DELAY_RESPONSE from "
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
-#endif 
+#endif
+        // Doesn't return anything.
         break;
       case LEADER:
 #ifdef DEBUG
       std::cout << "Received LEADER from "
         << inet_ntoa(sender_addr.sin_addr) << ":"
         << ntohs(sender_addr.sin_port) << "\n";
-#endif 
+#endif
+        if(len != 2) {
+          error("MSG");// TODO print the errors
+        }
+        // Doesn't verify address.
+        if (state == LEADING && buffer[1] == 255) {
+          
+        }
         break;
       case GET_TIME: // DONE
 #ifdef DEBUG
