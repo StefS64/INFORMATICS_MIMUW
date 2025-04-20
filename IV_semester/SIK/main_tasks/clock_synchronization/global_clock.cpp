@@ -15,11 +15,18 @@ uint64_t GlobalClock::now() {
 }
 
 void GlobalClock::saveT(size_t index) {
+  index--;
   if (index < 4) {
     T[index] = now();
   }
 }
 
+void GlobalClock::saveT(size_t index, uint64_t time) {
+  index--;
+  if (index < 4) {
+    T[index] = time;
+  }
+}
 void GlobalClock::calcOffset() {
   offset = ((T[1] - T[0]) + (T[3] - T[2])) / 2;
 }

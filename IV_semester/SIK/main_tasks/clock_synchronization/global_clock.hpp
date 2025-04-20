@@ -7,6 +7,7 @@ public:
     static void initialize();
     static uint64_t now();
     static void saveT(size_t index);
+    static void saveT(size_t index, uint64_t time);
     static void calcOffset();
     static uint64_t getOffset();
 

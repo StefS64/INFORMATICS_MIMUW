@@ -9,16 +9,10 @@
 #endif
 static char buffer[BUFFER_SIZE];
 
-NetworkManager::NetworkManager(int socket_fd, const NodeConfig& data) : socket_fd(socket_fd), data(data), state(UNSYNCHRONIZED) {
+NetworkManager::NetworkManager(int socket_fd, NodeConfig& data) : socket_fd(socket_fd), data(data), state(UNSYNCHRONIZED) {
   #ifdef DEBUG
   std::cout << "NetworkManager up: " << GlobalClock::now() << " ms\n";
   #endif // DEBUG
-  // Dummy test variables.
-  // connections = {
-  //   address_info("192.34.23.10", "1234"),
-  //   address_info("192.34.23.10", "1234"),
-  //   address_info("192.34.23.10", "1234"),
-  // };
 }
 // Development functions mostly print and debugs.
 void printBuffer(size_t length) {
@@ -31,13 +25,8 @@ void printBuffer(size_t length) {
   std::cout << std::dec << std::endl; // reset to decimal just in case
 }
 /* Block of fuctions used to send messages.
-*  Send hello is special as we allow it to be used in the interface of this class.
 *
 */
-void NetworkManager::sendHello(const address_info& peer_addr) {
-  sendMessage(peer_addr, HELLO);
-}
-
 // Function for sending single 1 byte Message. Not suitable for HELLO_REPLY, SYNC_START, DELAY_RESPONSE, TIME.
 void NetworkManager::sendMessage(const address_info& peer_addr, MessageType type) {
   if (type == HELLO_REPLY || type == SYNC_START || type == DELAY_RESPONSE || type == TIME) {
@@ -46,17 +35,19 @@ void NetworkManager::sendMessage(const address_info& peer_addr, MessageType type
   memset(buffer, 0, sizeof(buffer));
   buffer[0] = type;
   sockaddr_in send = peer_addr.toSockaddrIn(); 
-  sendto(socket_fd, buffer, 1, 0, (struct sockaddr*)&send, sizeof(send));
-
+  ssize_t sent_length = sendto(socket_fd, buffer, 1, 0, (struct sockaddr*)&send, sizeof(send));
+  if (sent_length < 0) {
+    syserr("sendto");
+  }
+  else if ((size_t) sent_length != 1) {
+    fatal("incomplete sending");
+  }
 #ifdef DEBUG
   std::string typeStr;
   switch (type) {
     case HELLO:        typeStr = "HELLO"; break;
     case CONNECT:      typeStr = "CONNECT"; break;
     case ACK_CONNECT:  typeStr = "ACK_CONNECT"; break;
-    // case HELLO:        typeStr = "HELLO"; break;
-    // case CONNECT:      typeStr = "CONNECT"; break;
-    // case ACK_CONNECT:  typeStr = "ACK_CONNECT"; break;
     default:           typeStr = "UNKNOWN"; break;
   }
   std::cout << "Sent " << typeStr << " to " << peer_addr << "\n";
@@ -114,7 +105,7 @@ bool _parseHelloReply(size_t len, std::vector<address_info>& peers) {
 // TODO check which funcitons don't need to be private and can be hidden.
 /* Functions for handling messages while connecting */
 void NetworkManager::handleHello(const sockaddr_in& sender, socklen_t sender_len) {
-  int ind = _findSockaddr(sender);
+  int ind = _findSockaddr(sender); // TODO check this.
   if(ind >= 0) {
     error("Already connected, ignoring send");
     return;
@@ -124,11 +115,13 @@ void NetworkManager::handleHello(const sockaddr_in& sender, socklen_t sender_len
 
   std::cout <<address_info().dataSize() <<std::endl;
   size_t node_data_len = connections.size()*(address_info().dataSize());
+
   if (node_data_len > BUFFER_SIZE - 2) {
     error("HELLO_REPLY message too long, ignoring send."); 
   }
+
   buffer[1] = connections.size();
-  std::cout <<connections.size() <<std::endl;
+  std::cout << connections.size() <<std::endl;
 
   for(size_t i = 0; i < connections.size(); i++) {
     std::string serialized = connections[i].serialize();
@@ -137,8 +130,14 @@ void NetworkManager::handleHello(const sockaddr_in& sender, socklen_t sender_len
   } 
 
   size_t length = node_data_len + 2;
-  sendto(socket_fd, buffer, length, 0, (struct sockaddr*)&sender, sender_len);
-  ind = addConnection(sender, CONFIRMED);
+  ssize_t sent_length = sendto(socket_fd, buffer, length, 1, (struct sockaddr*)&sender, sender_len);
+  if (sent_length < 0) {
+    syserr("sendto");
+  }
+  else if ((size_t) sent_length != length) {
+    fatal("incomplete sending");
+  }
+  ind = addConnection(sender, CONFIRMED); //TODO check this.
   if(ind >= 0) {
     error("Already connected, ignoring send");
     return;
@@ -147,6 +146,7 @@ void NetworkManager::handleHello(const sockaddr_in& sender, socklen_t sender_len
 
 void NetworkManager::handleHelloReply(const sockaddr_in& sender, ssize_t len) {
   // Parse peer list and send CONNECT messages.
+  // Here the sender is the peer it was checked already, it is not connected;
   std::vector<address_info> peers;
 
   printBuffer(len);
@@ -162,140 +162,143 @@ void NetworkManager::handleHelloReply(const sockaddr_in& sender, ssize_t len) {
     sendMessage(peer, CONNECT); // Send CONNECT to each known peer.
   }
 
-  int ind = addConnection(sender, CONFIRMED);
+  addConnection(sender, CONFIRMED);
+}
 
-  if(ind >= 0) {
-    error("Already connected, ignoring send.");
-    return;
+void NetworkManager::runNode() {
+  if (data.isPeerPresent()) {
+    sendMessage(data.getPeerAddress(), HELLO);
+  }
+
+  while (true) {
+    // handleSyncSending();
+    handleIncomingMessage();
   }
 }
 
-void NetworkManager::handleIncomingMessages() {
+
+void NetworkManager::handleIncomingMessage() {
   memset(buffer, 0, sizeof(buffer));
   struct sockaddr_in sender_addr;
   socklen_t sender_len = sizeof(sender_addr);
   int flags = 0;
 
-  while (true) {
-    ssize_t len = recvfrom(socket_fd, buffer, BUFFER_SIZE, flags,
-                           (struct sockaddr*)&sender_addr, &sender_len);
-    // TODO here set recieve time.
+  ssize_t len = recvfrom(socket_fd, buffer, BUFFER_SIZE, flags,
+                         (struct sockaddr*)&sender_addr, &sender_len);
+  uint64_t recv_time = GlobalClock::now();
+  // TODO here set recieve time.
 #ifdef DEBUG
-    std::cout << "[Node] Program uptime: " << GlobalClock::now() << " ms\n"; 
+  std::cout << "[Node] Program uptime: " << GlobalClock::now() << " ms\n"; 
 #endif // DEBUG 
-    if (len < 0) {
-      error("recvfrom");
-      continue;
-    } else if (len == 0) {
-      error("incomplete datagram");
-      continue;
+  if (len < 0) {
+    // error("recvfrom");
+#ifdef DEBUG
+    std::cout <<"recvfrom error or timeout" << std::endl;
+#endif // DEBUG
+    return;
+  } else if (len == 0) {
+    error("incomplete datagram");
+    return;
+  }
+
+  // Parse the message type
+  uint8_t message_type = buffer[0];
+  switch (message_type) {
+    case HELLO:
+#ifdef DEBUG
+    std::cout << "Received HELLO from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+    handleHello(sender_addr, sender_len);
+    break;
+
+    case HELLO_REPLY:
+#ifdef DEBUG
+    std::cout << "Received HELLO_REPLY from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+    // Quick check if its a valid peer address and is not connected.
+    if (data.getPeerAddress() != sender_addr || _getFlag(sender_addr) != UNKNOWN) {
+      error("MSG"); // TODO add the hex from message.
+    } else {
+      handleHelloReply(sender_addr, len);
     }
+    break;
 
-    // Parse the message type
-    uint8_t message_type = buffer[0];
-    switch (message_type) {
-      case HELLO:
+    case CONNECT:
 #ifdef DEBUG
-      std::cout << "Received HELLO from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
+    std::cout << "Received CONNECT from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
 #endif 
-        handleHello(sender_addr, sender_len);
-        break;
-
-      case HELLO_REPLY:
-#ifdef DEBUG
-      std::cout << "Received HELLO_REPLY from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif 
-        // Quick check if its a valid peer address and is not connected.
-        if (data.getPeerAddress() != sender_addr || _getFlag(address_info(sender_addr)) != -1) {
-          error("MSG"); // TODO add the hex from message.
-        } else {
-          handleHelloReply(sender_addr, len);
-        }
-        break;
-
-      case CONNECT:
-#ifdef DEBUG
-      std::cout << "Received CONNECT from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif 
-      // Respond with ACK_CONNECT
-        // TODO if i understand corrcelty connect is always ok.
-        addConnection(sender_addr, CONFIRMED);
-        sendMessage(sender_addr, ACK_CONNECT);
-        break;
-
-      case ACK_CONNECT:
-#ifdef DEBUG
-      std::cout << "Received ACK_CONNECT from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif 
-        if (_getFlag(sender_addr) == UNCONFIRMED) { 
-          addConnection(sender_addr, CONFIRMED);
-        } else {
-          error("MSG");
-        }
-        break;
-      case SYNC_START:
-#ifdef DEBUG
-      std::cout << "Received SYNC_START from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif
-        handleSyncStart(sender_addr, len);
-        // NEED to handle who sent the sync_request.
-        break;
-      case DELAY_REQUEST:
-#ifdef DEBUG
-      std::cout << "Received DELAY_REQUEST from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif
-      if (state == SYNCHRONIZED && data.getSyncAddr() == sender_addr) {// This case may be redundant TODO
-        error("MSG");
-      } else {
-        sendSyncWithData(address_info(sender_addr), DELAY_RESPONSE);
-      }
-        break;
-      case DELAY_RESPONSE:
-#ifdef DEBUG
-      std::cout << "Received DELAY_RESPONSE from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif
-        // Doesn't return anything.
-        break;
-      case LEADER:
-#ifdef DEBUG
-      std::cout << "Received LEADER from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif
-        if(len != 2) {
-          error("MSG");// TODO print the errors
-        }
-        // Doesn't verify address.
-        if (state == LEADING && buffer[1] == 255) {
-          
-        }
-        break;
-      case GET_TIME: // DONE
-#ifdef DEBUG
-      std::cout << "Received from "
-        << inet_ntoa(sender_addr.sin_addr) << ":"
-        << ntohs(sender_addr.sin_port) << "\n";
-#endif
-        sendSyncWithData(address_info(sender_addr), TIME);
-        break;
-      default:
-        error("Unknown message.");
-        break;
+    // Respond with ACK_CONNECT
+    // TODO if i understand corrcelty connect is always ok.
+    if (_findSockaddr(sender_addr) == UNKNOWN) {
+      addConnection(sender_addr, CONFIRMED);
+      sendMessage(sender_addr, ACK_CONNECT);
+    } else {
+      error("MSG");
     }
+    break;
+
+    case ACK_CONNECT:
+#ifdef DEBUG
+    std::cout << "Received ACK_CONNECT from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif 
+    if (_getFlag(sender_addr) == UNCONFIRMED) { 
+      addConnection(sender_addr, CONFIRMED);
+    } else {
+      error("MSG");
+    }
+    break;
+    case SYNC_START:
+#ifdef DEBUG
+    std::cout << "Received SYNC_START from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif
+    handleSyncStart(sender_addr, len, recv_time);
+    // NEED to handle who sent the sync_request.
+    break;
+    case DELAY_REQUEST:
+#ifdef DEBUG
+    std::cout << "Received DELAY_REQUEST from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif
+    handleDelayRequest(sender_addr);
+    break;
+    case DELAY_RESPONSE:
+#ifdef DEBUG
+    std::cout << "Received DELAY_RESPONSE from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif
+    handleDelayResponse(sender_addr, len, recv_time);
+    break;
+    case LEADER:
+#ifdef DEBUG
+    std::cout << "Received LEADER from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif
+    handleLeader(len);
+    break;
+    case GET_TIME: // DONE
+#ifdef DEBUG
+    std::cout << "Received GET_TIME from "
+      << inet_ntoa(sender_addr.sin_addr) << ":"
+      << ntohs(sender_addr.sin_port) << "\n";
+#endif
+    sendSyncWithData(address_info(sender_addr), TIME, true);
+    break;
+    default:
+      error("Unknown message.");
+      break;
   }
 }
 
@@ -311,7 +314,7 @@ int NetworkManager::addConnection(const sockaddr_in& sender, short flag) {
     connections[index].flags = flag;
   } else {
     error("Duplicate connection request");
-    index = -1;
+    index = -2; //TODO may be wierd
   }
   return index;
 }
@@ -336,10 +339,18 @@ short NetworkManager::_getFlag(const address_info& connection) {
   }
   return connections[index].flags;
 }
-    
+
 // Synchronization functions.
 
-void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType type) {
+void NetworkManager::syncToAll() {
+  for (auto& addr : connections) {
+    sendSyncWithData(addr, SYNC_START, false);
+    addr.flags = SYNCHRONIZING;
+    // addr.event_time = GlobalClock::now(); TODO bin
+  }
+}
+
+void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType type, bool offset_flag) {
   if (type != TIME && (type <= ACK_CONNECT || DELAY_RESPONSE <= type || DELAY_REQUEST == type)) {
     fatal("Wrong message type!!");
   }
@@ -347,14 +358,89 @@ void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType
   buffer[0] = type;
   buffer[1] = data.getSyncLevel();
   uint64_t timestamp = GlobalClock::now();
-  if (type == TIME) {
+  if (offset_flag) {
     timestamp -= GlobalClock::getOffset();
   }
-  std::memcpy(buffer + 2, &timestamp, 8);
+  std::memcpy(buffer + 2, &timestamp, 8); //TODO conversion htons
   sockaddr_in send = peer_addr.toSockaddrIn(); 
-  sendto(socket_fd, buffer, 10, 0, (struct sockaddr*)&send, sizeof(send));
+  ssize_t sent_length = sendto(socket_fd, buffer, 10, 0, (struct sockaddr*)&send, sizeof(send));
+  if (sent_length < 0) {
+    syserr("sendto");
+  }
+  else if ((size_t) sent_length != 10) {
+    fatal("incomplete sending");
+  }
 }
 
-void NetworkManager::handleSyncStart(const sockaddr_in& sender_addr, ssize_t len) {
-  
+// Child node.
+void NetworkManager::handleSyncStart(const sockaddr_in& sender_addr, ssize_t len, uint64_t recv_time) {
+  short flag = _getFlag(sender_addr);
+  if (len != 10 || flag == UNCONFIRMED || flag == UNKNOWN) {
+    error("MSG");
+    return;
+  }
+  uint8_t synchronized = buffer[1];
+  if (synchronized >= 254 || state == LEADING) {
+    return;
+  }
+  uint64_t time;
+  memcpy(&time, buffer + 2, 8); // TODO conversion noths
+  if ((state == SYNCHRONIZED && data.getSyncAddr() == sender_addr && synchronized < data.getSyncLevel()) ||
+    (state != SYNCHRONIZED && synchronized + 2 <= data.getSyncLevel()) ) {
+    GlobalClock::saveT(1, time);
+    GlobalClock::saveT(2, recv_time);
+    GlobalClock::saveT(3);
+    data.setSyncAddr(address_info(sender_addr), synchronized);
+    sendMessage(sender_addr, DELAY_REQUEST);
+  }
+}
+
+// Father node.
+void NetworkManager::handleDelayRequest(const sockaddr_in& sender_addr) {
+  short flag = _getFlag(sender_addr);
+  if (flag != SYNCHRONIZING) {
+    error("MSG");
+    return;
+  }
+  addConnection(sender_addr, SYNCED); 
+  sendSyncWithData(address_info(sender_addr), DELAY_RESPONSE, state == SYNCHRONIZED);
+}
+
+//Child node.
+void NetworkManager::handleDelayResponse(const sockaddr_in& sender_addr, ssize_t len, uint64_t recv_time) {
+  if (len != 10) {
+    error("MSG");
+    return;
+  }
+  uint8_t synchronized = buffer[1];
+  if (data.getSyncLevelSyncWith() != synchronized) {
+    error("MSG");
+    return;
+  }
+  if ((data.getSyncAddr() == sender_addr) && (state != LEADING)) {
+    GlobalClock::saveT(4, recv_time);
+    GlobalClock::calcOffset();
+    state = SYNCHRONIZED;
+    data.setSyncLevel(synchronized + 1);
+  } else {
+    error("MSG");
+    return;
+  }
+}
+
+void NetworkManager::handleLeader(ssize_t len) {
+  if (len != 2) {
+    error("MSG");
+    return;
+  }
+  uint8_t flag = buffer[1];
+  if (state == LEADING && flag == 225) {
+    state = STOPLEADING;
+    return;
+  }
+  if (state != LEADING && flag == 0) {
+    state = LEADING;
+    return;
+  }
+  error("MSG");
 }

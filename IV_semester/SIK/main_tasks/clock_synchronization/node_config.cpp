@@ -101,6 +101,15 @@ void NodeConfig::initSocket() {
     syserr("cannot create a socket");
   }
 
+  struct timeval timeout;
+  timeout.tv_sec = 5;
+
+  if (setsockopt(socket_fd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
+    perror("setsockopt failed");
+    close(socket_fd);
+    return;
+  }
+
   // Bind the socket to a concrete address.
   if (bind(socket_fd, (struct sockaddr *) &bind_addr, (socklen_t) sizeof(bind_addr)) < 0) {
     syserr("bind");
@@ -111,7 +120,7 @@ void NodeConfig::initSocket() {
   if (getsockname(socket_fd, (struct sockaddr *) &bind_addr, &lenght) < 0) {
     syserr("getsockname");
   }
-  
+
   printf("listening on port %" PRIu16 "\n", ntohs(bind_addr.sin_port));
 } 
 
@@ -135,9 +144,15 @@ void NodeConfig::setSyncLevel(uint8_t level) {
   sync_level = level;
 }
 
+void NodeConfig::setSyncAddr(address_info sync_with, uint8_t level) {
+  sync_with = sync_with;
+  sync_level_of_synced_with = level;
+}
+
 address_info NodeConfig::getSyncAddr() const {
  return sync_with;  
 }
-int NodeConfig::getSocketFd() {
+
+int NodeConfig::getSocketFd() const {
   return socket_fd;
 }

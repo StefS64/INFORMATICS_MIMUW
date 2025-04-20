@@ -36,8 +36,5 @@ int main(int argc, char* argv[]) {
 #endif
 
   NetworkManager net = NetworkManager(node.getSocketFd(), node);
-  if (node.isPeerPresent()) {
-    net.sendHello(node.getPeerAddress());
-  }
-  net.handleIncomingMessages();
+  net.runNode();
 }

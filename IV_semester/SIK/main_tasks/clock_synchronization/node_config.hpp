@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <cinttypes>
 
-extern "C" {
+extern "C" {    
 #include "common.h"
 #include "err.h"    
 }
@@ -19,7 +19,8 @@ extern "C" {
 struct address_info {
   in_addr_t ip;   // Stored in network byte order (like inet_pton output)
   uint16_t port;  // Stored in network byte order for flexibility
-  short flags = 0;  // Flags for communication 0 means computer is not sure if it exists. 
+  short flags = 0;  // Flags for communication 0 means computer is not sure if it exists.
+  // uint64_t event_time; bin. TODO
   address_info() : ip(INADDR_ANY), port(0) {}  // Dummy address.
   address_info(in_addr_t ip, uint16_t port) : ip(ip), port(port) {}
 
@@ -128,8 +129,12 @@ public:
   void setSyncLevel(uint8_t level);
   void printUsage(const char* programName) const;
   void initSocket();
-  int getSocketFd();
+  int getSocketFd() const;
   address_info getSyncAddr() const;
+  void setSyncAddr(address_info sync_with, uint8_t sync_level);
+  uint8_t getSyncLevelSyncWith() const {
+    return sync_level_of_synced_with;
+  }
   uint64_t getOffset() const {
     return offset; 
   }
@@ -140,10 +145,11 @@ public:
 private:
   uint8_t sync_level;
   bool peer_present;
-  address_info peer_addr;// Beggining sync address.
+  address_info peer_addr;// Begining sync address.
   sockaddr_in bind_addr;
   int socket_fd;
   address_info sync_with;// Address of the synchronized node.
+  uint8_t sync_level_of_synced_with;
   uint64_t offset;
 };
 
