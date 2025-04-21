@@ -6,6 +6,13 @@
 #ifdef DEBUG
 #include <iomanip>  // for std::setw and std::setfill
 #include <bitset>
+#define RESET   "\x1b[0m"
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define YELLOW  "\x1b[33m"
+#define BLUE    "\x1b[34m"
+#define MAGENTA "\x1b[35m"
+#define CYAN    "\x1b[36m"
 #endif
 static char buffer[BUFFER_SIZE];
 
@@ -36,21 +43,24 @@ void NetworkManager::sendMessage(const address_info& peer_addr, MessageType type
   buffer[0] = type;
   sockaddr_in send = peer_addr.toSockaddrIn(); 
   ssize_t sent_length = sendto(socket_fd, buffer, 1, 0, (struct sockaddr*)&send, sizeof(send));
+  std::cout <<"debug send" << std::endl;
   if (sent_length < 0) {
-    syserr("sendto");
+    syserr("sendto hello %d", type);
   }
   else if ((size_t) sent_length != 1) {
     fatal("incomplete sending");
   }
+  std::cout <<"debug send end" << std::endl;
 #ifdef DEBUG
   std::string typeStr;
   switch (type) {
     case HELLO:        typeStr = "HELLO"; break;
     case CONNECT:      typeStr = "CONNECT"; break;
     case ACK_CONNECT:  typeStr = "ACK_CONNECT"; break;
+    case DELAY_REQUEST: typeStr = "DELAY_REQUEST"; break;
     default:           typeStr = "UNKNOWN"; break;
   }
-  std::cout << "Sent " << typeStr << " to " << peer_addr << "\n";
+  std::cout<< CYAN << "Sent " << typeStr << " to " << peer_addr << "\n" << RESET;
 #endif
 }
 
@@ -121,18 +131,19 @@ void NetworkManager::handleHello(const sockaddr_in& sender, socklen_t sender_len
   }
 
   buffer[1] = connections.size();
-  std::cout << connections.size() <<std::endl;
+  std::cout <<"connection size: " << connections.size() <<std::endl;
 
   for(size_t i = 0; i < connections.size(); i++) {
     std::string serialized = connections[i].serialize();
     std::copy(serialized.begin(), serialized.end(), buffer + index);
     index += serialized.size();
-  } 
+  }
 
   size_t length = node_data_len + 2;
-  ssize_t sent_length = sendto(socket_fd, buffer, length, 1, (struct sockaddr*)&sender, sender_len);
+  std::cout << address_info(sender) <<" len: "<< length <<std::endl;
+  ssize_t sent_length = sendto(socket_fd, buffer, length, 0, (struct sockaddr*)&sender, sender_len);
   if (sent_length < 0) {
-    syserr("sendto");
+    syserr("sendto HELLO_REPLY");
   }
   else if ((size_t) sent_length != length) {
     fatal("incomplete sending");
@@ -158,7 +169,7 @@ void NetworkManager::handleHelloReply(const sockaddr_in& sender, ssize_t len) {
 
   for (const auto& peer : peers) {
     std::cout << "Found peer from HELLO_REPLY: " << peer << std::endl;
-    addConnection(sender, UNCONFIRMED);
+    addConnection(peer, UNCONFIRMED);
     sendMessage(peer, CONNECT); // Send CONNECT to each known peer.
   }
 
@@ -171,7 +182,7 @@ void NetworkManager::runNode() {
   }
 
   while (true) {
-    // handleSyncSending();
+    handleSyncSending();
     handleIncomingMessage();
   }
 }
@@ -191,10 +202,15 @@ void NetworkManager::handleIncomingMessage() {
   std::cout << "[Node] Program uptime: " << GlobalClock::now() << " ms\n"; 
 #endif // DEBUG 
   if (len < 0) {
+    if (errno == EAGAIN || errno == EWOULDBLOCK) {
+      // no data arrived in timeout period
+      return;
+    }
     // error("recvfrom");
 #ifdef DEBUG
     std::cout <<"recvfrom error or timeout" << std::endl;
 #endif // DEBUG
+    error("recvfrom");
     return;
   } else if (len == 0) {
     error("incomplete datagram");
@@ -252,7 +268,8 @@ void NetworkManager::handleIncomingMessage() {
     if (_getFlag(sender_addr) == UNCONFIRMED) { 
       addConnection(sender_addr, CONFIRMED);
     } else {
-      error("MSG");
+      std::cout <<int(_getFlag(sender_addr)) << std::endl;
+      error("MSG UNCONFIRMED");
     }
     break;
     case SYNC_START:
@@ -288,7 +305,7 @@ void NetworkManager::handleIncomingMessage() {
 #endif
     handleLeader(len);
     break;
-    case GET_TIME: // DONE
+    case GET_TIME:
 #ifdef DEBUG
     std::cout << "Received GET_TIME from "
       << inet_ntoa(sender_addr.sin_addr) << ":"
@@ -302,10 +319,13 @@ void NetworkManager::handleIncomingMessage() {
   }
 }
 
-// Functions to manage saved connections.
-// IMPORTANT connections are confiremed if and only if they received a message from that adress.
 int NetworkManager::addConnection(const sockaddr_in& sender, short flag) {
   address_info addr_short = address_info(sender, flag);
+  return addConnection(addr_short, flag);
+}
+// Functions to manage saved connections.
+// IMPORTANT connections are confiremed if and only if they received a message from that adress.
+int NetworkManager::addConnection(const address_info& addr_short, short flag) {
 
   int index = _findSockaddr(addr_short); 
   if (index < 0) {
@@ -318,6 +338,7 @@ int NetworkManager::addConnection(const sockaddr_in& sender, short flag) {
   }
   return index;
 }
+
 
 int NetworkManager::_findSockaddr(const address_info& peer_addr) {
   for (size_t i = 0; i < connections.size(); ++i) {
@@ -350,10 +371,38 @@ void NetworkManager::syncToAll() {
   }
 }
 
+inline uint64_t htonll(uint64_t value) {
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+    return (static_cast<uint64_t>(htonl(value & 0xFFFFFFFF)) << 32) |
+            htonl(value >> 32);
+#else
+    return value;
+#endif
+}
+
+inline uint64_t ntohll(uint64_t value) {
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+    return (static_cast<uint64_t>(ntohl(value & 0xFFFFFFFF)) << 32) |
+            ntohl(value >> 32);
+#else
+    return value;
+#endif
+}
+
 void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType type, bool offset_flag) {
-  if (type != TIME && (type <= ACK_CONNECT || DELAY_RESPONSE <= type || DELAY_REQUEST == type)) {
+  if (type != TIME && (type <= ACK_CONNECT || DELAY_RESPONSE < type || DELAY_REQUEST == type)) {
     fatal("Wrong message type!!");
   }
+#ifdef DEBUG
+  std::string typeStr;
+  switch (type) {
+    case DELAY_RESPONSE:        typeStr = "DELAY_RESPONSE"; break;
+    case TIME:      typeStr = "TIME"; break;
+    case SYNC_START:  typeStr = "SYNC_START"; break;
+    default:           typeStr = "UNKNOWN"; break;
+  }
+  std::cout << CYAN << "Sent " << typeStr << " to " << peer_addr << "\n"<< RESET;
+#endif
   memset(buffer, 0, sizeof(buffer));
   buffer[0] = type;
   buffer[1] = data.getSyncLevel();
@@ -361,7 +410,8 @@ void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType
   if (offset_flag) {
     timestamp -= GlobalClock::getOffset();
   }
-  std::memcpy(buffer + 2, &timestamp, 8); //TODO conversion htons
+  timestamp = htonll(timestamp);
+  std::memcpy(buffer + 2, &timestamp, 8); 
   sockaddr_in send = peer_addr.toSockaddrIn(); 
   ssize_t sent_length = sendto(socket_fd, buffer, 10, 0, (struct sockaddr*)&send, sizeof(send));
   if (sent_length < 0) {
@@ -372,6 +422,15 @@ void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType
   }
 }
 
+bool NetworkManager::validSyncRequest(const sockaddr_in& sender_addr, uint8_t synchronized) {
+  if ((state == SYNCHRONIZED && data.getSyncAddr() == sender_addr) &&
+    ((data.getSyncLevel() <= synchronized) || (GlobalClock::now() - synced_time >= 4*FIVE_SECONDS))) {
+    data.setSyncLevel(255);
+    state = UNSYNCHRONIZED;
+    return false;
+  }
+  return true;
+}
 // Child node.
 void NetworkManager::handleSyncStart(const sockaddr_in& sender_addr, ssize_t len, uint64_t recv_time) {
   short flag = _getFlag(sender_addr);
@@ -384,7 +443,14 @@ void NetworkManager::handleSyncStart(const sockaddr_in& sender_addr, ssize_t len
     return;
   }
   uint64_t time;
-  memcpy(&time, buffer + 2, 8); // TODO conversion noths
+  memcpy(&time, buffer + 2, 8);
+  time = ntohll(time);
+
+  if (!validSyncRequest(sender_addr, synchronized)) {
+    error("MSG"); // TODO
+    return;
+  }
+
   if ((state == SYNCHRONIZED && data.getSyncAddr() == sender_addr && synchronized < data.getSyncLevel()) ||
     (state != SYNCHRONIZED && synchronized + 2 <= data.getSyncLevel()) ) {
     GlobalClock::saveT(1, time);
@@ -392,14 +458,23 @@ void NetworkManager::handleSyncStart(const sockaddr_in& sender_addr, ssize_t len
     GlobalClock::saveT(3);
     data.setSyncAddr(address_info(sender_addr), synchronized);
     sendMessage(sender_addr, DELAY_REQUEST);
-  }
+  } 
+
+}
+
+bool NetworkManager::checkTime(const sockaddr_in& sender_addr) {
+  int index = _findSockaddr(address_info(sender_addr));
+  std::cout <<GREEN <<"check time: " <<connections[index].sync_time <<" " << FIVE_SECONDS << " " << GlobalClock::now()<<'\n' << RESET;
+
+  return (GlobalClock::now() - connections[index].sync_time) <= 2 * FIVE_SECONDS;
 }
 
 // Father node.
 void NetworkManager::handleDelayRequest(const sockaddr_in& sender_addr) {
   short flag = _getFlag(sender_addr);
-  if (flag != SYNCHRONIZING) {
-    error("MSG");
+  if (flag != SYNCHRONIZING || !checkTime(sender_addr)) {
+    std::cout << flag <<" time check: "<<checkTime(sender_addr) << std::endl;
+    error("MSG delay Request");
     return;
   }
   addConnection(sender_addr, SYNCED); 
@@ -409,38 +484,89 @@ void NetworkManager::handleDelayRequest(const sockaddr_in& sender_addr) {
 //Child node.
 void NetworkManager::handleDelayResponse(const sockaddr_in& sender_addr, ssize_t len, uint64_t recv_time) {
   if (len != 10) {
-    error("MSG");
+    error("MSG len");
     return;
   }
   uint8_t synchronized = buffer[1];
   if (data.getSyncLevelSyncWith() != synchronized) {
-    error("MSG");
+    error("MSG sync");
     return;
   }
+  if (!validSyncRequest(sender_addr, synchronized)) {
+    error("MSG valid delay");
+    return;
+  }
+  std::cout <<"state: "<< LEADING <<"recv: "<<address_info(sender_addr) <<
+    "should be: " << data.getSyncAddr() <<std::endl;
   if ((data.getSyncAddr() == sender_addr) && (state != LEADING)) {
     GlobalClock::saveT(4, recv_time);
     GlobalClock::calcOffset();
+    synced_time = GlobalClock::now();
     state = SYNCHRONIZED;
     data.setSyncLevel(synchronized + 1);
   } else {
-    error("MSG");
+    error("MSG diff sender or leader");
     return;
   }
 }
 
 void NetworkManager::handleLeader(ssize_t len) {
   if (len != 2) {
-    error("MSG");
+    error("MSG too short");
     return;
   }
   uint8_t flag = buffer[1];
-  if (state == LEADING && flag == 225) {
+  std::cout << GREEN << int(flag) <<" : "<<int(state) << RESET <<std::endl;
+  if (state == LEADING && int(flag) == 255) {
+    data.setSyncLevel(255);
     state = STOPLEADING;
     return;
   }
   if (state != LEADING && flag == 0) {
+    data.setSyncLevel(0);
     state = LEADING;
     return;
   }
-  error("MSG");
+  error("MSG no such case");
+}
+
+void NetworkManager::handleSyncSending() {
+  #ifdef DEBUG
+  #endif //DEBUG
+  std::cout<< BLUE <<"handling sending" << RESET <<std::endl;
+  if (state == STOPLEADING) {
+    bool finished = true;
+    for (auto connection : connections) {
+      if(connection.flags == SYNCED || connection.flags == SYNCHRONIZING) {
+        if (GlobalClock::now() - connection.sync_time > FIVE_SECONDS) {
+          connection.flags = CONFIRMED;
+        } else {
+          finished = false;
+        }
+      } 
+    }
+
+    if (finished) {
+      state = UNSYNCHRONIZED; 
+    }
+    return;
+  }
+  if (data.getSyncLevel() >= 254){
+    std::cout << YELLOW << "High sync level" << RESET <<std::endl;
+    return;
+  }
+  for (auto& connection : connections) {
+    std::cout << connection <<std::endl;
+    if (GlobalClock::now() - connection.sync_time > FIVE_SECONDS) {
+      std::cout <<"send sync" <<connection.sync_time <<" " << FIVE_SECONDS << " " << GlobalClock::now()<<'\n';
+      connection.sync_time = GlobalClock::now();
+      std::cout <<"send sync 2" <<connection.sync_time <<" " << FIVE_SECONDS << " " << GlobalClock::now()<<'\n';
+      if (state == SYNCHRONIZED && connection != data.getSyncAddr()) {
+        sendSyncWithData(connection, SYNC_START, true);
+      } else {
+        sendSyncWithData(connection, SYNC_START, false);
+      }
+      connection.flags = SYNCHRONIZING;
+    } 
+  } 
 }

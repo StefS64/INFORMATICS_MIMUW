@@ -5,12 +5,17 @@
 #include <string.h>
 
 #include "err.h"
+#define RESET   "\x1b[0m"
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define YELLOW  "\x1b[33m"
+#define BLUE    "\x1b[34m"
 
 void syserr(const char* fmt, ...) {
     va_list fmt_args;
     int org_errno = errno;
 
-    fprintf(stderr, "\tERROR ");
+    fprintf(stderr, RED "\tERROR " RESET);
 
     va_start(fmt_args, fmt);
     vfprintf(stderr, fmt, fmt_args);
@@ -23,7 +28,7 @@ void syserr(const char* fmt, ...) {
 void fatal(const char* fmt, ...) {
     va_list fmt_args;
 
-    fprintf(stderr, "\tERROR ");
+    fprintf(stderr, RED "\tERROR " RESET);
 
     va_start(fmt_args, fmt);
     vfprintf(stderr, fmt, fmt_args);
@@ -37,7 +42,7 @@ void error(const char* fmt, ...) {
     va_list fmt_args;
     int org_errno = errno;
 
-    fprintf(stderr, "\tERROR ");
+    fprintf(stderr, RED "\tERROR " RESET);
 
     va_start(fmt_args, fmt);
     vfprintf(stderr, fmt, fmt_args);

@@ -20,16 +20,11 @@ struct address_info {
   in_addr_t ip;   // Stored in network byte order (like inet_pton output)
   uint16_t port;  // Stored in network byte order for flexibility
   short flags = 0;  // Flags for communication 0 means computer is not sure if it exists.
-  // uint64_t event_time; bin. TODO
-  address_info() : ip(INADDR_ANY), port(0) {}  // Dummy address.
+  uint64_t sync_time = 0; // Keeps track of time from last SYNC_START.
+  //
+  // Constructors.
+  address_info() : ip(INADDR_ANY), port(0) {}  // Default constructor dummy addres.
   address_info(in_addr_t ip, uint16_t port) : ip(ip), port(port) {}
-
-  address_info(const char* ip_str, const char* port_str) { // Most likely won't be used. DEBUG TODO
-    if (inet_pton(AF_INET, ip_str, &ip) != 1) {
-      fatal("Invalid IP address: %s", ip_str);
-    }
-    port = read_port(port_str);
-  }
   address_info(const sockaddr_in& extract) : 
     ip(extract.sin_addr.s_addr),
     port(extract.sin_port) {} 
@@ -47,10 +42,6 @@ struct address_info {
     return addr;
   }
 
-  bool isValid() const {//helper may be useless TODO
-    return ip != 0 && port != 0;
-  }
-
   friend std::ostream& operator<<(std::ostream& os, const address_info& addr) {
     struct in_addr ip_addr;
     ip_addr.s_addr = addr.ip;
@@ -65,12 +56,16 @@ struct address_info {
   bool operator==(const sockaddr_in& other) const {
     return ip == other.sin_addr.s_addr && port == other.sin_port;
   }
+
   bool operator!=(const address_info& other) const {
     return !(*this == other);
   }
+
   bool operator!=(const sockaddr_in& other) const {
     return !(*this == other);
   }
+
+  // Functions used to prep data for send.
   std::string serialize() {
     std::string data;
     size_t size = sizeof(ip);
@@ -80,6 +75,7 @@ struct address_info {
 
     const char* port_bytes = reinterpret_cast<const char*>(&port);
     data.append(port_bytes, sizeof(port));
+
     std::cout <<"string data: " << data <<std::endl;
     std::cout <<"port: " << port <<std::endl;  
     printBinary(data);

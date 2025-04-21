@@ -42,20 +42,24 @@ enum SynchronizationState : uint8_t {
   STOPLEADING       = 4
 };    
 
+constexpr uint64_t FIVE_SECONDS = 5000;
+
 class NetworkManager {
 public:
   NetworkManager(int socket_fd, NodeConfig& node);
-  // void sendHello(const address_info& peer_addr);
   void runNode();
 private:
   int socket_fd;
   NodeConfig& data;
   std::vector<address_info> connections;
   SynchronizationState state;
-  uint64_t Synced_time;
+  uint64_t synced_time;
 
   void handleIncomingMessage();
-  int addConnection(const sockaddr_in& peeaddr, const short flags = 0);
+  void handleSyncSending();
+  bool validSyncRequest(const sockaddr_in& sender_addr, uint8_t synchronized);
+  int addConnection(const sockaddr_in& sender, const short flags = 0);
+  int addConnection(const address_info& peeaddr, const short flags = 0);
   void printConnectionList() const;
   int _findSockaddr(const address_info& peer_addr);
   void handleHello(const sockaddr_in& sender,socklen_t sender_len);
@@ -67,6 +71,7 @@ private:
   short _getFlag(const address_info& connection);
   void handleDelayRequest(const sockaddr_in& sender_addr);
   void handleDelayResponse(const sockaddr_in& sender_addr, ssize_t len, uint64_t recv_time);
+  bool checkTime(const sockaddr_in& sender_addr);
   void handleLeader(ssize_t len);
   void syncToAll();
 };

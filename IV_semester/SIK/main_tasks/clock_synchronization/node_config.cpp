@@ -141,12 +141,12 @@ uint8_t NodeConfig::getSyncLevel() const {
 }
 
 void NodeConfig::setSyncLevel(uint8_t level) {
-  sync_level = level;
+  this->sync_level = level;
 }
 
 void NodeConfig::setSyncAddr(address_info sync_with, uint8_t level) {
-  sync_with = sync_with;
-  sync_level_of_synced_with = level;
+  this->sync_with = sync_with;
+  this->sync_level_of_synced_with = level;
 }
 
 address_info NodeConfig::getSyncAddr() const {
