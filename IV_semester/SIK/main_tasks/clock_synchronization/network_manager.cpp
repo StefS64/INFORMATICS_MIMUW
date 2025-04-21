@@ -423,6 +423,7 @@ void NetworkManager::sendSyncWithData(const address_info& peer_addr, MessageType
 }
 
 bool NetworkManager::validSyncRequest(const sockaddr_in& sender_addr, uint8_t synchronized) {
+  std::cout << GREEN << GlobalClock::now() - synced_time << RESET << std::endl;
   if ((state == SYNCHRONIZED && data.getSyncAddr() == sender_addr) &&
     ((data.getSyncLevel() <= synchronized) || (GlobalClock::now() - synced_time >= 4*FIVE_SECONDS))) {
     data.setSyncLevel(255);
@@ -551,17 +552,20 @@ void NetworkManager::handleSyncSending() {
     }
     return;
   }
-  if (data.getSyncLevel() >= 254){
+  address_info addr =  data.getSyncAddr();
+  sockaddr_in dummy = addr.toSockaddrIn();
+  if (data.getSyncLevel() >= 254 || !validSyncRequest(dummy, 0)) {
     std::cout << YELLOW << "High sync level" << RESET <<std::endl;
     return;
   }
+
   for (auto& connection : connections) {
     std::cout << connection <<std::endl;
     if (GlobalClock::now() - connection.sync_time > FIVE_SECONDS) {
       std::cout <<"send sync" <<connection.sync_time <<" " << FIVE_SECONDS << " " << GlobalClock::now()<<'\n';
       connection.sync_time = GlobalClock::now();
       std::cout <<"send sync 2" <<connection.sync_time <<" " << FIVE_SECONDS << " " << GlobalClock::now()<<'\n';
-      if (state == SYNCHRONIZED && connection != data.getSyncAddr()) {
+      if (state == SYNCHRONIZED && connection != addr) {
         sendSyncWithData(connection, SYNC_START, true);
       } else {
         sendSyncWithData(connection, SYNC_START, false);

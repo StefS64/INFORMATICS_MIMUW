@@ -85,15 +85,15 @@ struct address_info {
   const size_t dataSize() {
     return sizeof(ip) + sizeof(port) + 1;// +1 for length byte
   }
-// TODO debug functio// TODO debug functionn
-void printBinary(const std::string& data) {
+  // TODO debug functio// TODO debug functionn
+  void printBinary(const std::string& data) {
     std::cout << "Binary string: ";
     for (unsigned char c : data) {
-        std::bitset<8> bits(c);
-        std::cout << bits << ' ';
+      std::bitset<8> bits(c);
+      std::cout << bits << ' ';
     }
     std::cout << std::endl;
-}
+  }
 };
 
 /* Class created to initialize the node.
