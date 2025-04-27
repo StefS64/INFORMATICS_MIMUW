@@ -52,4 +52,14 @@ void error(const char* fmt, ...) {
       fprintf(stderr, " (%d; %s)", org_errno, strerror(org_errno));
     }
     fprintf(stderr, "\n");
-  }
+}
+
+void error_msg(const void* buf, size_t len) {
+    fprintf(stderr, RED "ERROR MSG " RESET);
+    const unsigned char* bytes = (const unsigned char*)buf;
+    size_t to_print = len > 10 ? 10 : len;
+    for (size_t i = 0; i < to_print; ++i) {
+        fprintf(stderr, "%02x", bytes[i]);
+    }
+    fprintf(stderr, "\n");
+}

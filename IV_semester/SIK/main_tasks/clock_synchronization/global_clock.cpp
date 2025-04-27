@@ -21,17 +21,39 @@ void GlobalClock::saveT(size_t index) {
   }
 }
 
+uint64_t GlobalClock::getT3(){
+  return T[3];
+}
+
 void GlobalClock::saveT(size_t index, uint64_t time) {
   index--;
   if (index < 4) {
     T[index] = time;
   }
 }
+
+
 void GlobalClock::calcOffset() {
-  offset = ((T[1] - T[0]) + (T[3] - T[2])) / 2;
+  uint64_t sum1 = T[1] + T[2];
+  uint64_t sum2 = T[3] + T[0];
+
+  if (sum1 >= sum2) {
+    offset = (sum1 - sum2) / 2;
+  } else {
+    offset = UINT64_MAX - (sum2 - sum1)/2;  // Two's complement manually
+  }
+  offset = offset % UINT64_MAX;
 }
 
 uint64_t GlobalClock::getOffset() {
   return offset;
 }
+
+void GlobalClock::resetOffset() {
+  for (int i = 0; i < 4; i++) {
+    T[i] = 0;
+  }
+  offset = 0;
+}
+
 

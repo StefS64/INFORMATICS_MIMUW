@@ -3,8 +3,8 @@ CC     = gcc
 CXX    = g++
 
 # Compilation flags
-CFLAGS   = -Wall -O2
-CXXFLAGS = -Wall -O2
+CFLAGS   = -Wall -Werror -O2
+CXXFLAGS = -Wall -Werror -O2
 
 # List of source files (C and C++)
 C_SRCS   = common.c err.c

@@ -8,6 +8,9 @@
 #include <iostream>
 #include <unistd.h>
 #include <cinttypes>
+#include <set>
+#include <ifaddrs.h>
+#include <tuple>
 
 extern "C" {    
 #include "common.h"
@@ -19,8 +22,8 @@ extern "C" {
 struct address_info {
   in_addr_t ip;   // Stored in network byte order (like inet_pton output)
   uint16_t port;  // Stored in network byte order for flexibility
-  short flags = 0;  // Flags for communication 0 means computer is not sure if it exists.
-  uint64_t sync_time = 0; // Keeps track of time from last SYNC_START.
+  mutable short flags = 0;  // Flags for communication 0 means computer is not sure if it exists.
+  mutable uint64_t sync_time = 0; // Keeps track of time from last SYNC_START.
   //
   // Constructors.
   address_info() : ip(INADDR_ANY), port(0) {}  // Default constructor dummy addres.
@@ -64,9 +67,13 @@ struct address_info {
   bool operator!=(const sockaddr_in& other) const {
     return !(*this == other);
   }
+  bool operator<(const address_info& other) const {
+    return std::tie(ip, port) <
+    std::tie(other.ip, other.port);
+  }
 
   // Functions used to prep data for send.
-  std::string serialize() {
+  std::string serialize() const {
     std::string data;
     size_t size = sizeof(ip);
     data.push_back(static_cast<char>(size));
@@ -75,24 +82,15 @@ struct address_info {
 
     const char* port_bytes = reinterpret_cast<const char*>(&port);
     data.append(port_bytes, sizeof(port));
-
+#ifdef DEBUG
     std::cout <<"string data: " << data <<std::endl;
     std::cout <<"port: " << port <<std::endl;  
-    printBinary(data);
+#endif
     return data;
   }
 
   const size_t dataSize() {
     return sizeof(ip) + sizeof(port) + 1;// +1 for length byte
-  }
-  // TODO debug functio// TODO debug functionn
-  void printBinary(const std::string& data) {
-    std::cout << "Binary string: ";
-    for (unsigned char c : data) {
-      std::bitset<8> bits(c);
-      std::cout << bits << ' ';
-    }
-    std::cout << std::endl;
   }
 };
 
@@ -127,26 +125,22 @@ public:
   void initSocket();
   int getSocketFd() const;
   address_info getSyncAddr() const;
-  void setSyncAddr(address_info sync_with, uint8_t sync_level);
-  uint8_t getSyncLevelSyncWith() const {
-    return sync_level_of_synced_with;
-  }
-  uint64_t getOffset() const {
-    return offset; 
-  }
-  void setOffset(uint64_t val) {
-    offset = val;
-  }
+  void setSyncAddr(const address_info sync_with, const uint8_t sync_level);
+  uint8_t getSyncLevelSyncWith() const;
+  uint64_t getOffset() const;
+  void setOffset(uint64_t val);
+  const std::set<address_info>& getLocalAddress() const;
 
 private:
   uint8_t sync_level;
   bool peer_present;
   address_info peer_addr;// Begining sync address.
-  sockaddr_in bind_addr;
+  sockaddr_in bind_addr;// Adress to bind with.
   int socket_fd;
   address_info sync_with;// Address of the synchronized node.
-  uint8_t sync_level_of_synced_with;
+  uint8_t sync_level_of_synced_with; // Sync level of your peer.
   uint64_t offset;
+  std::set<address_info> localAddress;// Ip of possible interfaces.
 };
 
 #endif

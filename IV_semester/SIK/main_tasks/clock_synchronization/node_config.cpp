@@ -1,5 +1,28 @@
 #include "node_config.hpp"
 
+// Function to get the local IP addresses and return a vector of address_info objects
+std::set<address_info> getLocalIPAddresses(uint16_t port) {
+  std::set<address_info> addresses;
+  struct ifaddrs *interfaces = nullptr;
+  struct ifaddrs *temp_addr = nullptr;
+
+  if (getifaddrs(&interfaces) == 0) {
+    temp_addr = interfaces;
+    while (temp_addr != nullptr) {
+      if (temp_addr->ifa_addr && temp_addr->ifa_addr->sa_family == AF_INET) {
+        in_addr_t ipAddress = ((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr.s_addr;
+
+        if (ipAddress != INADDR_LOOPBACK) {
+          addresses.insert(address_info(ipAddress, htons(port)));
+        }
+      }
+      temp_addr = temp_addr->ifa_next;
+    }
+  }
+  freeifaddrs(interfaces);
+  return addresses;
+}
+
 NodeConfig::NodeConfig() : sync_level(255), peer_present(false), socket_fd(-1), sync_with(address_info()){
   memset(&bind_addr, 0, sizeof(bind_addr));
   bind_addr.sin_family = AF_INET;
@@ -11,7 +34,6 @@ NodeConfig::NodeConfig() : sync_level(255), peer_present(false), socket_fd(-1), 
 NodeConfig::~NodeConfig() {
   if (socket_fd != -1) {
     close(socket_fd);
-    std::cout << "Socket closed: " << socket_fd << std::endl;
   }
 }
 
@@ -27,42 +49,47 @@ bool NodeConfig::parseArgs(int argc, char* argv[]) {
         if (b_flag) fatal("Duplicate '-b' (bind address) flag provided.");
         b_flag = true;
 
-        std::cout << "Option bind_address\n";
-
-        if (inet_pton(AF_INET, optarg, &bind_addr.sin_addr) != 1) {
-          fatal("Invalid bind address: %s", optarg);
-        }
-        break;
+#ifdef DEBUG
+      std::cout << "Option bind_address\n"; //TODO
+#endif
+      if (inet_pton(AF_INET, optarg, &bind_addr.sin_addr) != 1) {
+        fatal("Invalid bind address: %s", optarg);
+      }
+      break;
 
       case 'p':
         if (p_flag) fatal("Duplicate '-p' (port) flag provided.");
         p_flag = true;
         bind_addr.sin_port = htons(read_port(optarg));
 
-        std::cout << "Option port with value: " << ntohs(bind_addr.sin_port) << "\n";
-        break;
+#ifdef DEBUG
+      std::cout << "Option port with value: " << ntohs(bind_addr.sin_port) << "\n";//TODO
+#endif
+      break;
 
       case 'a':
         if (a_flag) fatal("Duplicate '-a' (peer address) flag provided.");
         a_flag = true;
         peer_present = true;
         peer_address = optarg;
-
-        std::cout << "Option peer_address\n";
-        break;
+#ifdef DEBUG
+      std::cout << "Option peer_address\n";//TODO
+#endif
+      break;
 
       case 'r':
         if (r_flag) fatal("Duplicate '-r' (peer port) flag provided.");
         r_flag = true;
         peer_present = true;
+#ifdef DEBUG
+      std::cout << "Option peer_port\n";//TODO
+#endif
+      peer_port = read_port(optarg);  // Here without htons because get_server_address does that for us.
 
-        std::cout << "Option peer_port\n";
-        peer_port = read_port(optarg);  // Here without htons because get_server_address does that for us.
-
-        if (peer_port == 0) {
-          fatal("Peer port number can't be zero");
-        }
-        break;
+      if (peer_port == 0) {
+        fatal("Peer port number can't be zero");
+      }
+      break;
 
       case '?':
         printUsage(argv[0]);
@@ -76,7 +103,6 @@ bool NodeConfig::parseArgs(int argc, char* argv[]) {
   }
 
   if (peer_present) {
-    std::cout <<peer_port <<std::endl;
     peer_addr = address_info(get_server_address(peer_address.c_str(), peer_port));
   }
 
@@ -102,10 +128,11 @@ void NodeConfig::initSocket() {
   }
 
   struct timeval timeout;
-  timeout.tv_sec = 5;
+  timeout.tv_sec = 1;
+  timeout.tv_usec = 0;
 
   if (setsockopt(socket_fd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
-    perror("setsockopt failed");
+    syserr("setsockopt failed");
     close(socket_fd);
     return;
   }
@@ -116,12 +143,13 @@ void NodeConfig::initSocket() {
   }
 
   // Find out what port the server is actually listening on.
-  socklen_t lenght = (socklen_t) sizeof bind_addr;
-  if (getsockname(socket_fd, (struct sockaddr *) &bind_addr, &lenght) < 0) {
+  socklen_t length = (socklen_t) sizeof bind_addr;
+  if (getsockname(socket_fd, (struct sockaddr *) &bind_addr, &length) < 0) {
     syserr("getsockname");
   }
+  int my_port = ntohs(bind_addr.sin_port);
 
-  printf("listening on port %" PRIu16 "\n", ntohs(bind_addr.sin_port));
+  localAddress = getLocalIPAddresses(my_port); 
 } 
 
 sockaddr_in NodeConfig::getBindAddressIn() const {
@@ -150,9 +178,24 @@ void NodeConfig::setSyncAddr(address_info sync_with, uint8_t level) {
 }
 
 address_info NodeConfig::getSyncAddr() const {
- return sync_with;  
+  return sync_with;  
 }
 
 int NodeConfig::getSocketFd() const {
   return socket_fd;
+}
+uint8_t NodeConfig::getSyncLevelSyncWith() const {
+    return sync_level_of_synced_with;
+}
+
+uint64_t NodeConfig::getOffset() const {
+    return offset;
+}
+
+void NodeConfig::setOffset(uint64_t val) {
+    offset = val;
+}
+
+const std::set<address_info>& NodeConfig::getLocalAddress() const {
+    return localAddress;
 }

@@ -2,13 +2,10 @@
 #include<string>  
 #include<unistd.h>
 #include<time.h>
-extern "C" {
-#include "common.h"
-}
+
 #include "node_config.hpp"
 #include "network_manager.hpp"
 #include "global_clock.hpp"
-#define DEBUG
 
 void printUsage(const char* programName) {
   std::cerr << "Usage: " << programName 
@@ -21,7 +18,6 @@ int main(int argc, char* argv[]) {
   NodeConfig node;
   
   if(!node.parseArgs(argc, argv)) {
-    node.printUsage(argv[0]);
     return EXIT_FAILURE;
   }
 

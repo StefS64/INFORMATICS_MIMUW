@@ -12,4 +12,7 @@ void fatal(const char* fmt, ...);
 // Print information about an error and return.
 void error(const char* fmt, ...);
 
+// Print information about an invalid message and return.
+void error_msg(const void* buf, size_t len);
+
 #endif

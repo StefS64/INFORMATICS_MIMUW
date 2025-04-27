@@ -8,8 +8,10 @@
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
+#include <endian.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <set>
 #include "node_config.hpp"
 #include "global_clock.hpp"
 extern "C" {
@@ -35,6 +37,7 @@ enum MessageType : uint8_t {
   GET_TIME        = 31,
   TIME            = 32
 };
+
 enum SynchronizationState : uint8_t {
   LEADING           = 1,
   SYNCHRONIZED      = 2,
@@ -43,6 +46,7 @@ enum SynchronizationState : uint8_t {
 };    
 
 constexpr uint64_t FIVE_SECONDS = 5000;
+constexpr uint64_t TWO_SECONDS = 5000;
 
 class NetworkManager {
 public:
@@ -51,17 +55,17 @@ public:
 private:
   int socket_fd;
   NodeConfig& data;
-  std::vector<address_info> connections;
+  std::set<address_info> connections;
   SynchronizationState state;
   uint64_t synced_time;
+  uint64_t set_leader;
 
   void handleIncomingMessage();
   void handleSyncSending();
   bool validSyncRequest(const sockaddr_in& sender_addr, uint8_t synchronized);
-  int addConnection(const sockaddr_in& sender, const short flags = 0);
-  int addConnection(const address_info& peeaddr, const short flags = 0);
+  bool addConnection(const sockaddr_in& sender, const short flags = 0);
+  bool addConnection(const address_info& peeaddr, const short flags = 0);
   void printConnectionList() const;
-  int _findSockaddr(const address_info& peer_addr);
   void handleHello(const sockaddr_in& sender,socklen_t sender_len);
   void handleHelloReply(const sockaddr_in& sender, ssize_t len);
   void handleSyncStart(const sockaddr_in& sender_addr, ssize_t len, uint64_t recv_time);
