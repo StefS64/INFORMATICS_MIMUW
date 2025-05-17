@@ -1,0 +1,10 @@
+<!-- filepath: mapeditor/templates/mapeditor/confirm_delete_board.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Czy na pewno chcesz usunąć planszę "{{ board.name }}"?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Tak, usuń</button>
+    <a href="{% url 'edit_board' board.id %}">Anuluj</a>
+</form>
+{% endblock %}

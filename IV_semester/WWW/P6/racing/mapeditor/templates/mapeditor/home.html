@@ -1,0 +1,33 @@
+<h1>Witaj w edytorze tras!</h1>
+<p>Jesteś zalogowany jako: {{ user.username }}</p>
+<a href="{% url 'create_route' %}">Stwórz nową trasę</a>
+<a href="{% url 'create_board' %}">Stwórz nową planszę</a>
+<form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Wyloguj</button>
+</form>
+
+<h2>Twoje zapisane trasy</h2>
+<ul>
+    {% for route in routes %}
+        <li>
+            <a href="{% url 'route_detail' route.id %}">{{ route.name }}</a> - Tło: {{ route.background.name }}
+        </li>
+    {% empty %}
+        <li>Brak zapisanych tras.</li>
+    {% endfor %}
+</ul>
+
+<h2>Twoje zapisane plansze</h2>
+<ul>
+    {% for board in boards %}
+        <li>
+            {{ forloop.counter }}. {{ board.name }} ({{ board.rows }} x {{ board.cols }})
+            <a href="{% url 'edit_board' board.id %}">Edytuj</a>
+        </li>
+    {% empty %}
+        <li>Brak zapisanych plansz.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}">Powrót</a>

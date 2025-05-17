@@ -1,0 +1,92 @@
+<h2>Trasa: {{ route.name }}</h2>
+<p>Tło: {{ route.background.name }}</p>
+
+<div id="img-container" style="position: relative; width: 600px; height: 400px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <img id="bg-img" src="{{ route.background.image.url }}" alt="Tło" style="width: 100%; height: 100%; display: block;">
+    <canvas id="route-canvas" width="600" height="400" style="position: absolute; left: 0; top: 0; pointer-events: none;"></canvas>
+    {% for point in points %}
+        <div class="point-dot"
+             style="position: absolute; left: calc({{ point.x }}px - 7px); top: calc({{ point.y }}px - 7px); width: 14px; height: 14px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 2px #000; z-index: 2;"
+             title="({{ point.x }}, {{ point.y }})"></div>
+    {% endfor %}
+</div>
+
+<script>
+    // Draw lines between points
+    const points = [
+        {% for point in points %}
+            {x: {{ point.x }}, y: {{ point.y }}},
+        {% endfor %}
+    ];
+    const canvas = document.getElementById('route-canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 2;
+    if (points.length > 1) {
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+        }
+        ctx.stroke();
+    }
+
+    // Add point by double clicking on the image
+    document.getElementById('img-container').addEventListener('dblclick', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = Math.round(e.clientX - rect.left);
+        const y = Math.round(e.clientY - rect.top);
+        // Set values in the add-point form only!
+        const form = document.getElementById('add-point-form');
+        form.querySelector('input[name="x"]').value = x;
+        form.querySelector('input[name="y"]').value = y;
+        form.submit();
+    });
+
+    document.getElementById("save-board")?.addEventListener("click", () => {
+        boardConfig.name = (document.getElementById("board-name") as HTMLInputElement).value;
+        const id = (window.initialBoard && window.initialBoard.id) ? window.initialBoard.id : undefined;
+        const payload = { ...boardConfig, id };
+        fetch("/board/save/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": (document.querySelector('[name=csrfmiddlewaretoken]') as HTMLInputElement)?.value || "",
+            },
+            body: JSON.stringify(payload),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Plansza zapisana!");
+                window.location.href = "/";
+            } else {
+                alert("Błąd: " + (data.error || "Nieznany błąd"));
+            }
+        })
+        .catch(err => alert("Błąd zapisu!"));
+    });
+</script>
+
+<h3>Punkty trasy:</h3>
+<ul>
+    {% for point in points %}
+        <li>
+            ({{ point.x }}, {{ point.y }}) - Kolejność: {{ point.order }}
+            <form method="post" action="{% url 'delete_point' point.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Usunąć punkt?');">Usuń</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Dodaj punkt:</h3>
+<form method="post" id="add-point-form">
+    {% csrf_token %}
+    {{ form.x.label_tag }} {{ form.x }}
+    {{ form.y.label_tag }} {{ form.y }}
+    {{ form.order.label_tag }} {{ form.order }}
+    <button type="submit">Dodaj punkt</button>
+</form>
+<a href="{% url 'home' %}">Powrót</a>

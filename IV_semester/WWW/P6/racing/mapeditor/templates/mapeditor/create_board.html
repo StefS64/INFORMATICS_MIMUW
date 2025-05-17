@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Stwórz nową planszę</h2>
+
+<form id="board-meta-form" style="margin-bottom: 20px;">
+    <label>Nazwa planszy:
+        <input type="text" id="board-name" name="name" required>
+    </label>
+    <label>Liczba wierszy:
+        <input type="number" id="board-rows" name="rows" min="2" max="30" value="10" required>
+    </label>
+    <label>Liczba kolumn:
+        <input type="number" id="board-cols" name="cols" min="2" max="30" value="10" required>
+    </label>
+    <button type="button" id="generate-board">Generuj planszę</button>
+</form>
+
+<div id="color-picker" style="margin-bottom: 15px;">
+    <label>Wybierz kolor pary kropek:</label>
+    <input type="color" id="dot-color" value="#ff0000">
+    <button type="button" id="add-dot-pair">Dodaj parę kropek</button>
+    <button type="button" id="delete-dot-pair">Usuń parę kropek</button>
+</div>
+
+<div id="board-container" style="margin-bottom: 20px;"></div>
+
+<div>
+    {% if edit %}
+    <form method="post" action="{% url 'delete_board' board.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button id="delete-board" type="submit" onclick="return confirm('Na pewno usunąć planszę?');">Usuń planszę</button>
+    </form>
+    {% endif %}
+    <a href="{% url 'home' %}">Powrót</a>
+</div>
+
+{% if edit %}
+    <script>
+        window.initialBoard = {
+            id: {{ board.id }},
+            name: "{{ board.name|escapejs }}",
+            rows: {{ board.rows }},
+            cols: {{ board.cols }},
+            dots: {{ dots_json|safe }}
+        };
+    </script>
+{% endif %}
+
+<script src="{% static 'js/dist/board.js' %}"></script>
+{% endblock %}

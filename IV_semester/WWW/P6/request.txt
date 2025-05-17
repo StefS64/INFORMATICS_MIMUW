@@ -1,0 +1,27 @@
+# GET all routes
+curl -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 http://127.0.0.1:8000/api/routes/
+
+# POST create a new route
+curl -X POST -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 -H Content-Type:application/json \
+    -d '{"name": "Nowa trasa", "background": 4}' \
+    http://127.0.0.1:8000/api/routes/
+
+# GET route details
+curl -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 http://127.0.0.1:8000/api/routes/1/
+
+# DELETE a route
+curl -X DELETE -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 http://127.0.0.1:8000/api/routes/1/
+
+# GET points for a route
+curl -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 http://127.0.0.1:8000/api/routes/1/points/
+
+# POST add a point to a route
+curl -X POST -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 -H Content-Type:application/json \
+    -d '{"x": 100, "y": 200, "order": 1}' \
+    http://127.0.0.1:8000/api/routes/1/points/
+
+# DELETE a point (if endpoint exists)
+curl -X DELETE -H Authorization:Token\ 4480c1696d8f08a63a72364cd2e92596186ef571 http://127.0.0.1:8000/api/routes/1/points/2/
+
+# Get a token
+curl -X POST -d username=youruser\&password=yourpass http://127.0.0.1:8000/api/token/
